@@ -5,6 +5,7 @@ import numpy as np
 import json
 
 st.title('Test App')
+st.write('Es funktioniert noch nicht wirklich, Irgendwie bricht er immer bei den Pandas Befehlen ab, kp warum.')
 
 #mit Pandas
 # Read the JSON file into a Pandas dataframe
