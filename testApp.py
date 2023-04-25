@@ -8,6 +8,6 @@ st.title('Test App')
 df = pd.read_json('data/data2.json')
 
 # Print the dataframe
-print(df)
+# print(df)
 
 
