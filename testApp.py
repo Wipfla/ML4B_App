@@ -15,7 +15,7 @@ st.title('Test App')
 
 #### normaler weg
 # Open the JSON file and load its contents into a variable
-with open('data/data2.json', 'r') as d2:
+with open('data/data2.json') as d2:
     data2 = json.load(d2)
 
 # Print the contents of the JSON file
