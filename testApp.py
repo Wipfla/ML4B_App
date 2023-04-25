@@ -7,6 +7,8 @@ import json
 st.title('Test App')
 st.write('Es funktioniert noch nicht wirklich, Irgendwie bricht er immer bei den Pandas Befehlen ab, kp warum.')
 
+st.bar_chart(data= 'data/data2.json')
+
 #mit Pandas
 # Read the JSON file into a Pandas dataframe
 #df = pd.read_json('data/data2.json')
