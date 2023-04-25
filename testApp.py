@@ -8,10 +8,10 @@ st.title('Test App')
 
 #mit Pandas
 # Read the JSON file into a Pandas dataframe
-df = pd.read_json('data/data2.json')
+#df = pd.read_json('data/data2.json')
 
 # Print the dataframe
-print(df)
+#print(df)
 
 def load_data(nrows):
      data = pd.read_json('data/data2.json', nrows=nrows)
