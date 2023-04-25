@@ -1,5 +1,10 @@
 # ML4B_App
 
+# Wichtig! #
+# immer n neuen Branch erstellen! (unten links drücken)
+# um neuen Stand zu holen Terminal --> New Terminal --> git pull
+
+
 Ideen:
 	- App erkennt ob in der Uni --> stummschalten
 	- coupons standortdaten --> decision tree
