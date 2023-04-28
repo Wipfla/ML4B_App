@@ -7,22 +7,13 @@ import json
 st.title('Test App')
 st.write('Es funktioniert noch nicht wirklich, Irgendwie bricht er immer bei den Pandas Befehlen ab, kp warum.')
 
-
-# mit Pandas
-# Read the JSON file into a Pandas dataframe
-# df = pd.read_json('data/data2.json')
-
-# Print the dataframe
-# print(df)
-
-
-# Laden Sie Ihren DataFrame
+# Lade DataFrame
 df2 = pd.read_json('data/data2.json')
 
-# Zeigen Sie den DataFrame in einer Tabelle an
+# Zeig DataFrame in einer Tabelle an
 st.table(df2)
 
-# Zeigen Sie den DataFrame im DataFrame-Viewer an
+# Zeig DataFrame im DataFrame-Viewer an
 st.dataframe(df2)
 
 # # def load_data(nrows):
