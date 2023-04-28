@@ -19,10 +19,16 @@ def load_data(nrows):
      data = pd.read_json('data/data2.json', nrows=nrows)
      return data
 
+def load_datanew():
+     with open('data/data2.json') as d2:
+          data2 = json.load(d2)
+     return data2
+
+
 # Create a text element and let the reader know the data is loading.
 data_load_state = st.text('Loading data...')
 # Load 10,000 rows of data into the dataframe.
-data = load_data(100)
+data = load_datanew(100)
 # Notify the reader that the data was successfully loaded.
 data_load_state.text('Loading data...done!')
 
