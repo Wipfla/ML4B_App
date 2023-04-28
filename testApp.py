@@ -8,28 +8,26 @@ st.title('Test App')
 st.write('Es funktioniert noch nicht wirklich, Irgendwie bricht er immer bei den Pandas Befehlen ab, kp warum.')
 
 
-#mit Pandas
+# mit Pandas
 # Read the JSON file into a Pandas dataframe
-#df = pd.read_json('data/data2.json')
+# df = pd.read_json('data/data2.json')
 
 # Print the dataframe
-#print(df)
+# print(df)
+
 
 def load_data(nrows):
-     data = pd.read_json('data/data2.json', nrows=nrows)
-     return data
+    with open('data/data2.json', nrows=nrows) as d2:
+        data2 = json.load(d2)
+    return data2
 
-def load_datanew():
-     with open('data/data2.json') as d2:
-          data2 = json.load(d2)
-     return data2
 
-data = load_datanew()
+data = load_data()
 st.write(data)
 # Create a text element and let the reader know the data is loading.
 data_load_state = st.text('Loading data...')
 # Load 10,000 rows of data into the dataframe.
-data = load_datanew(100)
+data = load_data(100)
 # Notify the reader that the data was successfully loaded.
 data_load_state.text('Loading data...done!')
 
@@ -37,11 +35,10 @@ st.subheader('Raw data')
 st.write(data)
 
 
-
-#### alternativer weg
+# alternativer weg
 # Open the JSON file and load its contents into a variable
-#with open('data/data2.json') as d2:
+# with open('data/data2.json') as d2:
 #    data2 = json.load(d2)
 
 # Print the contents of the JSON file
-#print(data2)
+# print(data2)
