@@ -24,7 +24,8 @@ def load_datanew():
           data2 = json.load(d2)
      return data2
 
-
+data = load_datanew()
+st.write(data)
 # Create a text element and let the reader know the data is loading.
 data_load_state = st.text('Loading data...')
 # Load 10,000 rows of data into the dataframe.
