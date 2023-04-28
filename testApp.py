@@ -8,7 +8,7 @@ st.title('Test App')
 st.write('Es funktioniert noch nicht wirklich, Irgendwie bricht er immer bei den Pandas Befehlen ab, kp warum.')
 
 # Lade DataFrame
-df2 = pd.read_json('data2.json')
+df2 = pd.read_json('data/data2/data2.json')
 
 # Zeig DataFrame in einer Tabelle an
 st.table(df2)
