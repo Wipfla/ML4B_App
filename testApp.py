@@ -5,7 +5,7 @@ import numpy as np
 import json
 
 st.title('Test App')
-st.write('Es funktioniert noch nicht wirklich, Irgendwie bricht er immer bei den Pandas Befehlen ab, kp warum.')
+st.write('It works! :) Hallelujah!')
 
 # Lade DataFrame
 #df2 = pd.read_json('ML4B_App/data/data2/data2.json')
@@ -17,3 +17,6 @@ df2 = pd.read_csv('data/data2/Data2_Accelerometer_data.csv')
 
 # Zeig DataFrame im DataFrame-Viewer an
 st.dataframe(df2)
+
+# Zeig DataFrame als Bar Chart an
+st.bar_chart(df2)
