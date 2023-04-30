@@ -4,33 +4,33 @@ import numpy as np
 
 import json
 
-st.title('Test App')
-st.write('Es funktioniert noch nicht wirklich, Irgendwie bricht er immer bei den Pandas Befehlen ab, kp warum.')
+st.title('ML4B_Libraries_Test App')
+st.write('It works! :) Hallelujah!')
 
 # Lade DataFrame
-df2 = pd.read_json('data/data2/data2.json')
-## Pierre: vielleicht ist der Path nicht richtig zur data2 und kann das deswegen nicht lesen/nicht im gleichen Directory wie der Code -> Error
+#df2 = pd.read_json('ML4B_App/data/data2/data2.json')
+df_walk_Acc = pd.read_csv('data/NormalWalk/Accelerometer.csv')
 
 # Zeig DataFrame in einer Tabelle an
-st.table(df2)
+#st.table(df_walk_Acc)
 
 # Zeig DataFrame im DataFrame-Viewer an
-st.dataframe(df2)
+st.dataframe(df_walk_Acc)
 
-# # def load_data(nrows):
-# #     with open('data/data2.json', nrows=nrows) as d2:
-# #         data2 = json.load(d2)
-# #     return data2
+#Ballons
+st.button('Click me!',on_click=st.balloons)
 
+# Zeig DataFrame als Line Chart an
+st.line_chart(data =df_walk_Acc)
 
-# #data = load_data()
-# #st.write(data)
-# # Create a text element and let the reader know the data is loading.
-# data_load_state = st.text('Loading data...')
-# # Load 10,000 rows of data into the dataframe.
-# data = load_data(100)
-# # Notify the reader that the data was successfully loaded.
-# data_load_state.text('Loading data...done!')
+#Frage
+activity = st.radio(
+    "What did he do?",
+    ('PushUp', 'Walk', 'Jumping Jacks'))
 
-# st.subheader('Raw data')
-# st.write(data)
+if activity == 'Walk':
+    st.write('Correct! He walked.')
+elif activity == 'PushUp':
+    st.write('You are incorrect.')
+elif activity == 'Jumping Jacks':
+    st.write('You are incorrect.')
