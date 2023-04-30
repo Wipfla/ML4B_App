@@ -1,0 +1,2 @@
+version,device name,recording time,platform,appVersion,device id,sensors,sampleRateMs
+3,Pixel 7,2023-04-30_18-48-23,android,1.15.2,1ae58f79-6841-433f-87c8-bf84a48387d6,Accelerometer|Gravity|Gyroscope|Orientation|Magnetometer|Barometer|Location|Microphone|Light|Battery|Brightness|Annotation|TotalAcceleration|MagnetometerUncalibrated|GyroscopeUncalibrated|AccelerometerUncalibrated,10|10|10|10|10|0|0|100|0|1000|1000||10|10|10|10
