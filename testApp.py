@@ -19,4 +19,4 @@ df2 = pd.read_csv('data/data2/Data2_Accelerometer_data.csv')
 st.dataframe(df2)
 
 # Zeig DataFrame als Bar Chart an
-st.bar_chart(df2)
+st.bar_chart(data =df2, width=20, height=10, use_container_width=True)
