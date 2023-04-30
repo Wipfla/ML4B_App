@@ -17,5 +17,5 @@ df_walk_Acc = pd.read_csv('data/NormalWalk/Accelerometer.csv')
 # Zeig DataFrame im DataFrame-Viewer an
 st.dataframe(df_walk_Acc)
 
-# Zeig DataFrame als Bar Chart an
-st.bar_chart(data =df_walk_Acc)
+# Zeig DataFrame als Line Chart an
+st.line_chart(data =df_walk_Acc)
