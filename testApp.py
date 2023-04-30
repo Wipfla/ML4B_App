@@ -26,7 +26,7 @@ st.line_chart(data =df_walk_Acc)
 #Frage
 activity = st.radio(
     "What did he do?",
-    ('Walk', 'PushUp', 'Jumping Jacks'))
+    ('PushUp', 'Walk', 'Jumping Jacks'))
 
 if activity == 'Walk':
     st.write('Correct! He walked.')
