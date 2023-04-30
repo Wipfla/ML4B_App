@@ -22,3 +22,18 @@ st.button('Click me!',on_click=st.balloons)
 
 # Zeig DataFrame als Line Chart an
 st.line_chart(data =df_walk_Acc)
+
+#Frage
+activity = st.radio(
+    "What did he do?",
+    ('Walk', 'PushUp', 'Jumping Jacks'))
+
+match activity:
+    case 'Walk':
+        st.write('Correct! He walked.')
+
+    case 'PushUp':
+        st.write('You are incorrect.')
+    
+    case 'Jumping Jacks':
+        st.write('You are incorrect.')
