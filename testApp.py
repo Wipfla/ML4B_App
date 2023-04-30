@@ -9,7 +9,7 @@ st.write('Es funktioniert noch nicht wirklich, Irgendwie bricht er immer bei den
 
 # Lade DataFrame
 #df2 = pd.read_json('ML4B_App/data/data2/data2.json')
-df2 = pd.read_csv('data\data2\Data2_Accelerometer_data.csv')
+df2 = pd.read_csv('data/data2/Data2_Accelerometer_data.csv')
 ## Pierre: vielleicht ist der Path nicht richtig zur data2 und kann das deswegen nicht lesen/nicht im gleichen Directory wie der Code -> Error
 
 # Zeig DataFrame in einer Tabelle an
