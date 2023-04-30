@@ -4,7 +4,7 @@ import numpy as np
 
 import json
 
-st.title('Test App')
+st.title('ML4B_Libraries_Test App')
 st.write('It works! :) Hallelujah!')
 
 # Lade DataFrame
@@ -16,6 +16,9 @@ df_walk_Acc = pd.read_csv('data/NormalWalk/Accelerometer.csv')
 
 # Zeig DataFrame im DataFrame-Viewer an
 st.dataframe(df_walk_Acc)
+
+#Ballons
+st.button('Click me!',on_click=st.balloons)
 
 # Zeig DataFrame als Line Chart an
 st.line_chart(data =df_walk_Acc)
