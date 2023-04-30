@@ -2,7 +2,7 @@
 
 # Wichtig! #
 immer n neuen Branch erstellen! (unten links drücken)
-um neuen Stand zu holen Terminal --> New Terminal --> git pull
+um neuen Stand zu holen Terminal --> New Terminal --> *git pull*
 
 
 Ideen:
