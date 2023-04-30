@@ -28,12 +28,9 @@ activity = st.radio(
     "What did he do?",
     ('Walk', 'PushUp', 'Jumping Jacks'))
 
-match activity:
-    case 'Walk':
-        st.write('Correct! He walked.')
-
-    case 'PushUp':
-        st.write('You are incorrect.')
-    
-    case 'Jumping Jacks':
-        st.write('You are incorrect.')
+if activity == 'Walk':
+    st.write('Correct! He walked.')
+elif activity == 'PushUp':
+    st.write('You are incorrect.')
+elif activity == 'Jumping Jacks':
+    st.write('You are incorrect.')
