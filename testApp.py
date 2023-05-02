@@ -22,7 +22,7 @@ st.dataframe(df_JJ_Gyr)
 st.button('Click me!',on_click=st.balloons)
 
 # Zeig DataFrame als Line Chart an
-st.line_chart(data =df_JJ_Gyr, x='time', y=['x','y','z'])
+st.line_chart(data =df_JJ_Gyr, x='time', y=['x','y','z'], title='Gyroscope Data')
 
 #Frage
 activity = st.radio(
