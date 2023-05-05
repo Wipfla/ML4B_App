@@ -4,6 +4,12 @@
 immer n neuen Branch erstellen! (unten links drücken)
 um neuen Stand zu holen Terminal --> New Terminal --> *git pull*
 
+ToDos:
+  - ML modell bauen
+  - Streamlit entsprechend bauen das man daten hochladen kann und anwenden kann
+  - funktion bauen die je nach klassifikation entsprechend einen entsprechenden Spotify link schickt (maybe mehrere Playlists für walk, pushups etc., und dann randomised)
+  - spotify links raussuchen
+  - 
 
 Ideen:
 	- App erkennt ob in der Uni --> stummschalten
@@ -49,3 +55,4 @@ ML Modelle(ChatGPT):
 
 Weitere Idee: 
 Man kann sich trainingspläne voreinspeichern und diese mit einer Geste mit dem Handy auswählen (z.b. Handy schütteln etc). Dann wird eine Playlist mit einem randomizer aus einem Pool an Playlists aufgerufen. Was richtig sick wäre, wenn man einen Button hätte wo man eigene Übungen in die App einfügen kann. Man muss dann x anzahl an wiederholung machen, dass die App das dann lernt.
+
