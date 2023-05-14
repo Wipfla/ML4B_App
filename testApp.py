@@ -5,7 +5,7 @@ import json
 
 # Seite 1
 def page1():
-    st.subheader('Seite 1')
+    st.subheader('Playlist Recommender')
     # Fügen Sie hier den Inhalt der Seite 1 hinzu
     
     st.title('Find the right Playlist for your Activity!')
@@ -23,19 +23,20 @@ def page1():
             #hier muss noch eine Funktion gebaut werden die die Daten aus dem json file extrahiert (siehe test.ipynb)
             #die einzelnen Tabellen müssen dann noch in die Datenbank geladen werden bzw. concateniert werden
     
-    # Zeig DataFrame als Line Chart an
-    st.caption('Your Gyroscope Data in Lines! WOW!')
-    st.line_chart(data =UserFile, x='time', y=['x','y','z'])
+        # Zeig DataFrame als Line Chart an
+        st.caption('Your Gyroscope Data in Lines! WOW!')
+        st.line_chart(data =UserFile, x='time', y=['x','y','z'])
 
 
 
 
-    st.info('Alexander Frey(23169187), Pierre Engel(), Tawfik Madarati(), Marvin Wipfler (22959307)')   
+    st.info('Alexander Frey(23169187), Pierre Engel(), Tawfik Madarati(), Marvin Wipfler (22959307)')  
+
 # Seite 2
 def page2():
-    st.subheader('Seite 2')
+    st.subheader('Test Page')
     # Fügen Sie hier den Inhalt der Seite 2 hinzu
-    st.title('Test Page')
+    st.title('Test Page for messing around!')
     # Lade DataFrame
     #df2 = pd.read_json('ML4B_App/data/data2/data2.json')
     df_JJ_Gyr = pd.read_csv('data/JJ_rightHand/Gyroscope.csv')
