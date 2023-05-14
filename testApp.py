@@ -11,14 +11,16 @@ st.write('Just upload your data and we will find the right playlist for you!')
 UserFile = st.file_uploader("upload file", type={"csv", "txt", "json"})
 if UserFile is not None:
     UserFile_df = pd.read_csv(UserFile)
-st.write(UserFile_df)
+    # Zeig DataFrame im DataFrame-Viewer an
+    st.dataframe(UserFile_df)
 
-# Zeig DataFrame im DataFrame-Viewer an
-st.dataframe(UserFile_df)
+    # Zeig DataFrame als Line Chart an
+    st.caption('Your Data in Lines! WOW!')
+    st.line_chart(data =UserFile_df, x='time', y=['x','y','z'])
 
-# Zeig DataFrame als Line Chart an
-st.caption('Your Data in Lines! WOW!')
-st.line_chart(data =UserFile_df, x='time', y=['x','y','z'])
+
+
+
 
 # Lade DataFrame
 #df2 = pd.read_json('ML4B_App/data/data2/data2.json')
