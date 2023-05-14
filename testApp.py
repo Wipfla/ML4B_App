@@ -15,7 +15,7 @@ if UserFile is not None:
     st.dataframe(UserFile_df)
 
     #Extract Gyr Data, Acc Data, Orientation Data if user file is a json file
-    if UserFile.name.endswith('.json'):
+    #if UserFile.name.endswith('.json'):
         #hier muss noch eine Funktion gebaut werden die die Daten aus dem json file extrahiert
         #die einzelnen Tabellen müssen dann noch in die Datenbank geladen werden bzw. concateniert werden
     
