@@ -5,7 +5,7 @@ import numpy as np
 import json
 
 st.title('Find the right Playlist for your Activity!')
-st.info('Alexander Frey(), Pierre Engel(), Tawfik Madarati(), Marvin Wipfler (22959307)')
+
 st.write('Just upload your data and we will find the right playlist for you!')
 
 UserFile = st.file_uploader("Upload your File here and be amazed!", type={"csv", "txt", "json"})
@@ -14,9 +14,14 @@ if UserFile is not None:
     # Zeig DataFrame im DataFrame-Viewer an
     st.dataframe(UserFile_df)
 
+    #Extract Gyr Data, Acc Data, Orientation Data if user file is a json file
+    if UserFile.name.endswith('.json'):
+        #hier muss noch eine Funktion gebaut werden die die Daten aus dem json file extrahiert
+        #die einzelnen Tabellen müssen dann noch in die Datenbank geladen werden bzw. concateniert werden
+    
     # Zeig DataFrame als Line Chart an
-    st.caption('Your Data in Lines! WOW!')
-    st.line_chart(data =UserFile_df, x='time', y=['x','y','z'])
+    st.caption('Your Gyroscope Data in Lines! WOW!')
+    st.line_chart(data =UserFile, x='time', y=['x','y','z'])
 
 
 
@@ -50,3 +55,6 @@ elif activity == 'PushUp':
     st.write('You are incorrect.')
 elif activity == 'Jumping Jacks':
     st.write('Correct!')
+
+
+st.info('Alexander Frey(), Pierre Engel(), Tawfik Madarati(), Marvin Wipfler (22959307)')
