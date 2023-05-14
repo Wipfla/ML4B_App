@@ -69,8 +69,8 @@ def page2():
 # Seitenleiste
 st.sidebar.title('Navigation')
 pages = {
-    'Seite 1': page1,
-    'Seite 2': page2
+    'Playlist Recommender': page1,
+    'Test Page': page2
 }
 selection = st.sidebar.radio("Gehe zu", list(pages.keys()))
 
