@@ -8,7 +8,7 @@ st.title('Find the right Playlist for your Activity!')
 st.info('Alexander Frey(), Pierre Engel(), Tawfik Madarati(), Marvin Wipfler (22959307)')
 st.write('Just upload your data and we will find the right playlist for you!')
 
-UserFile = st.file_uploader("upload file", type={"csv", "txt", "json"})
+UserFile = st.file_uploader("Upload your File here and be amazed!", type={"csv", "txt", "json"})
 if UserFile is not None:
     UserFile_df = pd.read_csv(UserFile)
     # Zeig DataFrame im DataFrame-Viewer an
