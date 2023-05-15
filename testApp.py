@@ -28,10 +28,11 @@ def page1():
         st.line_chart(data =UserFile, x='time', y=['x','y','z'])
 
 
-    #Hier müssen wir noch den Algo einbauen für die Playlist und vlt einen Button der dich zur Playlist weiterleitet
+     #Hier müssen wir noch den Algo einbauen für die Playlist und vlt einen Button der dich zur Playlist weiterleitet
 
 
-    st.info('Alexander Frey(23169187), Pierre Engel(xxx), Tawfik Madarati(22660392), Marvin Wipfler (22959307)')  
+    st.info('Alexander Frey(23169187), Pierre Engel(23224488), Tawfik Madarati(22660392), Marvin Wipfler (22959307)')  
+
 
 # Seite 2
 def page2():
@@ -69,42 +70,46 @@ def page2():
         
 # Seite 3
 def page3():
-    st.title('Test App')
-    st.write('xxx')
+    st.subheader('Playlist Recommender Test')
+    
+    st.title('Find the right Playlist for your Activity!')
 
-    # Load DataFrame
-    df2 = pd.read_json('data2.json')
+    st.write('Just upload your data and we will find the right playlist for you!')
 
-    # Show DataFrame in a table
-    st.table(df2)
+    UserFile = st.file_uploader("Upload your File here and be amazed!", type={"csv", "json"})
+    if UserFile is not None:
+        UserFile_df = pd.read_csv(UserFile)
+        # Zeig DataFrame im DataFrame-Viewer an
+        st.dataframe(UserFile_df)
+        
+####ToDo: ALEX
+        #Extract Gyr Data, Acc Data, Orientation Data if user file is a json file
+        #if UserFile.name.endswith('.json'):
+            #hier muss noch eine Funktion gebaut werden die die Daten aus dem json file extrahiert (siehe test.ipynb)
+            #die einzelnen Tabellen müssen dann noch in die Datenbank geladen werden bzw. concateniert werden
 
-    # Show DataFrame in the DataFrame Viewer
-    st.dataframe(df2)
+            #alternativ können wir noch eine Funktion bauen die die Daten aus dem json file extrahiert und dann in ein csv file umwandelt
+            #dann können wir die csv file einfach in ein dataframe laden und dann weiterverarbeiten, so ungefähr:
+        # def json_to_csv(file):
+        #     df = pd.read_json(file)
+        #     df.to_csv('data.csv', index=False)
+        #     return df
+    
+        # Zeig DataFrame als Line Chart an
+        st.caption('Your Gyroscope Data in Lines! WOW!')
+        st.line_chart(data =UserFile, x='time', y=['x','y','z'])
 
-    def load_data(nrows):
-        # Load data from JSON file
-        with open('data2.json') as f:
-            data = json.load(f)
-        # Convert JSON data to DataFrame
-        df = pd.DataFrame(data)
-        # Return the first n rows of the DataFrame
-        return df.head(nrows)
 
-    # Load and show the first 100 rows of data
-    data_load_state = st.text('Loading data...')
-    data = load_data(100)
-    data_load_state.text('Loading data...done!')
+     #Hier müssen wir noch den Algo einbauen für die Playlist und vlt einen Button der dich zur Playlist weiterleitet
 
-    # Show the raw data in a subheader
-    st.subheader('Raw data')
-    st.write(data)
+
 
 # Seitenleiste
 st.sidebar.title('Navigation')
 pages = {
     'Playlist Recommender': page1,
     'Test Page': page2,
-    'Test App updated': page3
+    'Playlist Test': page3
 }
 selection = st.sidebar.radio("Go to:", list(pages.keys()))
 
