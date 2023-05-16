@@ -14,7 +14,7 @@ def page1():
 
     st.write('Just upload your data and we will find the right playlist for you!')
     st.write(
-        "check out this [link](https://https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D)")
+        "Check out this [amazing Playlist for you!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)")
 
     UserFile = st.file_uploader(
         "Upload your File here and be amazed!", type={"csv", "json"})
