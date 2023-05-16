@@ -15,12 +15,11 @@ def page1():
     st.write('Just upload your data and we will find the right playlist for you!')
     st.write(
         "Check out this [amazing Playlist for you!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)")
-    st.markdown("![WOW](https://media.giphy.com/media/Ju7l5y9osyymQ/giphy.gif)")")
 
-    UserFile=st.file_uploader(
-        "Upload your File here and be amazed!", type = {"csv", "json"})
+    UserFile = st.file_uploader(
+        "Upload your File here and be amazed!", type={"csv", "json"})
     if UserFile is not None:
-        UserFile_df=pd.read_csv(UserFile)
+        UserFile_df = pd.read_csv(UserFile)
         # Zeig DataFrame im DataFrame-Viewer an
         st.dataframe(UserFile_df)
 
@@ -31,7 +30,7 @@ def page1():
 
         # Zeig DataFrame als Line Chart an
         st.caption('Your Gyroscope Data in Lines! WOW!')
-        st.line_chart(data = UserFile, x = 'time', y = ['x', 'y', 'z'])
+        st.line_chart(data=UserFile, x='time', y=['x', 'y', 'z'])
 
      # Hier müssen wir noch den Algo einbauen für die Playlist und vlt einen Button der dich zur Playlist weiterleitet
 
@@ -45,7 +44,7 @@ def page2():
     st.title('Test Page for messing around!')
     # Lade DataFrame
     # df2 = pd.read_json('ML4B_App/data/data2/data2.json')
-    df_JJ_Gyr=pd.read_csv('data/JJ_rightHand/Gyroscope.csv')
+    df_JJ_Gyr = pd.read_csv('data/JJ_rightHand/Gyroscope.csv')
 
     # Zeig DataFrame in einer Tabelle an
     # st.table(df_walk_Acc)
@@ -54,14 +53,14 @@ def page2():
     st.dataframe(df_JJ_Gyr)
 
     # Ballons
-    st.button('Click me!', on_click = st.balloons)
+    st.button('Click me!', on_click=st.balloons)
 
     # Zeig DataFrame als Line Chart an
     st.caption('Gyroscope Data')
-    st.line_chart(data = df_JJ_Gyr, x = 'time', y = ['x', 'y', 'z'])
+    st.line_chart(data=df_JJ_Gyr, x='time', y=['x', 'y', 'z'])
 
     # Frage
-    activity=st.radio(
+    activity = st.radio(
         "What did he do?",
         ('PushUp', 'Walk', 'Jumping Jacks'))
 
@@ -82,10 +81,10 @@ def page3():
 
     st.write('Just upload your data and we will find the right playlist for you!')
 
-    UserFile=st.file_uploader(
-        "Upload your File here and be amazed!", type = {"csv", "json"})
+    UserFile = st.file_uploader(
+        "Upload your File here and be amazed!", type={"csv", "json"})
     if UserFile is not None:
-        UserFile_df=pd.read_csv(UserFile)
+        UserFile_df = pd.read_csv(UserFile)
         # Zeig DataFrame im DataFrame-Viewer an
         st.dataframe(UserFile_df)
 
@@ -104,14 +103,14 @@ def page3():
 
         # Zeig DataFrame als Line Chart an
         st.caption('Your Gyroscope Data in Lines! WOW!')
-        st.line_chart(data = UserFile, x = 'time', y = ['x', 'y', 'z'])
+        st.line_chart(data=UserFile, x='time', y=['x', 'y', 'z'])
 
      # Hier müssen wir noch den Algo einbauen für die Playlist und vlt einen Button der dich zur Playlist weiterleitet
 
 
 # Seitenleiste
 st.sidebar.title('Navigation')
-pages={
+pages = {
     'Playlist Recommender': page1,
     'Test Page': page2,
     'Playlist Test': page3
