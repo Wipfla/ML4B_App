@@ -56,3 +56,5 @@ ML Modelle(ChatGPT):
 Weitere Idee: 
 Man kann sich trainingspläne voreinspeichern und diese mit einer Geste mit dem Handy auswählen (z.b. Handy schütteln etc). Dann wird eine Playlist mit einem randomizer aus einem Pool an Playlists aufgerufen. Was richtig sick wäre, wenn man einen Button hätte wo man eigene Übungen in die App einfügen kann. Man muss dann x anzahl an wiederholung machen, dass die App das dann lernt.
 
+Login Daten: pierreengel@icloud.com
+Reds77//
