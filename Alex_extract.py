@@ -16,12 +16,23 @@ import json
         #     return df
 
 
-        def extract_data(Gyr, Acc, Ori)
-            if UserFile.name.endswith('.json'):
-                df_gyr = pd.read_json(Gyr)
-                df_acc = pd.read_json(Acc)
-                df_ori = pd.read_json(Ori)
-                
-            else
-                return false #Evtl kann man hier ne Exception werfen aber des müsste man halt machen, ne?
+#Der Methode muss als Parameter die Strings bzw die URLs für die drei Sensoren übergeben werden.
+def extract_data(Data):
+    if not Data.endswith('.json'): 
+        raise Exception('Der Dataframe ist keine JSON-Datei!')
+            
+    df = pd.read_json(Data)
+
+    df_Gyr = df.loc[df.sensor == 'Gyroscope'] 
+    df_Acc = df.loc[df.sensor == 'Accelerometer']
+    df_Ori = df.loc[df.sensor == 'Orientation']
+    
+    df_result = pd.concat([df_Gyr, df_Acc, df_Ori], axis=1)
+                                
+    return df_result
+
+#TODO: OK das klappt noch nicht so ganz, denn irgendwie ist das Zeug nach-, nicht nebeneinander.
+#      Dazu kommen noch eventuell nutzlose Werte die nur stören und die Datenmenge unübersichtlicher machen.
+            
+            
             
