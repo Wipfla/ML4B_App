@@ -24,15 +24,13 @@ def extract_data(Data):
     df = pd.read_json(Data)
 
     df_Gyr = df.loc[df.sensor == 'Gyroscope'] 
-    df_Acc = df.loc[df.sensor == 'Accelerometer']
+    df_Acc = df.loc[df.sensor == 'Accelerometer'] 
     df_Ori = df.loc[df.sensor == 'Orientation']
     
-    df_result = pd.concat([df_Gyr, df_Acc, df_Ori], axis=1)
+    df_result = pd.concat([df_Gyr, df_Acc, df_Ori])
                                 
     return df_result
 
-#TODO: OK das klappt noch nicht so ganz, denn irgendwie ist das Zeug nach-, nicht nebeneinander.
-#      Dazu kommen noch eventuell nutzlose Werte die nur stören und die Datenmenge unübersichtlicher machen.
             
             
             
