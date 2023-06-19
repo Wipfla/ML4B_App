@@ -80,8 +80,6 @@ def page3():
     st.title('Find the right Playlist for your Activity!')
 
     st.write('Just upload your data and we will find the right playlist for you!')
-    
-    st.video('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
     UserFile = st.file_uploader(
         "Upload your File here and be amazed!", type={"csv", "json"})
     if UserFile is not None:
@@ -115,8 +113,6 @@ pages = {
     'Playlist Recommender': page1,
     'Test Page': page2,
     'Playlist Test': page3
-
-
 }
 selection = st.sidebar.radio("Go to:", list(pages.keys()))
 
