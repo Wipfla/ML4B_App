@@ -20,7 +20,7 @@ def page1():
     if UserFile is not None:
         UserFile_df = pd.read_csv(UserFile)
         #take the uploaded file and load it into a dataframe and then apply the model to it
-        #model = pkl.load(open('knn_model.sav', 'rb'))
+        #model = pkl.load(open('knn.pickle', 'rb'))
         #model.predict(UserFile_df)
         
 
