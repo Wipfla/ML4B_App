@@ -11,22 +11,16 @@ def page1():
     # Fügen Sie hier den Inhalt der Seite 1 hinzu
     #
     st.title('Find the right Playlist for your Activity!')
-
+    st.write('Welcome to the ultimate workout companion! Are you tired of sifting through endless playlists, trying to find the perfect tunes to fuel your exercise routine? Look no further, because our innovative Streamlit app is here to revolutionize your fitness journey.')
     st.write('Just upload your data and we will find the right playlist for you!')
-    st.write(
-        "Check out this [amazing Playlist for you!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)")
+    st.write("Check out this [amazing Playlist for you!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)")
 
     UserFile = st.file_uploader(
-        "Upload your File here and be amazed!", type={"csv", "json"})
+        "Upload your File here and be amazed!", type={"json"})
     if UserFile is not None:
-        UserFile_df = pd.read_csv(UserFile)
+        UserFile_df = pd.read_json(UserFile)
         # Zeig DataFrame im DataFrame-Viewer an
         st.dataframe(UserFile_df)
-
-        # Extract Gyr Data, Acc Data, Orientation Data if user file is a json file
-        # if UserFile.name.endswith('.json'):
-        # hier muss noch eine Funktion gebaut werden die die Daten aus dem json file extrahiert (siehe test.ipynb)
-        # die einzelnen Tabellen müssen dann noch in die Datenbank geladen werden bzw. concateniert werden
 
         # Zeig DataFrame als Line Chart an
         st.caption('Your Gyroscope Data in Lines! WOW!')
