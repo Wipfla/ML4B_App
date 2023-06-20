@@ -20,16 +20,17 @@ def page1():
     if UserFile is not None:
         UserFile_df = pd.read_csv(UserFile)
         #take the uploaded file and load it into a dataframe and then apply the model to it
-        model = pkl.load(open('knn_model.sav', 'rb'))
-        model.predict(UserFile_df)
+        #model = pkl.load(open('knn_model.sav', 'rb'))
+        #model.predict(UserFile_df)
         
 
         # Zeig DataFrame im DataFrame-Viewer an
         st.dataframe(UserFile_df)
-
-
-    st.write("Check out this [amazing Playlist for you!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)") 
+        st.write("Check out this [amazing Playlist for you!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)") 
      # Hier müssen wir noch den Algo einbauen für die Playlist und vlt einen Button der dich zur Playlist weiterleitet
+
+
+    
 
     st.info('Alexander Frey(23169187), Pierre Engel(23224488), Tawfik Madarati(22660392), Marvin Wipfler (22959307)')
 
