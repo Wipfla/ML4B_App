@@ -9,7 +9,7 @@ import json
 def page1():
     st.subheader('Playlist Recommender')
     # Fügen Sie hier den Inhalt der Seite 1 hinzu
-
+    #
     st.title('Find the right Playlist for your Activity!')
 
     st.write('Just upload your data and we will find the right playlist for you!')
@@ -73,7 +73,7 @@ def page2():
 
 # Seite 3
 
-    
+
 def page3():
     st.subheader('Playlist Recommender Test')
 
