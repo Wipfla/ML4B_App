@@ -36,8 +36,6 @@ def getMetricsAcc(df):
   metrics['var_x'] = df['x'].var()
   metrics['std_x'] = df['x'].std()
 
- # Append the label column from the current dataframe to the metrics dictionary
-  metrics['activity'] = df['activity']
     
   # Append the metrics dictionary as a new row to the metrics dataframe
   Acc_metrics = Acc_metrics.append(metrics, ignore_index=True)
@@ -66,9 +64,6 @@ def getMetricsGyr(df):
   metrics['std_x'] = df['x'].std()
 
   # Add more metrics as needed
-  
-  # Append the label column from the current dataframe to the metrics dictionary
-  metrics['activity'] = df['activity']
   
   # Append the metrics dictionary as a new row to the metrics dataframe
   Gyr_metrics = Gyr_metrics.append(metrics, ignore_index=True)
@@ -119,10 +114,8 @@ def getMetricsOri(df):
 
   # Add more metrics as needed
   
-  # Append the label column from the current dataframe to the metrics dictionary
-  metrics['activity'] = df['activity']
-  
   # Append the metrics dictionary as a new row to the metrics dataframe
   Ori_metrics_df = Ori_metrics_df.append(metrics, ignore_index=True)
+  
 
   return Ori_metrics_df
