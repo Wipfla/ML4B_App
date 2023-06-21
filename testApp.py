@@ -7,7 +7,6 @@ from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetrics
 st.set_page_config(
     page_title="TuneTracker: The Data DJ",
     page_icon="🎧",
-    layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
         'Get Help': 'https://www.extremelycoolapp.com/help',
