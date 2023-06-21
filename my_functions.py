@@ -21,24 +21,22 @@ def getMetricsAcc(df):
   Acc_metrics = pd.DataFrame()
   metrics = {}  # Dictionary to store the metrics for each dataframe
 
-  metrics['mean_z'] = df['z'].mean()
-  metrics['sum_z'] = df['z'].sum()
-  metrics['var_z'] = df['z'].var()
-  metrics['std_z'] = df['z'].std()
+  Acc_metrics['mean_z'] = df['z'].mean()
+  Acc_metrics['sum_z'] = df['z'].sum()
+  Acc_metrics['var_z'] = df['z'].var()
+  Acc_metrics['std_z'] = df['z'].std()
 
-  metrics['mean_y'] = df['y'].mean()
-  metrics['sum_y'] = df['y'].sum()
-  metrics['var_y'] = df['y'].var()
-  metrics['std_y'] = df['y'].std()
+  Acc_metrics['mean_y'] = df['y'].mean()
+  Acc_metrics['sum_y'] = df['y'].sum()
+  Acc_metrics['var_y'] = df['y'].var()
+  Acc_metrics['std_y'] = df['y'].std()
 
-  metrics['mean_x'] = df['x'].mean()
-  metrics['sum_x'] = df['x'].sum()
-  metrics['var_x'] = df['x'].var()
-  metrics['std_x'] = df['x'].std()
+  Acc_metrics['mean_x'] = df['x'].mean()
+  Acc_metrics['sum_x'] = df['x'].sum()
+  Acc_metrics['var_x'] = df['x'].var()
+  Acc_metrics['std_x'] = df['x'].std()
 
-    
-  # Append the metrics dictionary as a new row to the metrics dataframe
-  Acc_metrics = Acc_metrics.append(metrics, ignore_index=True)
+  
 
   return Acc_metrics
 
