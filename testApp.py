@@ -45,8 +45,7 @@ def page2():
 
     UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
     if UserFile is not None:
-        st.balloons
-        st.success('File successfully uploaded!', icon="✅")
+        st.success('File erfolgreich hochgeladen!', icon="✅")
         UserFile_df = pd.read_json(UserFile)
         # Extract Gyr Data, Acc Data, Orientation Data
         df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
@@ -63,7 +62,7 @@ def page2():
         #metrics_acc = getMetricsAcc(df_Acc)
         #st.dataframe(metrics_acc)
 
-        if st.button("Find your Playlist"):
+        if st.button("Finde meine neue Playlist"):
             selected_link = generate_playlist("JumpingJacks")
             if selected_link:
                 st.success("Playlist gefunden!")
