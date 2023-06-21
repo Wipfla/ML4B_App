@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle as pkl
-from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, generate_playlist
+from my_functions import getSensorData, getMetrics, getMetricsAcc, getMetricsGyr, getMetricsOri, generate_playlist
 
 st.set_page_config(
     page_title="TuneTracker: The Data DJ",
@@ -65,11 +65,11 @@ def page2():
         if st.button("Find your Playlist"):
             selected_link = generate_playlist("JumpingJacks")
             if selected_link:
-                st.success("Playlist generated!")
-                st.write(f"Selected link: {selected_link}")
+                st.success("Playlist gefunden!")
+                st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {selected_link}")
 
-                if st.button("Go to website"):
-                    st.write(f"You will be redirected to {selected_link}")
+                if st.button("Hör direkt rein!"):
+                    st.write(f"Du wirst weitergeleitet zu: {selected_link}")
             else:
                 st.warning("No playlist available for the selected category.")
 

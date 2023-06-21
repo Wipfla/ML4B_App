@@ -136,3 +136,12 @@ def generate_playlist(category):
         return selected_link
     else:
         return None
+    
+
+def getMetrics(df_Acc, df_Gyr, df_Ori):
+  metrics = pd.DataFrame()
+  acc = getMetricsAcc(df_Acc)
+  gyr = getMetricsGyr(df_Gyr)
+  ori = getMetricsOri(df_Ori)
+  metrics = pd.concat([acc, gyr, ori], axis=1)
+  return metrics
