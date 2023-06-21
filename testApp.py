@@ -4,7 +4,17 @@ import numpy as np
 import pickle as pkl
 from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri
 
-
+st.set_page_config(
+    page_title="TuneTracker: The Data DJ",
+    page_icon="🎧",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://www.extremelycoolapp.com/help',
+        'Report a bug': "https://www.extremelycoolapp.com/bug",
+        'About': "# This is a header. This is an *extremely* cool app!"
+        }
+)
 
 # Seite 1
 def page1():
@@ -14,7 +24,7 @@ def page1():
     st.title('Find the right Playlist for your Activity!')
     st.write('Welcome to the ultimate workout companion! Are you tired of sifting through endless playlists, trying to find the perfect tunes to fuel your exercise routine? Look no further, because our innovative Streamlit app is here to revolutionize your fitness journey.')
     st.write('Just upload your fitness data and we will find the right playlist for you!')
-    st.markdown('**"Upload your File here and be amazed!**')
+    st.markdown('**Upload your File here and be amazed!**')
 
     UserFile = st.file_uploader(label='Please upload a Json File' ,type={"json"})
     if UserFile is not None:
