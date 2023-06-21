@@ -36,20 +36,6 @@ def getMetricsAcc(df):
   metrics['var_x'] = df['x'].var()
   metrics['std_x'] = df['x'].std()
 
- # Append the label column from the current dataframe to the metrics dictionary
-  metrics['activity'] = df['activity']
-    
-  # Append the metrics dictionary as a new row to the metrics dataframe
-  Acc_metrics = Acc_metrics.append(metrics, ignore_index=True)
-
-  #change activity to string
-  Acc_metrics['activity'] = Acc_metrics['activity'].astype(str)
-  #short string to 10 characters
-  Acc_metrics['activity'] = Acc_metrics['activity'].str[:21]
-  #delete all numbers from string
-  Acc_metrics['activity'] = Acc_metrics['activity'].str.replace('\d+', '')
-  #detelte all empty spaces
-  Acc_metrics['activity'] = Acc_metrics['activity'].str.replace(' ', '')
   return Acc_metrics
 
 def getMetricsGyr(df):
@@ -74,20 +60,6 @@ def getMetricsGyr(df):
   metrics['std_x'] = df['x'].std()
 
   # Add more metrics as needed
-  
-  # Append the label column from the current dataframe to the metrics dictionary
-  metrics['activity'] = df['activity']
-  
-  # Append the metrics dictionary as a new row to the metrics dataframe
-  Gyr_metrics = Gyr_metrics.append(metrics, ignore_index=True)
-  #change activity to string
-  Gyr_metrics['activity'] = Gyr_metrics['activity'].astype(str)
-  #short string to 21 characters
-  Gyr_metrics['activity'] = Gyr_metrics['activity'].str[:21]
-  #delete all numbers from string
-  Gyr_metrics['activity'] = Gyr_metrics['activity'].str.replace('\d+', '')
-  #detelte all empty spaces
-  Gyr_metrics['activity'] = Gyr_metrics['activity'].str.replace(' ', '')
 
   return Gyr_metrics
 
@@ -133,19 +105,5 @@ def getMetricsOri(df):
   metrics['std_yaw'] = df['yaw'].std()
 
   # Add more metrics as needed
-  
-  # Append the label column from the current dataframe to the metrics dictionary
-  metrics['activity'] = df['activity']
-  
-  # Append the metrics dictionary as a new row to the metrics dataframe
-  Ori_metrics_df = Ori_metrics_df.append(metrics, ignore_index=True)
-  #change activity to string
-  Ori_metrics_df['activity'] = Ori_metrics_df['activity'].astype(str)
-  #short string to 21 characters
-  Ori_metrics_df['activity'] = Ori_metrics_df['activity'].str[:21]
-  #delete all numbers from string
-  Ori_metrics_df['activity'] = Ori_metrics_df['activity'].str.replace('\d+', '')
-  #detelte all empty spaces
-  Ori_metrics_df['activity'] = Ori_metrics_df['activity'].str.replace(' ', '')
 
   return Ori_metrics_df
