@@ -25,12 +25,17 @@ def extract_data(Data):
 
     df_Gyr = df.loc[df.sensor == 'Gyroscope'] 
     df_Acc = df.loc[df.sensor == 'Accelerometer'] 
-    df_Ori = df.loc[df.sensor == 'Orientation']
+    df_Ori = df.loc[df.sensor == 'Orientation'] 
     
-    df_result = pd.concat([df_Gyr, df_Acc, df_Ori])
+    # df_result = pd.concat([df_Gyr, df_Acc, df_Ori])
                                 
-    return df_result
+    return df_Gyr, df_Acc, df_Ori
 
+
+def extract_csv(Data):
+    
+    
+    return df_result
             
             
             
