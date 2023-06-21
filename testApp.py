@@ -12,9 +12,9 @@ st.set_page_config(
 
 # Seite 1
 def page1():
-    st.subheader('TuneTracker: The Data DJ - Home')
+    st.title('TuneTracker: The Data DJ - Home')
     # Fügen Sie hier den Inhalt der Seite 1 hinzu
-    st.title('Finde jetzt die passenden Playlists und Workoutvideos für deine Aktivität!')
+    st.subheader('Finde jetzt die passenden Playlists und Workoutvideos für deine Aktivität!')
     st.write("Willkommen bei **TuneTracker**!\n")
     st.write("Hast du dich jemals gefragt, wie du deine alltäglichen Bewegungen und Aktivitäten in die ultimative Playlist verwandeln kannst? Nun, suche nicht weiter, denn TuneTracker ist hier, um dein persönlicher musikalischer Begleiter zu sein!\n")
 
@@ -29,7 +29,7 @@ def page1():
     st.write("Also, worauf wartest du noch? Lass uns gemeinsam die Magie der Musik und der Bewegung erforschen. Lade deine Handydaten hoch, lehn dich zurück und lass TuneTracker deine musikalische Reise beginnen!\n")
 
     st.write("Hinweis: Bei TuneTracker liegt uns der Datenschutz sehr am Herzen. Alle deine hochgeladenen Daten werden anonymisiert und vertraulich behandelt. Wir nehmen deine Privatsphäre ernst und werden sie niemals ohne deine Zustimmung teilen.")
-    st.write('Uploade deine Fitness Sensor Daten von deinem Handy und - Los gehts!')
+    st.write('Uploade deine Fitness Sensor Daten von deinem Handy und - Los gehts!\n' )
     
 
     
