@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle as pkl
+from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri
+
 
 # Seite 1
-
-
 def page1():
     st.subheader('Playlist Recommender')
     # Fügen Sie hier den Inhalt der Seite 1 hinzu
@@ -18,14 +18,22 @@ def page1():
     UserFile = st.file_uploader(
         "Upload your File here and be amazed!", type={"json"})
     if UserFile is not None:
-        UserFile_df = pd.read_csv(UserFile)
-        #take the uploaded file and load it into a dataframe and then apply the model to it
-        #model = pkl.load(open('knn.pickle', 'rb'))
-        #model.predict(UserFile_df)
-        
+        UserFile_df = pd.read_json(UserFile)
+        # Extract Gyr Data, Acc Data, Orientation Data
+        df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
+        # Zeig DataFrame als Line Chart an
+        st.caption('Gyroscope Data')
+        st.line_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
 
-        # Zeig DataFrame im DataFrame-Viewer an
-        st.dataframe(UserFile_df)
+        # Zeig DataFrame als Line Chart an
+        st.caption('Accelerometer Data')
+        st.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
+
+        #Zeige die Acc Metrics an
+        st.caption('Accelerometer Metrics')
+        st.write(getMetricsAcc(df_Acc))
+
+
         st.write("Check out this [amazing Playlist for you!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)") 
      # Hier müssen wir noch den Algo einbauen für die Playlist und vlt einen Button der dich zur Playlist weiterleitet
 
@@ -40,22 +48,11 @@ def page2():
     st.subheader('Test Page')
     # Fügen Sie hier den Inhalt der Seite 2 hinzu
     st.title('Test Page for messing around!')
-    # Lade DataFrame
-    # df2 = pd.read_json('ML4B_App/data/data2/data2.json')
-    df_JJ_Gyr = pd.read_csv('data/JJ_rightHand/Gyroscope.csv')
-
-    # Zeig DataFrame in einer Tabelle an
-    # st.table(df_walk_Acc)
-
-    # Zeig DataFrame im DataFrame-Viewer an
-    st.dataframe(df_JJ_Gyr)
+  
 
     # Ballons
     st.button('Click me!', on_click=st.balloons)
 
-    # Zeig DataFrame als Line Chart an
-    st.caption('Gyroscope Data')
-    st.line_chart(data=df_JJ_Gyr, x='time', y=['x', 'y', 'z'])
 
     # Frage
     activity = st.radio(
