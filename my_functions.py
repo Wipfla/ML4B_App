@@ -1,3 +1,5 @@
+import pandas as pd
+
 #Function to get Accelometer, Gyroscope and Orientation Data from Json in one Dataframe each
 def getSensorData(df):
     df_Acc = df[df['sensor'] == 'Accelerometer']
@@ -12,7 +14,6 @@ def getSensorData(df):
     df_Acc.drop(['sensor', 'seconds_elapsed'], axis=1, inplace=True)
     df_Gyr.drop(['sensor', 'seconds_elapsed'], axis=1, inplace=True)
     df_Ori.drop(['sensor', 'seconds_elapsed'], axis=1, inplace=True)
-
 
     return df_Acc, df_Gyr, df_Ori
 
