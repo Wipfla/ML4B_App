@@ -16,7 +16,7 @@ def page1():
     st.write('Just upload your fitness data and we will find the right playlist for you!')
     st.markdown('**"Upload your File here and be amazed!**')
 
-    UserFile = st.file_uploader(type={"json"})
+    UserFile = st.file_uploader(label='Please upload a Json File' ,type={"json"})
     if UserFile is not None:
         st.success('File successfully uploaded!', icon="✅")
         UserFile_df = pd.read_json(UserFile)
