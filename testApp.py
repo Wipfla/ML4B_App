@@ -29,9 +29,9 @@ def page1():
         st.caption('Accelerometer Data')
         st.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
 
-        #Zeige die Acc Metrics an
+        #Zeige die Acc Metrics an im Dataviewer
         st.caption('Accelerometer Metrics')
-        st.write(getMetricsAcc(df_Acc))
+        st.dataframe(getMetricsAcc(df_Acc))
 
 
         st.write("Check out this [amazing Playlist for you!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)") 
