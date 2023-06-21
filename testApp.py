@@ -68,7 +68,7 @@ def page2():
                 st.success("Playlist gefunden!")
                 st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {selected_link}")
 
-                if st.button("Hör direkt rein!"):
+                if st.button("Hör direkt rein!", on_click= {selected_link}):
                     st.write(f"Du wirst weitergeleitet zu: {selected_link}")
             else:
                 st.warning("No playlist available for the selected category.")
