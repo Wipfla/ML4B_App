@@ -14,7 +14,7 @@ def page1():
     st.title('Find the right Playlist for your Activity!')
     st.write('Welcome to the ultimate workout companion! Are you tired of sifting through endless playlists, trying to find the perfect tunes to fuel your exercise routine? Look no further, because our innovative Streamlit app is here to revolutionize your fitness journey.')
     st.write('Just upload your fitness data and we will find the right playlist for you!')
-    
+    st.markdown('**Upload your Data**')
 
     UserFile = st.file_uploader(
         "Upload your File here and be amazed!", type={"json"})
