@@ -12,8 +12,7 @@ st.set_page_config(
 
 # Seite 1
 def page1():
-    st.title('TuneTracker: The Data DJ - Home')
-    # Fügen Sie hier den Inhalt der Seite 1 hinzu
+    st.title('🎧 TuneTracker: The Data DJ - Home')
     st.subheader('Finde jetzt die passenden Playlists und Workoutvideos für deine Aktivität!')
     st.write("Willkommen bei **TuneTracker**!\n")
     st.write("Hast du dich jemals gefragt, wie du deine alltäglichen Bewegungen und Aktivitäten in die ultimative Playlist verwandeln kannst? Nun, suche nicht weiter, denn TuneTracker ist hier, um dein persönlicher musikalischer Begleiter zu sein!\n")
@@ -39,34 +38,8 @@ def page1():
 
 # Seite 2
 def page2():
-    st.subheader('Test Page')
-    # Fügen Sie hier den Inhalt der Seite 2 hinzu
-    st.title('Test Page for messing around!')
-  
-
-    # Ballons
-    st.button('Click me!', on_click=st.balloons)
-
-
-    # Frage
-    activity = st.radio(
-        "What did he do?",
-        ('PushUp', 'Walk', 'Jumping Jacks'))
-
-    if activity == 'Walk':
-        st.write('You are incorrect.')
-    elif activity == 'PushUp':
-        st.write('You are incorrect.')
-    elif activity == 'Jumping Jacks':
-        st.write('Correct!')
-
-# Seite 3
-
-
-def page3():
-    st.subheader('Playlist Recommender')
-
-    st.title('Find the right Playlist for your Activity!')
+    st.title('Playlist Empfehlung')
+    st.subheader('Finde jetzt die Perfekte Playlist, passend zu deinen Bewegungen!')
 
     st.markdown('**Upload your File here and be amazed!**')
 
@@ -93,25 +66,16 @@ def page3():
         st.write("Check out this [amazing Playlist for you!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)") 
      # Hier müssen wir noch den Algo einbauen für die Playlist und vlt einen Button der dich zur Playlist weiterleitet
 
+    # Ballons
+    st.button('Click me!', on_click=st.balloons)
 
-# ToDo: ALEX
-        # Extract Gyr Data, Acc Data, Orientation Data if user file is a json file
-        # if UserFile.name.endswith('.json'):
-        # hier muss noch eine Funktion gebaut werden die die Daten aus dem json file extrahiert (siehe test.ipynb)
-        # die einzelnen Tabellen müssen dann noch in die Datenbank geladen werden bzw. concateniert werden
+# Seite 3
 
-        # alternativ können wir noch eine Funktion bauen die die Daten aus dem json file extrahiert und dann in ein csv file umwandelt
-        # dann können wir die csv file einfach in ein dataframe laden und dann weiterverarbeiten, so ungefähr:
-        # def json_to_csv(file):
-        #     df = pd.read_json(file)
-        #     df.to_csv('data.csv', index=False)
-        #     return df
 
-        # Zeig DataFrame als Line Chart an
-        st.caption('Your Gyroscope Data in Lines! WOW!')
-        st.line_chart(data=UserFile, x='time', y=['x', 'y', 'z'])
+def page3():
+    st.title('Video Empfehlung')
 
-     # Hier müssen wir noch den Algo einbauen für die Playlist und vlt einen Button der dich zur Playlist weiterleitet
+    st.subheader('Finde jetzt das perfekte Workoutvideo, passend zu deinen Bewegungen!')
 
 
 # Seitenleiste
