@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle as pkl
-from my_functions import getSensorData, getMetrics, getMetricsAcc, getMetricsGyr, getMetricsOri, generate_playlist
+from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, generate_playlist
 
 st.set_page_config(
     page_title="TuneTracker: The Data DJ",
