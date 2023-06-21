@@ -2,7 +2,42 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle as pkl
-from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri
+from my_functions import getSensorData, getMetricsGyr, getMetricsOri
+
+def getMetricsAcc(df):
+  Acc_metrics = pd.DataFrame()
+  metrics = {}  # Dictionary to store the metrics for each dataframe
+
+  metrics['mean_z'] = df['z'].mean()
+  metrics['sum_z'] = df['z'].sum()
+  metrics['var_z'] = df['z'].var()
+  metrics['std_z'] = df['z'].std()
+
+  metrics['mean_y'] = df['y'].mean()
+  metrics['sum_y'] = df['y'].sum()
+  metrics['var_y'] = df['y'].var()
+  metrics['std_y'] = df['y'].std()
+
+  metrics['mean_x'] = df['x'].mean()
+  metrics['sum_x'] = df['x'].sum()
+  metrics['var_x'] = df['x'].var()
+  metrics['std_x'] = df['x'].std()
+
+ # Append the label column from the current dataframe to the metrics dictionary
+  metrics['activity'] = df['activity']
+    
+  # Append the metrics dictionary as a new row to the metrics dataframe
+  Acc_metrics = Acc_metrics.append(metrics, ignore_index=True)
+
+  #change activity to string
+  Acc_metrics['activity'] = Acc_metrics['activity'].astype(str)
+  #short string to 10 characters
+  Acc_metrics['activity'] = Acc_metrics['activity'].str[:21]
+  #delete all numbers from string
+  Acc_metrics['activity'] = Acc_metrics['activity'].str.replace('\d+', '')
+  #detelte all empty spaces
+  Acc_metrics['activity'] = Acc_metrics['activity'].str.replace(' ', '')
+  return Acc_metrics
 
 
 # Seite 1
@@ -31,7 +66,7 @@ def page1():
 
         #Zeige die Acc Metrics an im Dataviewer
         st.caption('Accelerometer Metrics')
-        metrics_acc = getMetricsGyr(df_Gyr)
+        metrics_acc = getMetricsAcc(df_Acc)
         st.dataframe(metrics_acc)
 
 
