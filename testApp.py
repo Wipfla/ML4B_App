@@ -33,7 +33,7 @@ def page1():
         #Zeige die Acc Metrics an im Dataviewer
         st.caption('Accelerometer Metrics')
         metrics_acc = getMetricsAcc(df_Acc)
-        st.dataframe(metrics_acc)
+        st.dataframe(df_Acc)
 
 
         st.write("Check out this [amazing Playlist for you!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)") 
