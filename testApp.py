@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle as pkl
-import random
 from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, generate_playlist
 
 st.set_page_config(
