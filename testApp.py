@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle as pkl
-from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri
+from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, generate_playlist
 
 st.set_page_config(
     page_title="TuneTracker: The Data DJ",
@@ -60,11 +60,18 @@ def page2():
         #Zeige die Acc Metrics an im Dataviewer
         st.caption('Accelerometer Metrics')
         metrics_acc = getMetricsAcc(df_Acc)
-        st.dataframe(metrics_acc)
+        #st.dataframe(metrics_acc)
 
+        if st.button("Find your Playlist"):
+            selected_link = generate_playlist("JumpingJacks")
+            if selected_link:
+                st.success("Playlist generated!")
+                st.write(f"Selected link: {selected_link}")
 
-        st.write("Check out this [amazing Playlist for you!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)") 
-     # Hier müssen wir noch den Algo einbauen für die Playlist und vlt einen Button der dich zur Playlist weiterleitet
+                if st.button("Go to website"):
+                    st.write(f"You will be redirected to {selected_link}")
+            else:
+                st.warning("No playlist available for the selected category.")
 
     # Ballons
     st.button('Click me!', on_click=st.balloons)
