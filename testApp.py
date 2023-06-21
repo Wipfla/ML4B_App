@@ -39,11 +39,11 @@ def page1():
 # Seite 2
 def page2():
     st.title('Playlist Empfehlung')
-    st.subheader('Finde jetzt die Perfekte Playlist, passend zu deinen Bewegungen!')
+    st.subheader('Finde jetzt die perfekte Playlist, passend zu deinen Bewegungen!')
 
-    st.markdown('**Upload your File here and be amazed!**')
+    st.markdown('**Lade deine Daten jetzt hoch und genieß die Musik !**')
 
-    UserFile = st.file_uploader(label='Please upload a Json File' ,type={"json"})
+    UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
     if UserFile is not None:
         st.success('File successfully uploaded!', icon="✅")
         UserFile_df = pd.read_json(UserFile)
@@ -83,7 +83,9 @@ def page3():
     st.title('Video Empfehlung')
 
     st.subheader('Finde jetzt das perfekte Workoutvideo, passend zu deinen Bewegungen!')
+    st.markdown('**Lade deine Daten jetzt hoch und genieß das Workoutvideo !**')
 
+    UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
 
 # Seitenleiste
 st.sidebar.title('Navigation')
