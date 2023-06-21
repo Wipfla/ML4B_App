@@ -17,37 +17,13 @@ st.set_page_config(
 
 # Seite 1
 def page1():
-    st.subheader('Playlist Recommender')
+    st.subheader('TuneTracker: The Data DJ - Home')
     # Fügen Sie hier den Inhalt der Seite 1 hinzu
     #
     st.title('Find the right Playlist for your Activity!')
     st.write('Welcome to the ultimate workout companion! Are you tired of sifting through endless playlists, trying to find the perfect tunes to fuel your exercise routine? Look no further, because our innovative Streamlit app is here to revolutionize your fitness journey.')
     st.write('Just upload your fitness data and we will find the right playlist for you!')
-    st.markdown('**Upload your File here and be amazed!**')
-
-    UserFile = st.file_uploader(label='Please upload a Json File' ,type={"json"})
-    if UserFile is not None:
-        st.success('File successfully uploaded!', icon="✅")
-        UserFile_df = pd.read_json(UserFile)
-        # Extract Gyr Data, Acc Data, Orientation Data
-        df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
-        # Zeig DataFrame als Line Chart an
-        st.caption('Gyroscope Data')
-        st.line_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
-
-        # Zeig DataFrame als Line Chart an
-        st.caption('Accelerometer Data')
-        st.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
-
-        #Zeige die Acc Metrics an im Dataviewer
-        st.caption('Accelerometer Metrics')
-        metrics_acc = getMetricsAcc(df_Acc)
-        st.dataframe(metrics_acc)
-
-
-        st.write("Check out this [amazing Playlist for you!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)") 
-     # Hier müssen wir noch den Algo einbauen für die Playlist und vlt einen Button der dich zur Playlist weiterleitet
-
+    
 
     
 
@@ -81,17 +57,35 @@ def page2():
 
 
 def page3():
-    st.subheader('Playlist Recommender Test')
+    st.subheader('Playlist Recommender')
 
     st.title('Find the right Playlist for your Activity!')
 
-    st.write('Just upload your data and we will find the right playlist for you!')
-    UserFile = st.file_uploader(
-        "Upload your File here and be amazed!", type={"csv", "json"})
+    st.markdown('**Upload your File here and be amazed!**')
+
+    UserFile = st.file_uploader(label='Please upload a Json File' ,type={"json"})
     if UserFile is not None:
-        UserFile_df = pd.read_csv(UserFile)
-        # Zeig DataFrame im DataFrame-Viewer an
-        st.dataframe(UserFile_df)
+        st.success('File successfully uploaded!', icon="✅")
+        UserFile_df = pd.read_json(UserFile)
+        # Extract Gyr Data, Acc Data, Orientation Data
+        df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
+        # Zeig DataFrame als Line Chart an
+        st.caption('Gyroscope Data')
+        st.line_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
+
+        # Zeig DataFrame als Line Chart an
+        st.caption('Accelerometer Data')
+        st.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
+
+        #Zeige die Acc Metrics an im Dataviewer
+        st.caption('Accelerometer Metrics')
+        metrics_acc = getMetricsAcc(df_Acc)
+        st.dataframe(metrics_acc)
+
+
+        st.write("Check out this [amazing Playlist for you!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)") 
+     # Hier müssen wir noch den Algo einbauen für die Playlist und vlt einen Button der dich zur Playlist weiterleitet
+
 
 # ToDo: ALEX
         # Extract Gyr Data, Acc Data, Orientation Data if user file is a json file
