@@ -45,6 +45,7 @@ def page2():
 
     UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
     if UserFile is not None:
+        st.balloons
         st.success('File successfully uploaded!', icon="✅")
         UserFile_df = pd.read_json(UserFile)
         # Extract Gyr Data, Acc Data, Orientation Data
