@@ -141,3 +141,15 @@ def getMetrics(df_Acc, df_Gyr, df_Ori):
   ori = getMetricsOri(df_Ori)
   metrics = pd.concat([acc, gyr, ori], axis=1)
   return metrics
+
+
+#new test dataset function
+def getTestDataset(filepath):
+  df_test = pd.read_json(filepath)
+  AccTest, GyrTest, OriTest= getSensorData(df_test)
+  AccTest = getMetricsAcc(AccTest)
+  GyrTest = getMetricsGyr(GyrTest)
+  OriTest = getMetricsOri(OriTest)
+  df_test = pd.concat([AccTest, GyrTest, OriTest], axis=1)
+  df_test = df_test.loc[:, ~df_test.columns.duplicated()]
+  return df_test
