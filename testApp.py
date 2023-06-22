@@ -61,11 +61,13 @@ def page2():
         st.caption('Accelerometer Metrics')
         #metrics_acc = getMetricsAcc(df_Acc)
         #st.dataframe(metrics_acc)
+
         metrics = pd.DataFrame()
+        
         #Load model with pickle
-        model = pkl.load(open('knn.pickle', 'rb'))
+        #model = pkl.load(open('knn.pickle', 'rb'))
         #Predict
-        prediction = model.predict(metrics)
+        #prediction = model.predict(metrics)
 
         if st.button("Finde meine neue Playlist"):
             selected_link = generate_playlist("JumpingJacks")
