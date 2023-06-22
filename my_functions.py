@@ -19,7 +19,6 @@ def getSensorData(df):
     return df_Acc, df_Gyr, df_Ori
 
 def getMetricsAcc(df):
-  Acc_metrics = pd.DataFrame()
   metrics = {}  # Dictionary to store the metrics for each dataframe
 
   metrics['mean_z'] = df['z'].mean()
@@ -38,7 +37,7 @@ def getMetricsAcc(df):
   metrics['std_x'] = df['x'].std()
     
   # Append the metrics dictionary as a new row to the metrics dataframe
-  Acc_metrics = Acc_metrics.append(metrics, ignore_index=True)
+  Acc_metrics = pd.DataFrame(metrics, index=[0])
   
   return Acc_metrics
 
