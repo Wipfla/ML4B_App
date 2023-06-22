@@ -66,7 +66,6 @@ def page2():
         st.caption('Accelerometer Metrics')
         st.dataframe(metrics_acc)
 
-        metrics = pd.DataFrame()
 
         #Load model with pickle
         model = pkl.load(open('knn.pickle', 'rb'))
