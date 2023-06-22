@@ -65,9 +65,10 @@ def page2():
         metrics = pd.DataFrame()
 
         #Load model with pickle
-        #model = pkl.load(open('knn.pickle', 'rb'))
+        model = pkl.load(open('knn.pickle', 'rb'))
         #Predict
-        #prediction = model.predict(metrics)
+        prediction = model.predict(metrics)
+        st.write(prediction)
 
         predictedCategory ="JumpingJacks"
 
