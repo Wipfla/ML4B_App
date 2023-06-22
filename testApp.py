@@ -87,8 +87,7 @@ def page2():
             else:
                 st.warning("No playlist available for the selected category.")
 
-    # Ballons
-    st.button('Click me!', on_click=st.balloons)
+    
 
 # Seite 3
 
@@ -98,7 +97,8 @@ def page3():
 
     st.subheader('Finde jetzt das perfekte Workoutvideo, passend zu deinen Bewegungen!')
     st.markdown('**Lade deine Daten jetzt hoch und genieß das Workoutvideo !**')
-
+    # Ballons
+    st.button('Click me!', on_click=st.balloons)
     UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
 
 # Seitenleiste
