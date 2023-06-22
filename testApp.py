@@ -56,12 +56,11 @@ def page2():
         # Zeig DataFrame als Line Chart an
         st.caption('Accelerometer Data')
         st.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
-        
+
         #get metrics
         metrics_acc = getMetricsAcc(df_Acc)
-        metrics_gyr = getMetricsGyr(df_Gyr)
-        metrics_ori = getMetricsOri(df_Ori)
-        metrics = getMetrics(metrics_acc, metrics_gyr, metrics_ori)
+        
+        metrics = getMetrics(df_Acc, df_Gyr, df_Ori)
 
         #Zeige die Acc Metrics an im Dataviewer
         st.caption('Accelerometer Metrics')
