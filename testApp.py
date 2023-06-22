@@ -59,8 +59,8 @@ def page2():
 
         #Zeige die Acc Metrics an im Dataviewer
         st.caption('Accelerometer Metrics')
-        #metrics_acc = getMetricsAcc(df_Acc)
-        #st.dataframe(metrics_acc)
+        metrics_acc = getMetricsAcc(df_Acc)
+        st.dataframe(metrics_acc)
 
         metrics = pd.DataFrame()
 
