@@ -71,7 +71,7 @@ def page2():
         model = pkl.load(open('knn.pickle', 'rb'))
         #Predict
         prediction = model.predict(metrics)
-        st.write('Basierend auf deinen Bewegungsdaten hast du:' + prediction[0] +' gemacht!')
+        st.write('Basierend auf deinen Bewegungsdaten hast du:', prediction[0], ' gemacht!')
 
         predictedCategory ="jumpingjacks"
 
