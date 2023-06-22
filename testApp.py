@@ -71,9 +71,9 @@ def page2():
         model = pkl.load(open('knn.pickle', 'rb'))
         #Predict
         prediction = model.predict(metrics)
-        st.write(prediction)
+        st.write(prediction[0])
 
-        predictedCategory ="JumpingJacks"
+        predictedCategory ="jumpingjacks"
 
         if st.button("Finde meine neue Playlist"):
             selected_link = generate_playlist(predictedCategory)
