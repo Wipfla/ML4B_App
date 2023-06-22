@@ -63,14 +63,16 @@ def page2():
         #st.dataframe(metrics_acc)
 
         metrics = pd.DataFrame()
-        
+
         #Load model with pickle
         #model = pkl.load(open('knn.pickle', 'rb'))
         #Predict
         #prediction = model.predict(metrics)
 
+        predictedCategory ="JumpingJacks"
+
         if st.button("Finde meine neue Playlist"):
-            selected_link = generate_playlist("JumpingJacks")
+            selected_link = generate_playlist(predictedCategory)
             if selected_link:
                 st.success("Playlist gefunden!")
                 st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {selected_link}")
