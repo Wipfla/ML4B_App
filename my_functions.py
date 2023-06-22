@@ -118,11 +118,11 @@ def getMetricsOri(df):
 
 
 def generate_playlist(category):
-    if category == "Walk":
+    if category == "walking":
         links = ["https://open.spotify.com/playlist/37i9dQZF1DXdxcBWuJkbcy?si=4dc4123542854393", "https://open.spotify.com/playlist/37i9dQZF1DX9oh43oAzkyx?si=21412c4ac8074a2a", "https://open.spotify.com/playlist/37i9dQZF1DX36TRAnIL92N?si=dd1b11494a894667"]
-    elif category == "JumpingJacks":
+    elif category == "jumpingjacks":
         links = ["https://open.spotify.com/playlist/37i9dQZF1DWUSyphfcc6aL?si=390d5abba5044ba2", "https://open.spotify.com/playlist/37i9dQZF1DWVceftBh0Ubl?si=9cc75fe8fa21460e", "https://open.spotify.com/playlist/37i9dQZF1DX0HRj9P7NxeE?si=7d0e961380d84026"]
-    elif category == "PushUp":
+    elif category == "pushups":
         links = ["https://open.spotify.com/playlist/37i9dQZF1DX2SzDYPXnP1a?si=64c87d2fe7a64c52", "https://open.spotify.com/playlist/37i9dQZF1DXdURFimg6Blm?si=f21546256b094023", "https://open.spotify.com/playlist/37i9dQZF1EIeLflS1D0w73?si=d7eb2265d3fb4636"]
     else:
         links = []
