@@ -21,20 +21,20 @@ def getSensorData(df):
 def getMetricsAcc(df):
   metrics = {}  # Dictionary to store the metrics for each dataframe
 
-  metrics['mean_z'] = df['z'].mean()
-  metrics['sum_z'] = df['z'].sum()
-  metrics['var_z'] = df['z'].var()
-  metrics['std_z'] = df['z'].std()
+  metrics['Acc_mean_z'] = df['z'].mean()
+  metrics['Acc_sum_z'] = df['z'].sum()
+  metrics['Acc_var_z'] = df['z'].var()
+  metrics['Acc_std_z'] = df['z'].std()
 
-  metrics['mean_y'] = df['y'].mean()
-  metrics['sum_y'] = df['y'].sum()
-  metrics['var_y'] = df['y'].var()
-  metrics['std_y'] = df['y'].std()
+  metrics['Acc_mean_y'] = df['y'].mean()
+  metrics['Acc_sum_y'] = df['y'].sum()
+  metrics['Acc_var_y'] = df['y'].var()
+  metrics['Acc_std_y'] = df['y'].std()
 
-  metrics['mean_x'] = df['x'].mean()
-  metrics['sum_x'] = df['x'].sum()
-  metrics['var_x'] = df['x'].var()
-  metrics['std_x'] = df['x'].std()
+  metrics['Acc_mean_x'] = df['x'].mean()
+  metrics['Acc_sum_x'] = df['x'].sum()
+  metrics['Acc_var_x'] = df['x'].var()
+  metrics['Acc_std_x'] = df['x'].std()
     
   # Append the metrics dictionary as a new row to the metrics dataframe
   Acc_metrics = pd.DataFrame(metrics, index=[0])
@@ -45,20 +45,20 @@ def getMetricsGyr(df):
   metrics = {}  # Dictionary to store the metrics for each dataframe
   
   # Calculate and store the metrics for the current dataframe
-  metrics['mean_z'] = df['z'].mean()
-  metrics['sum_z'] = df['z'].sum()
-  metrics['var_z'] = df['z'].var()
-  metrics['std_z'] = df['z'].std()
+  metrics['Gyr_mean_z'] = df['z'].mean()
+  metrics['Gyr_sum_z'] = df['z'].sum()
+  metrics['Gyr_var_z'] = df['z'].var()
+  metrics['Gyr_std_z'] = df['z'].std()
 
-  metrics['mean_y'] = df['y'].mean()
-  metrics['sum_y'] = df['y'].sum()
-  metrics['var_y'] = df['y'].var()
-  metrics['std_y'] = df['y'].std()
+  metrics['Gyr_mean_y'] = df['y'].mean()
+  metrics['Gyr_sum_y'] = df['y'].sum()
+  metrics['Gyr_var_y'] = df['y'].var()
+  metrics['Gyr_std_y'] = df['y'].std()
 
-  metrics['mean_x'] = df['x'].mean()
-  metrics['sum_x'] = df['x'].sum()
-  metrics['var_x'] = df['x'].var()
-  metrics['std_x'] = df['x'].std()
+  metrics['Gyr_mean_x'] = df['x'].mean()
+  metrics['Gyr_sum_x'] = df['x'].sum()
+  metrics['Gyr_var_x'] = df['x'].var()
+  metrics['Gyr_std_x'] = df['x'].std()
 
   # Add more metrics as needed
   
