@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle as pkl
-from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, generate_playlist
+from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist
 
 st.set_page_config(
     page_title="TuneTracker: The Data DJ",
@@ -56,10 +56,15 @@ def page2():
         # Zeig DataFrame als Line Chart an
         st.caption('Accelerometer Data')
         st.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
+        
+        #get metrics
+        metrics_acc = getMetricsAcc(df_Acc)
+        metrics_gyr = getMetricsGyr(df_Gyr)
+        metrics_ori = getMetricsOri(df_Ori)
+        metrics = getMetrics(metrics_acc, metrics_gyr, metrics_ori)
 
         #Zeige die Acc Metrics an im Dataviewer
         st.caption('Accelerometer Metrics')
-        metrics_acc = getMetricsAcc(df_Acc)
         st.dataframe(metrics_acc)
 
         metrics = pd.DataFrame()

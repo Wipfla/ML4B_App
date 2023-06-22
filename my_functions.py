@@ -42,8 +42,6 @@ def getMetricsAcc(df):
   return Acc_metrics
 
 def getMetricsGyr(df):
-  Gyr_metrics = pd.DataFrame()
-
   metrics = {}  # Dictionary to store the metrics for each dataframe
   
   # Calculate and store the metrics for the current dataframe
@@ -65,13 +63,12 @@ def getMetricsGyr(df):
   # Add more metrics as needed
   
   # Append the metrics dictionary as a new row to the metrics dataframe
-  Gyr_metrics = Gyr_metrics.append(metrics, ignore_index=True)
+  Gyr_metrics = pd.DataFrame(metrics, index=[0])
 
 
   return Gyr_metrics
 
 def getMetricsOri(df):
-  Ori_metrics_df = pd.DataFrame()
 
   metrics = {}  # Dictionary to store the metrics for each dataframe
   
@@ -114,7 +111,7 @@ def getMetricsOri(df):
   # Add more metrics as needed
   
   # Append the metrics dictionary as a new row to the metrics dataframe
-  Ori_metrics_df = Ori_metrics_df.append(metrics, ignore_index=True)
+  Ori_metrics_df = pd.DataFrame(metrics, index=[0])
   
 
   return Ori_metrics_df
