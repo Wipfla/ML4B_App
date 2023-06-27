@@ -40,7 +40,10 @@ st.markdown(custom_css, unsafe_allow_html=True)
 st.markdown('<div id="top-right-triangle"></div>', unsafe_allow_html=True)
 
 # Render buttons with custom class
-with st.markdown('<div class="button-wrapper"></div>', unsafe_allow_html=True)
+with st.markdown('<div class="button-wrapper"></div>', unsafe_allow_html=True):
+    st.button("Button 1")  # Default layout
+    st.button("Button 2", key="button2", class_="custom-button", help="Custom layout")  # Custom layout
+    st.button("Button 3")
    
 
 st.set_page_config(
