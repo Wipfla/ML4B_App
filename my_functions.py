@@ -134,11 +134,11 @@ def generate_playlist(category):
         return None
     
 def generate_video(category):
-    if category == "Walk":
+    if category == "walking":
         videos = ["https://www.youtube.com/watch?v=_kGESn8ArrU&pp=ygUTaG93IHRvIHByb3Blcmx5IHJ1bg%3D%3D", "https://www.youtube.com/watch?v=brFHyOtTwH4&pp=ygUTaG93IHRvIHByb3Blcmx5IHJ1bg%3D%3D", "https://www.youtube.com/watch?v=L_vZjikr5Ew&pp=ygUTaG93IHRvIHByb3Blcmx5IHJ1bg%3D%3D"]
-    elif category == "JumpingJack":
+    elif category == "jumpingjacks":
         videos = ["https://www.youtube.com/watch?v=iSSAk4XCsRA&pp=ygUNanVtcGluZyBqYWNrcw%3D%3D", "https://www.youtube.com/watch?v=2J2g7XOr2i4&pp=ygUNanVtcGluZyBqYWNrcw%3D%3D", "https://www.youtube.com/watch?v=nGaXj3kkmrU&pp=ygUNanVtcGluZyBqYWNrcw%3D%3D"]
-    elif category == "PushUp":
+    elif category == "pushups":
         videos = ["https://www.youtube.com/watch?v=zkU6Ok44_CI&pp=ygUOaG93IHRvIFB1c2h1cHM%3D", "https://www.youtube.com/shorts/y7PBQ2fYbxY", "https://www.youtube.com/watch?v=9-DlYB4vO4U&pp=ygUOaG93IHRvIFB1c2h1cHM%3D"]
     else:
         videos = []
