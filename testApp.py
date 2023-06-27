@@ -4,6 +4,45 @@ import numpy as np
 import pickle as pkl
 from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist
 
+import streamlit as st
+
+# Define custom CSS for background and buttons
+custom_css = """
+<style>
+body {
+    background-color: white; /* Set background color to white */
+}
+
+#top-right-triangle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 50px solid lightgreen; /* Set triangle color to light green */
+    border-right: 50px solid transparent;
+}
+
+.button-wrapper button {
+    background-color: lightgrey; /* Set button background color to light grey */
+    color: #004d00; /* Set button text color to dark green */
+    border: 1px solid #999999; /* Set button border color to slightly darker gray */
+    border-radius: 5px; /* Set button border radius to create rounded corners */
+    padding: 5px 10px; /* Set button padding */
+}
+</style>
+"""
+
+# Render custom CSS using markdown
+st.markdown(custom_css, unsafe_allow_html=True)
+
+# Render the top-right triangle
+st.markdown('<div id="top-right-triangle"></div>', unsafe_allow_html=True)
+
+# Render buttons with custom class
+with st.markdown('<div class="button-wrapper"></div>', unsafe_allow_html=True)
+   
+
 st.set_page_config(
     page_title="TuneTracker: The Data DJ",
     page_icon="🎧",
@@ -76,7 +115,7 @@ def page2():
 
         #predictedCategory ="jumpingjacks"
 
-        if st.button("Finde meine neue Playlist"):
+        if st.button("Finde meine neue Playlist", class_="button"):
             selected_link = generate_playlist(prediction)
             if selected_link:
                 st.success("Playlist gefunden!")
