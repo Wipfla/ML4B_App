@@ -142,12 +142,47 @@ def page3():
             else:
                 st.warning("No playlist available for the selected category.")
 
+
+
+def page4():
+    st.title('Workout Statistiken')
+
+    st.subheader('Wie performst du?')
+    st.markdown('**Lade deine Daten jetzt hoch und sehe deine Statistiken !**')
+
+    UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
+    if UserFile is not None:
+        st.success('File erfolgreich hochgeladen!', icon="✅")
+        UserFile_df = pd.read_json(UserFile)
+        # Extract Gyr Data, Acc Data, Orientation Data
+        df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
+    
+
+        #get metrics
+        metrics_acc = getMetricsAcc(df_Acc)
+        
+        metrics = getMetrics(df_Acc, df_Gyr, df_Ori)
+
+        gyro_max = np.max(df_Gyr)
+        gyro_min = np.min(df_Gyr)
+        gyro_med = np.median(df_Gyr)
+        gyro_mean= np.mean(df_Gyr)
+        acc_max= np.max(df_Acc)
+        acc_min= np.min(df_Acc)
+        acc_med= np.median(df_Acc)
+        acc_mean= np.mean(df_Acc)
+        st.write('Maximale Höhe: ', gyro_max, ', Minimale Höhe: ', gyro_min, ', Höhe im Median: ', gyro_med, ', Höhe im Mittelwert: ', gyro_mean)
+        st.write('Maximale Beschleunigung: ', acc_max, ', Minimale Beschleunigung: ', acc_min, ', Beschleunigung im Median: ', acc_med, ', Beschleunigung im Mittelwert: ', acc_mean)
+        
+        
+        
 # Seitenleiste
 st.sidebar.title('Navigation')
 pages = {
     'Home': page1,
     'Playlist Empfehlung': page2,
-    'Video Empfehlung': page3
+    'Video Empfehlung': page3,
+    'Deine Statistiken': page4
 }
 selection = st.sidebar.radio("Go to:", list(pages.keys()))
 
