@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle as pkl
-from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist
+from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist, generate_video
 
 import streamlit as st
 
@@ -105,6 +105,22 @@ def page3():
     # Ballons
     st.button('Click me!', on_click=st.balloons)
     UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
+    model = pkl.load(open('knn.pickle', 'rb'))
+        #Predict
+    prediction = model.predict(metrics)
+    prediction = str(prediction[0])
+    st.write('Basierend auf deinen Bewegungsdaten hast du ', prediction, ' gemacht!')
+
+    if st.button("Finde meinen neuen Trainingspartner"):
+            selected_link = generate_video(prediction)
+            if selected_link:
+                st.success("Trainingspartner gefunden!")
+                st.write(f"Hier ist deine persönlich ausgesuchter Trainingspartner: {selected_link}")
+
+                if st.button("Hör direkt rein!"): #button funktioniert noch nicht, leitet nicht weiter
+                    st.write(f"Du wirst weitergeleitet zu: {selected_link}")
+            else:
+                st.warning("No playlist available for the selected category.")
 
 # Seitenleiste
 st.sidebar.title('Navigation')
