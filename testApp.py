@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle as pkl
-from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlists
+from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist, generate_video
 
 import streamlit as st
 
@@ -102,20 +102,45 @@ def page3():
 
     st.subheader('Finde jetzt das perfekte Workoutvideo, passend zu deinen Bewegungen!')
     st.markdown('**Lade deine Daten jetzt hoch und genieß das Workoutvideo !**')
+
+    UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
+    if UserFile is not None:
+        st.success('File erfolgreich hochgeladen!', icon="✅")
+        UserFile_df = pd.read_json(UserFile)
+        # Extract Gyr Data, Acc Data, Orientation Data
+        df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
+    
+
+        #get metrics
+        metrics_acc = getMetricsAcc(df_Acc)
+        
+        metrics = getMetrics(df_Acc, df_Gyr, df_Ori)
+
+        #Zeige die Acc Metrics an im Dataviewer
+        st.caption('Accelerometer Metrics')
+        st.dataframe(metrics_acc)
+
+
+        #Load model with pickle
+        model = pkl.load(open('knn.pickle', 'rb'))
+        #Predict
+        prediction = model.predict(metrics)
+        prediction = str(prediction[0])
+        st.write('Basierend auf deinen Bewegungsdaten hast du ', prediction, ' gemacht!')
     # Ballons
     st.button('Click me!', on_click=st.balloons)
     
 
-   # if st.button("Finde meinen neuen Trainingspartner"):
-   #         selected_link = generate_video(prediction)
-    #        if selected_link:
-     #           st.success("Trainingspartner gefunden!")
-      #          st.write(f"Hier ist deine persönlich ausgesuchter Trainingspartner: {selected_link}")
-#
- #               if st.button("Hör direkt rein!"): #button funktioniert noch nicht, leitet nicht weiter
-  #                  st.write(f"Du wirst weitergeleitet zu: {selected_link}")
-   #         else:
-    #            st.warning("No playlist available for the selected category.")
+    if st.button("Finde meinen neuen Trainingspartner"):
+            selected_link = generate_video(prediction)
+            if selected_link:
+                st.success("Trainingspartner gefunden!")
+                st.write(f"Hier ist deine persönlich ausgesuchter Trainingspartner: {selected_link}")
+
+                if st.button("Hör direkt rein!"): #button funktioniert noch nicht, leitet nicht weiter
+                    st.write(f"Du wirst weitergeleitet zu: {selected_link}")
+            else:
+                st.warning("No playlist available for the selected category.")
 
 # Seitenleiste
 st.sidebar.title('Navigation')
