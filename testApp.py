@@ -131,7 +131,7 @@ def page3():
             if selected_link:
                 st.success("Trainingspartner gefunden!")
                 st.write("Hier ist deine persönlich ausgesuchter Trainingspartner:")
-                st.container({selected_link})
+                st.text(selected_link)
             else:
                 st.warning("No playlist available for the selected category.")
 
