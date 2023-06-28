@@ -192,7 +192,7 @@ def page4():
                     tab2.area_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
                 with tab3:
                     tab3.header("Histogramm deiner Beschleunigungsdaten")
-                    create_combined_histogram(df_Acc)
+                    create_combined_histogram([df_Acc['x'], df_Acc['y'], df_Acc['z']])
 
             elif option == "Gyroscope":
                 with tab1:
@@ -203,7 +203,9 @@ def page4():
                     tab2.area_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
                 with tab3:
                     tab3.header("Histogramm deiner Gyroscopedaten")
-                    create_combined_histogram(df_Gyr)
+                    df_var1 = pd.df({'x': [1, 2, 3, 4, 5]})
+                    df_var2 = pd.DataFrame({'x': [6, 7, 8, 9, 10]})
+                    create_combined_histogram([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
                     
 
 
