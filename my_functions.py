@@ -181,14 +181,11 @@ def create_combined_histogram(data_list):
     # Create a DataFrame with values and their corresponding variables
     df = pd.DataFrame({"Values": all_values, "Variable": np.repeat(["x", "y", "z"], [len(arr) for arr in data_list])})
 
-    # Define color scheme for variables
-    color_scheme = alt.Scale(domain=["x", "y", "z"], range=["red", "blue", "black"])
-
     # Create the combined histogram chart
     chart = alt.Chart(df).mark_bar().encode(
         x=alt.X('Values:Q', bin=alt.BinParams(maxbins=30)),
         y='count()',
-        color=alt.Color('Variable:N', scale=color_scheme),
+        color=alt.Color('Variable:N', scale=alt.Scale(scheme='tableau10')),
         tooltip=['Variable', 'Values']
     ).properties(
         width=600,
