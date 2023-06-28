@@ -14,7 +14,7 @@ st.set_page_config(
 
 def predcit(df):
     # Extract Gyr Data, Acc Data, Orientation Data
-        df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
+        df_Acc, df_Gyr, df_Ori = getSensorData(df)
 
         #get metrics
         metrics_acc = getMetricsAcc(df_Acc)
