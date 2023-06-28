@@ -51,6 +51,8 @@ def page1():
         st.write("Hinweis: Bei BeatFit liegt uns der Datenschutz sehr am Herzen. Alle deine hochgeladenen Daten werden anonymisiert und vertraulich behandelt. Wir nehmen deine Privatsphäre ernst und werden sie niemals ohne deine Zustimmung teilen.")
         st.write('Uploade deine Fitness Sensor Daten von deinem Handy und - Los gehts!\n' )
     
+        st.info('Alexander Frey(23169187), Pierre Engel(23224488), Tawfik Madarati(22660392), Marvin Wipfler (22959307)')
+    
     with col2:
         image = Image.open('data/flex.jpg')
         st.image(image, caption='Lass uns das Training starten!', use_column_width=True)
