@@ -83,7 +83,7 @@ def page2():
             if selected_link:
                 st.success("Playlist gefunden!")
                 st.write("Hör gerne rein:")
-                st.container(selected_link)
+                st.text(selected_link)
             else:
                 st.warning("No playlist available for the selected category.")
 
