@@ -1,6 +1,5 @@
 import pandas as pd
 import random
-import matplotlib.pyplot as plt 
 import streamlit as st
 import numpy as np
 
@@ -180,10 +179,7 @@ def create_combined_histogram(data):
     all_values = np.concatenate([data['x'], data['y'], data['z']])
 
     # Create a combined histogram for all parameters
-    plt.hist(all_values, bins='auto')
-    plt.title('Combined Histogram - All Parameters')
-    plt.xlabel('Value')
-    plt.ylabel('Frequency')
-
-    # Display the histogram in Streamlit
-    st.pyplot(plt)
+    st.hist(all_values, bins='auto')
+    st.title('Combined Histogram - All Parameters')
+    st.xlabel('Value')
+    st.ylabel('Frequency')
