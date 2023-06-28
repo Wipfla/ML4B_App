@@ -82,8 +82,8 @@ def page2():
             selected_link = generate_playlist(prediction)
             if selected_link:
                 st.success("Playlist gefunden!")
-                st.write("Hör gerne rein:")
-                st.text(selected_link)
+                st.write(f"Hör gerne rein: {selected_link}")
+                
             else:
                 st.warning("No playlist available for the selected category.")
 
@@ -130,8 +130,7 @@ def page3():
             selected_link = generate_video(prediction)
             if selected_link:
                 st.success("Trainingspartner gefunden!")
-                st.write("Hier ist deine persönlich ausgesuchter Trainingspartner:")
-                st.text(selected_link)
+                st.write(f"Hier ist deine persönlich ausgesuchter Trainingspartner: {selected_link}")
             else:
                 st.warning("No playlist available for the selected category.")
 
