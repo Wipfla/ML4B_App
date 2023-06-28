@@ -174,9 +174,9 @@ def getTestDataset(filepath):
   return df_test
 
 
-def create_combined_histogram(data):
-    # Flatten the values of x, y, and z into a single array
-    all_values = np.concatenate([data['x'], data['y'], data['z']])
+def create_combined_histogram(data_list):
+    # Flatten the values of all variables into a single array
+    all_values = np.concatenate([df.values.flatten() for df in data_list])
 
     # Compute the histogram values and bins
     hist_values, hist_bins = np.histogram(all_values, bins='auto')
