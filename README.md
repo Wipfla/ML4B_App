@@ -12,8 +12,27 @@ BeatFit ist eine interaktive Streamlit-App, die dazu dient, Ihren Fitness- und G
 
 - Statistikseite: Sehen Sie statistische Daten zu Ihren Bewegungsdaten ein und verfolgen Sie Ihre Fortschritte.
 
-## Anwendung
-Sobald die App läuft, folgen Sie den Anweisungen auf dem Bildschirm, um Ihre Sensordaten hochzuladen und die App zu nutzen. Sie werden aufgefordert, eine JSON-Datei mit Sensordaten von Ihrem Handy hochzuladen. Für optimale Ergebnisse empfehlen wir, eine Datei mit etwa 10-30 Sekunden an Sensordaten bereitzustellen. Sie können die Datei `PushUps-Alex-Test.json` in diesem Repository verwenden, um die App zu testen.
+## Installation
+Sie benötigen Python 3.7 oder höher, um BeatFit zu verwenden. Um die App zu installieren, führen Sie die folgenden Schritte aus:
 
-Login Daten: pierreengel@icloud.com
-Reds77//
+
+1. Klonen Sie dieses Repository:
+```ruby
+git clone https://github.com/Wipfla/ML4B_App.git
+```
+2. Wechseln Sie in das Verzeichnis ML4B_App:
+```ruby
+cd ML4B_App
+```
+3. Installieren Sie die notwendigen Python-Pakete:
+```ruby
+pip install -r requirements.txt
+```
+
+## Anwendung
+Um die App auszuführen, verwenden Sie den folgenden Befehl im Terminal:
+```ruby
+streamlit run testApp.py
+```
+
+Sobald die App läuft, folgen Sie den Anweisungen auf dem Bildschirm, um Ihre Sensordaten hochzuladen und die App zu nutzen. Sie werden aufgefordert, eine JSON-Datei mit Sensordaten von Ihrem Handy hochzuladen. Für optimale Ergebnisse empfehlen wir, eine Datei mit etwa 10-30 Sekunden an Sensordaten bereitzustellen. Sie können die Datei `PushUps-Alex-Test.json` in diesem Repository verwenden, um die App zu testen.
