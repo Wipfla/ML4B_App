@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle as pkl
-from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist
+from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist, generate_video
 import webbrowser
 
 st.set_page_config(
@@ -14,18 +14,18 @@ st.set_page_config(
 
 def predcit(df):
     # Extract Gyr Data, Acc Data, Orientation Data
-        df_Acc, df_Gyr, df_Ori = getSensorData(df)
+    df_Acc, df_Gyr, df_Ori = getSensorData(df)
 
-        #get metrics
-        metrics_acc = getMetricsAcc(df_Acc)
-        
-        metrics = getMetrics(df_Acc, df_Gyr, df_Ori)
-        #Load model with pickle
-        model = pkl.load(open('knn.pickle', 'rb'))
-        #Predict
-        prediction = model.predict(metrics)
-        prediction = str(prediction[0])
-        return prediction
+    #get metrics
+    metrics_acc = getMetricsAcc(df_Acc)
+    
+    metrics = getMetrics(df_Acc, df_Gyr, df_Ori)
+    #Load model with pickle
+    model = pkl.load(open('knn.pickle', 'rb'))
+    #Predict
+    prediction = model.predict(metrics)
+    prediction = str(prediction[0])
+    return prediction
 
 # Seite 1
 def page1():
@@ -129,20 +129,15 @@ def page3():
     if UserFile is not None:
         st.success('File erfolgreich hochgeladen!', icon="✅")
         UserFile_df = pd.read_json(UserFile)
-        
-        # Extract Gyr Data, Acc Data, Orientation Data
-        df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
-
-        #get metrics
-        metrics_acc = getMetricsAcc(df_Acc)
-        
-        metrics = getMetrics(df_Acc, df_Gyr, df_Ori)
+       
+        prediction = predcit(UserFile_df)
+        st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{prediction}]** gemacht!')
 
         
         
-        videoURL = getVideo(UserFile_df)
+        videoURL = generate_video(UserFile_df)
         
-        st.video('https://www.youtube.com/watch?v=pP6vl1ogadE')
+        st.video(videoURL)
 
 
 
@@ -158,10 +153,10 @@ def page4():
         
             # Extract Gyr Data, Acc Data, Orientation Data
             df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
-            
+
             #get metrics
             metrics_acc = getMetricsAcc(df_Acc)
-        
+            
             metrics = getMetrics(df_Acc, df_Gyr, df_Ori)
 
             #Zeige die Acc Metrics an im Dataviewer
