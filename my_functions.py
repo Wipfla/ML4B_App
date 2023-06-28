@@ -191,6 +191,4 @@ def create_combined_histogram(data_list):
         width=600,
         height=400
     )
-
-    st.title('Combined Histogram - All Variables')
     st.altair_chart(chart)
