@@ -27,6 +27,18 @@ st.set_page_config(
     page_title="TuneTracker: The Data DJ",
     page_icon="🎧",
     initial_sidebar_state="expanded",
+
+    # Custom CSS für Hintergrund weiß
+    background_css = """
+    <style>
+    body {
+    background-color: white;
+    }
+    </style>
+    """
+
+    # Apply the custom CSS
+    st.markdown(background_css, unsafe_allow_html=True)
 )
 
 # Seite 1
