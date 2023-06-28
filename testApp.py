@@ -61,7 +61,6 @@ def page2():
     UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
     if UserFile is not None:
         st.success('File erfolgreich hochgeladen!', icon="✅")
-        st.balloons()
         UserFile_df = pd.read_json(UserFile)
        
         prediction = predcit(UserFile_df)
@@ -126,7 +125,6 @@ def page3():
     UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
     if UserFile is not None:
         st.success('File erfolgreich hochgeladen!', icon="✅")
-        st.balloons()
         UserFile_df = pd.read_json(UserFile)
         prediction = predcit(UserFile_df)
         st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{prediction}]** gemacht!')
@@ -144,7 +142,6 @@ def page4():
         UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
         if UserFile is not None:
             st.success('File erfolgreich hochgeladen!', icon="✅")
-            st.balloons()
             UserFile_df = pd.read_json(UserFile)
         
             # Extract Gyr Data, Acc Data, Orientation Data
