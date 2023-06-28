@@ -78,6 +78,7 @@ def page2():
             noButton = st.button(label = 'Nein', use_container_width = 1)
                     
         if yesButton:
+            st.balloons()
             st.session_state['inCorrect'] = False
             st.success("Super dann starte deine Playlist!", icon="💪")
             selected_link = generate_playlist(prediction)
@@ -129,7 +130,7 @@ def page3():
         prediction = predcit(UserFile_df)
         st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{prediction}]** gemacht!')
         videoURL = generate_video(prediction)
-        st.write("Hier ist deine persönlich ausgesuchtes Workoutvideo:")
+        st.write("Hier ist dein persönlich ausgesuchtes Workoutvideo:")
         st.video(videoURL)
 
 
