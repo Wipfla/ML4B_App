@@ -1,5 +1,9 @@
 import pandas as pd
 import random
+import matplotlib.pyplot as plt 
+import streamlit as st
+import numpy as np
+
 
 #Function to get Accelometer, Gyroscope and Orientation Data from Json in one Dataframe each
 def getSensorData(df):
@@ -169,3 +173,17 @@ def getTestDataset(filepath):
   df_test = pd.concat([AccTest, GyrTest, OriTest], axis=1)
   df_test = df_test.loc[:, ~df_test.columns.duplicated()]
   return df_test
+
+
+def create_combined_histogram(data):
+    # Flatten the values of x, y, and z into a single array
+    all_values = np.concatenate([data['x'], data['y'], data['z']])
+
+    # Create a combined histogram for all parameters
+    plt.hist(all_values, bins='auto')
+    plt.title('Combined Histogram - All Parameters')
+    plt.xlabel('Value')
+    plt.ylabel('Frequency')
+
+    # Display the histogram in Streamlit
+    st.pyplot(plt)
