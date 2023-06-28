@@ -214,6 +214,29 @@ def page4():
             st.write('Beschleunigung im Mittelwert: ', acc_mean)
         with st.container():
             st.write('Beschleunigung im Median: ', acc_med)
+
+        options = ["Bitte Suche dir eine Statistik heraus", "Maximale Höhe", "Minimale Höhe", "Höhe im Mittelwert", "Höhe im Median", "Maximale Beschleunigung", "Minimale Beschleunigung", "Beschleunigung im Mittelwert", "Beschleunigung im Median"]
+        selected_option = st.selectbox('Was willst du herausfinden?', options)
+        if selected_option == "Bitte Suche dir eine Statistik heraus":
+            st.write('Bitte wähle eine Option')
+        elif selected_option == "Maximale Höhe":
+            st.write('Maximale Höhe: ', gyro_max)
+        elif selected_option == "Minimale Höhe":
+            st.write('Minimale Höhe: ', gyro_min)
+        elif selected_option == "Höhe im Mittelwert":
+            st.write('Höhe im Mittelwert: ', gyro_mean)
+        elif selected_option == "Höhe im Media":
+            st.write('Höhe im Median: ', gyro_med)
+        elif selected_option == "Maximale Beschleunigung":
+            st.write('Maximale Beschleunigung: ', acc_max)
+        elif selected_option == "Minimale Beschleunigung":
+            st.write('Minimale Beschleunigung: ', acc_min)
+        elif selected_option == "Beschleunigung im Mittelwert":
+            st.write('Beschleunigung im Mittelwert: ', acc_mean)
+        elif selected_option == "Beschleunigung im Median":
+            st.write('Beschleunigung im Median: ', acc_med)
+        else:
+            st.write("Please select an option.")
         
         
         
