@@ -36,11 +36,12 @@ def page1():
     st.write('Uploade deine Fitness Sensor Daten von deinem Handy und - Los gehts!\n' )
     
 
-    link_url = "www.google.com"
-
-    if st.button("Weiter zur Website"):
-        open_link(link_url)
-
+    if st.button("Weiter zur Webseite"):
+        # Leite zum Link weiter, wenn der Button geklickt wird
+        link = "https://www.google.com/"
+        st.write(f"Weiterleitung zu: [{link}]({link})")
+        # Weiterleitung zur Webseite
+        st.markdown(f'<meta http-equiv="refresh" content="0;URL={link}" />', unsafe_allow_html=True)
 
     st.info('Alexander Frey(23169187), Pierre Engel(23224488), Tawfik Madarati(22660392), Marvin Wipfler (22959307)')
 
@@ -52,6 +53,7 @@ def page2():
 
     st.markdown('**Lade deine Daten jetzt hoch und genieß die Musik !**')
 
+    # File Uploader
     UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
     if UserFile is not None:
         st.success('File erfolgreich hochgeladen!', icon="✅")
@@ -97,7 +99,7 @@ def page2():
                     
         if yesButton:
             st.session_state['inCorrect'] = False
-            st.success("Cool")
+            st.success("Super dann starte deine Playlist!", icon="💪")
             #Richtig oder Falsch anzeige
         if 'inCorrect' not in st.session_state:
             st.session_state['inCorrect'] = False
@@ -144,13 +146,24 @@ def page3():
     # Ballons
     st.button('Click me!', on_click=st.balloons)
     UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
+    if UserFile is not None:
+        st.success('File erfolgreich hochgeladen!', icon="✅")
+        UserFile_df = pd.read_json(UserFile)
+
+def page4():
+        st.title('Deine Statistiken')
+        st.subheader('xxxx')
+        st.markdown('**xxxxx**')
+
+
 
 # Seitenleiste
 st.sidebar.title('Navigation')
 pages = {
     'Home': page1,
     'Playlist Empfehlung': page2,
-    'Video Empfehlung': page3
+    'Video Empfehlung': page3,
+    'Deine Statistiken': page4
 }
 selection = st.sidebar.radio("Go to:", list(pages.keys()))
 
