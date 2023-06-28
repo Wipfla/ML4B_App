@@ -74,8 +74,43 @@ def page2():
         prediction = str(prediction[0])
         st.write('Basierend auf deinen Bewegungsdaten hast du ', prediction, ' gemacht!')
 
-        #predictedCategory ="jumpingjacks"        
+            #predictedCategory ="jumpingjacks"        
+            #Richtig oder Falsch anzeige
+        if 'inCorrect' not in st.session_state:
+            st.session_state['inCorrect'] = False
         
+        st.subheader("War dies Korrekt?")        
+        
+        container_yes, container_no = st.columns(2)
+        
+        with container_yes:
+            yesButton = st.button(label = 'Ja', use_container_width = 1)
+            
+        with container_no:
+            noButton = st.button(label = 'Nein', use_container_width = 1)
+                    
+        if yesButton:
+            st.session_state['inCorrect'] = False
+            st.success("Cool")
+            
+        if noButton or st.session_state['inCorrect']:
+            st.session_state['inCorrect'] = True  
+            st.subheader("Oh, kannst du uns verraten was die richtige Antwort war?")
+            input1, input2, input3 = st.columns(3)
+            
+            with input1:
+                jjButton = st.button(label = 'Jumping Jacks', use_container_width = 1)
+                if jjButton:
+                    st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('jumpingjacks')}")
+            with input2:
+                pushupButton = st.button(label = 'PushUps', use_container_width = 1)
+                if pushupButton:
+                    st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('pushups')}")
+            with input3:
+                walkingButton = st.button(label = 'Walking', use_container_width = 1)
+                if walkingButton:
+                    st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('walking')}")
+
         if st.button("Finde meine neue Playlist"):
             selected_link = generate_playlist(prediction)
             if selected_link:
@@ -108,22 +143,18 @@ def page2():
     if noButton or st.session_state['inCorrect']:
         st.session_state['inCorrect'] = True  
         st.subheader("Oh, kannst du uns verraten was die richtige Antwort war?")
-        input1, input2, input3, input4 = st.columns(4)
+        input1, input2, input3 = st.columns(3)
         
         with input1:
-            jjButton = st.button(label = 'Hampelmann', use_container_width = 1)
+            jjButton = st.button(label = 'Jumping Jacks', use_container_width = 1)
             if jjButton:
                 st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('jumpingjacks')}")
         with input2:
-            pushupButton = st.button(label = 'Liegestütz', use_container_width = 1)
+            pushupButton = st.button(label = 'PushUps', use_container_width = 1)
             if pushupButton:
                 st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('pushups')}")
         with input3:
-            squatButton = st.button(label = 'Kniebeugen', use_container_width = 1)
-            if squatButton:
-                st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('jumpingjacks')}")
-        with input4:
-            walkingButton = st.button(label = 'Rumstehen', use_container_width = 1)
+            walkingButton = st.button(label = 'Walking', use_container_width = 1)
             if walkingButton:
                 st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('walking')}")
         
