@@ -83,7 +83,7 @@ def page2():
         
             #Richtig oder Falsch anzeige
         if 'inCorrect' not in st.session_state:
-        st.session_state['inCorrect'] = False
+            st.session_state['inCorrect'] = False
     
         st.subheader("War dies Korrekt?")    
         container_yes, container_no = st.columns(2)
