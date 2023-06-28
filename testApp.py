@@ -174,6 +174,11 @@ def page4():
             st.caption('Accelerometer Data')
             st.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
 
+            st.caption('Acc')
+            st.area_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
+
+            
+
 
 
 # Seitenleiste
