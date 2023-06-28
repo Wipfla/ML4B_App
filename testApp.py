@@ -86,7 +86,7 @@ def page2():
             with container_no:
                 noButton = st.button(label = 'Nein', use_container_width = 1)
 
-        with col2:            
+                    
             if yesButton:
                 st.session_state['inCorrect'] = False
                 st.success("Super dann starte deine Playlist!", icon="💪")
@@ -97,7 +97,8 @@ def page2():
 
             if 'inCorrect' not in st.session_state:
                 st.session_state['inCorrect'] = False
-                
+        with col2:
+            
             if noButton or st.session_state['inCorrect']:
                 st.session_state['inCorrect'] = True  
                 st.subheader("Oh, kannst du uns verraten was die richtige Antwort war?")
