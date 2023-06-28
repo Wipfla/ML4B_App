@@ -78,9 +78,9 @@ def page2():
             noButton = st.button(label = 'Nein', use_container_width = 1)
                     
         if yesButton:
-            st.balloons()
             st.session_state['inCorrect'] = False
             st.success("Super dann starte deine Playlist!", icon="💪")
+            st.balloons()
             selected_link = generate_playlist(prediction)
             st.write(f"Hier ist deine persönlich ausgesuchte Playlist:")
             st.markdown(f"[Playlist Link]({selected_link})")
