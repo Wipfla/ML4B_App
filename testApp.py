@@ -127,9 +127,8 @@ def page3():
     if UserFile is not None:
         st.success('File erfolgreich hochgeladen!', icon="✅")
         UserFile_df = pd.read_json(UserFile)
-       
         prediction = predcit(UserFile_df)
-
+        st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{prediction}]** gemacht!')
         videoURL = generate_video(prediction)
         
         st.video(videoURL)
