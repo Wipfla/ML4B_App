@@ -11,6 +11,22 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+
+def predcit(df):
+    # Extract Gyr Data, Acc Data, Orientation Data
+        df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
+
+        #get metrics
+        metrics_acc = getMetricsAcc(df_Acc)
+        
+        metrics = getMetrics(df_Acc, df_Gyr, df_Ori)
+        #Load model with pickle
+        model = pkl.load(open('knn.pickle', 'rb'))
+        #Predict
+        prediction = model.predict(metrics)
+        prediction = str(prediction[0])
+        return prediction
+
 # Seite 1
 def page1():
     st.title('🎧 BeatFit: The Data DJ - Home')
@@ -47,31 +63,7 @@ def page2():
         st.success('File erfolgreich hochgeladen!', icon="✅")
         UserFile_df = pd.read_json(UserFile)
        
-        # Extract Gyr Data, Acc Data, Orientation Data
-        df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
-        # Zeig DataFrame als Line Chart an
-        st.caption('Gyroscope Data')
-        st.line_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
-
-        # Zeig DataFrame als Line Chart an
-        st.caption('Accelerometer Data')
-        st.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
-
-        #get metrics
-        metrics_acc = getMetricsAcc(df_Acc)
-        
-        metrics = getMetrics(df_Acc, df_Gyr, df_Ori)
-
-        #Zeige die Acc Metrics an im Dataviewer
-        st.caption('Accelerometer Metrics')
-        st.dataframe(metrics_acc)
-
-
-        #Load model with pickle
-        model = pkl.load(open('knn.pickle', 'rb'))
-        #Predict
-        prediction = model.predict(metrics)
-        prediction = str(prediction[0])
+        prediction = predcit(UserFile_df)
         st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{prediction}]** gemacht!')
 
                 
@@ -137,11 +129,52 @@ def page3():
     if UserFile is not None:
         st.success('File erfolgreich hochgeladen!', icon="✅")
         UserFile_df = pd.read_json(UserFile)
+        
+        # Extract Gyr Data, Acc Data, Orientation Data
+        df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
+
+        #get metrics
+        metrics_acc = getMetricsAcc(df_Acc)
+        
+        metrics = getMetrics(df_Acc, df_Gyr, df_Ori)
+
+        
+        
+        videoURL = getVideo(UserFile_df)
+        
+        st.video('https://www.youtube.com/watch?v=pP6vl1ogadE')
+
+
 
 def page4():
         st.title('Deine Statistiken')
         st.subheader('xxxx')
         st.markdown('**xxxxx**')
+
+        UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
+        if UserFile is not None:
+            st.success('File erfolgreich hochgeladen!', icon="✅")
+            UserFile_df = pd.read_json(UserFile)
+        
+            # Extract Gyr Data, Acc Data, Orientation Data
+            df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
+            
+            #get metrics
+            metrics_acc = getMetricsAcc(df_Acc)
+        
+            metrics = getMetrics(df_Acc, df_Gyr, df_Ori)
+
+            #Zeige die Acc Metrics an im Dataviewer
+            st.caption('Accelerometer Metrics')
+            st.dataframe(metrics_acc)
+
+            # Zeig DataFrame als Line Chart an
+            st.caption('Gyroscope Data')
+            st.line_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
+
+            # Zeig DataFrame als Line Chart an
+            st.caption('Accelerometer Data')
+            st.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
 
 
 
@@ -152,7 +185,7 @@ pages = {
     'Playlist Empfehlung': page2,
     'Video Empfehlung': page3,
     'Deine Statistiken': page4
-}
+}   
 selection = st.sidebar.radio("Go to:", list(pages.keys()))
 
 # Seiteninhalt
