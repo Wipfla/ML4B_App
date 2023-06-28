@@ -180,7 +180,6 @@ def page4():
             col1, col2, col3 = st.columns(3)
             col1.area_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
             col2.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
-            col3.bokeh_chart(df_Acc, use_container_width=True)
 
             option = st.selectbox('Wähle deinen Sensor', ("Beschleunigungssensor","Gyroscope"))
             tab1, tab2, tab3 = st.tabs(["Line Chart", "Area Chart", "Historgamm"])
