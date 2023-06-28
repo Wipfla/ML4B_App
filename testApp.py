@@ -11,10 +11,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-def open_link(url):
-    webbrowser.open_new_tab(url)
-
-
 # Seite 1
 def page1():
     st.title('🎧 BeatFit: The Data DJ - Home')
@@ -35,6 +31,7 @@ def page1():
     st.write("Hinweis: Bei BeatFit liegt uns der Datenschutz sehr am Herzen. Alle deine hochgeladenen Daten werden anonymisiert und vertraulich behandelt. Wir nehmen deine Privatsphäre ernst und werden sie niemals ohne deine Zustimmung teilen.")
     st.write('Uploade deine Fitness Sensor Daten von deinem Handy und - Los gehts!\n' )
     
+
     link = "https://open.spotify.com/playlist/37i9dQZF1DXdxcBWuJkbcy?si=4dc4123542854393"
     if st.button("Weiter zur Webseite"):
         # Leite zum Link weiter, wenn der Button geklickt wird
@@ -112,7 +109,7 @@ def page2():
             with input1:
                 jjButton = st.button(label = 'Jumping Jacks', use_container_width = 1)
                 if jjButton:
-                    st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist: {generate_playlist('jumpingjacks')}")
+                    st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:", st.markdown("Link to Example]", {generate_playlist('jumpingjacks')}))
             with input2:
                 pushupButton = st.button(label = 'PushUps', use_container_width = 1)
                 if pushupButton:
