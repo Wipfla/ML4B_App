@@ -178,8 +178,13 @@ def create_combined_histogram(data):
     # Flatten the values of x, y, and z into a single array
     all_values = np.concatenate([data['x'], data['y'], data['z']])
 
-    # Create a combined histogram for all parameters
-    st.bar_chart(all_values, bins='auto')
+    # Compute the histogram values and bins
+    hist_values, hist_bins = np.histogram(all_values, bins='auto')
+
+    # Create a dictionary with values and their corresponding counts
+    histogram_data = {"Values": hist_values, "Bins": hist_bins}
+
     st.title('Combined Histogram - All Parameters')
+    st.bar_chart(histogram_data, x='Bins', y='Values')
     st.xlabel('Value')
     st.ylabel('Frequency')
