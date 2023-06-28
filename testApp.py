@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle as pkl
-import webbrowser
 from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist, generate_video
 
 
@@ -83,8 +82,8 @@ def page2():
             selected_link = generate_playlist(prediction)
             if selected_link:
                 st.success("Playlist gefunden!")
-                if st.button("Hör direkt rein!"): #button funktioniert noch nicht, leitet nicht weiter
-                    webbrowser.open_new(selected_link)
+                st.write("Hör gerne rein:")
+                st.container(selected_link)
             else:
                 st.warning("No playlist available for the selected category.")
 
@@ -131,11 +130,8 @@ def page3():
             selected_link = generate_video(prediction)
             if selected_link:
                 st.success("Trainingspartner gefunden!")
-                #st.write(f"Hier ist deine persönlich ausgesuchter Trainingspartner: {selected_link}")
-
-                if st.button("Schau dir das Video an!"): #button funktioniert noch nicht, leitet nicht weiter
-                    #st.write(f"Du wirst weitergeleitet zu: {selected_link}")
-                    webbrowser.open_new_tab(selected_link)
+                st.write("Hier ist deine persönlich ausgesuchter Trainingspartner:")
+                st.container(selected_link)
             else:
                 st.warning("No playlist available for the selected category.")
 
