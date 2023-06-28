@@ -121,35 +121,7 @@ def page2():
                     st.write(f"Du wirst weitergeleitet zu: {selected_link}")
             else:
                 st.warning("No playlist available for the selected category.")
-                
-    
-    with container_yes:
-        yesButton = st.button(label = 'Ja', use_container_width = 1)
-        
-    with container_no:
-        noButton = st.button(label = 'Nein', use_container_width = 1)
-                
-    if yesButton:
-        st.session_state['inCorrect'] = False
-        st.success("Cool")
-        
-    if noButton or st.session_state['inCorrect']:
-        st.session_state['inCorrect'] = True  
-        st.subheader("Oh, kannst du uns verraten was die richtige Antwort war?")
-        input1, input2, input3 = st.columns(3)
-        
-        with input1:
-            jjButton = st.button(label = 'Jumping Jacks', use_container_width = 1)
-            if jjButton:
-                st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('jumpingjacks')}")
-        with input2:
-            pushupButton = st.button(label = 'PushUps', use_container_width = 1)
-            if pushupButton:
-                st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('pushups')}")
-        with input3:
-            walkingButton = st.button(label = 'Walking', use_container_width = 1)
-            if walkingButton:
-                st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('walking')}")
+            
         
 
 # Seite 3
