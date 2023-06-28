@@ -30,15 +30,6 @@ def page1():
 
     st.write("Hinweis: Bei BeatFit liegt uns der Datenschutz sehr am Herzen. Alle deine hochgeladenen Daten werden anonymisiert und vertraulich behandelt. Wir nehmen deine Privatsphäre ernst und werden sie niemals ohne deine Zustimmung teilen.")
     st.write('Uploade deine Fitness Sensor Daten von deinem Handy und - Los gehts!\n' )
-    
-
-    link = "https://open.spotify.com/playlist/37i9dQZF1DXdxcBWuJkbcy?si=4dc4123542854393"
-    if st.button("Weiter zur Webseite"):
-        # Leite zum Link weiter, wenn der Button geklickt wird
-       
-        st.write("Weiterleitung zu: [{link}]({link})")
-        # Weiterleitung zur Webseite
-        st.markdown('<meta http-equiv="refresh" content="0; URL={link}" />', unsafe_allow_html=True)
 
     st.info('Alexander Frey(23169187), Pierre Engel(23224488), Tawfik Madarati(22660392), Marvin Wipfler (22959307)')
 
@@ -81,7 +72,7 @@ def page2():
         #Predict
         prediction = model.predict(metrics)
         prediction = str(prediction[0])
-        st.write('Basierend auf deinen Bewegungsdaten hast du :red[', prediction, '] gemacht!')
+        st.write(f'Basierend auf deinen Bewegungsdaten hast du :red[{prediction}] gemacht!')
 
                 
     
@@ -97,7 +88,12 @@ def page2():
         if yesButton:
             st.session_state['inCorrect'] = False
             st.success("Super dann starte deine Playlist!", icon="💪")
-            #Richtig oder Falsch anzeige
+            if st.button("Finde meine neue Playlist"):
+                selected_link = generate_playlist(prediction)
+                st.success("Playlist gefunden!")
+                st.write(f"Hier ist deine persönlich ausgesuchte Playlist:")
+                st.markdown(f"[Playlist Link]({selected_link})")
+
         if 'inCorrect' not in st.session_state:
             st.session_state['inCorrect'] = False
             
@@ -115,22 +111,17 @@ def page2():
             with input2:
                 pushupButton = st.button(label = 'PushUps', use_container_width = 1)
                 if pushupButton:
-                    st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('pushups')}")
+                    st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
+                    link = generate_playlist('PushUps')
+                    st.markdown(f"[Playlist Link]({link})")
             with input3:
                 walkingButton = st.button(label = 'Walking', use_container_width = 1)
                 if walkingButton:
-                    st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('walking')}")
+                    st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
+                    link = generate_playlist('walking')
+                    st.markdown(f"[Playlist Link]({link})")
 
-        if st.button("Finde meine neue Playlist"):
-            selected_link = generate_playlist(prediction)
-            if selected_link:
-                st.success("Playlist gefunden!")
-                st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {selected_link}")
-
-                if st.button("Hör direkt rein!"): #button funktioniert noch nicht, leitet nicht weiter
-                    st.write(f"Du wirst weitergeleitet zu: {selected_link}")
-            else:
-                st.warning("No playlist available for the selected category.")
+        
             
         
 
