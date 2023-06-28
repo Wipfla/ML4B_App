@@ -175,22 +175,25 @@ def getTestDataset(filepath):
 
 
 def create_combined_histogram(data_list):
-    # Flatten the values of all variables into a single array
-    all_values = np.concatenate([df.values.flatten() for df in data_list])
+    # Concatenate the values of all variables into a single array
+    all_values = np.concatenate(data_list)
 
-    # Compute the histogram values and bins
-    hist_values, hist_bins = np.histogram(all_values, bins='auto')
+    # Create a DataFrame with values and their corresponding variables
+    df = pd.DataFrame({"Values": all_values, "Variable": np.repeat(["x", "y", "z"], [len(arr) for arr in data_list])})
 
-    # Create a DataFrame with values and their corresponding counts
-    histogram_df = pd.DataFrame({"Values": hist_values, "Bins": hist_bins[:-1]})
+    # Define color scheme for variables
+    color_scheme = alt.Scale(domain=["x", "y", "z"], range=["red", "blue", "black"])
 
-    st.title('Combined Histogram - All Parameters')
-    chart = alt.Chart(histogram_df).mark_bar().encode(
-        x='Bins:Q',
-        y='Values:Q',
-        tooltip=['Bins', 'Values']
+    # Create the combined histogram chart
+    chart = alt.Chart(df).mark_bar().encode(
+        x=alt.X('Values:Q', bin=alt.BinParams(maxbins=30)),
+        y='count()',
+        color=alt.Color('Variable:N', scale=color_scheme),
+        tooltip=['Variable', 'Values']
     ).properties(
         width=600,
         height=400
     )
+
+    st.title('Combined Histogram - All Variables')
     st.altair_chart(chart)
