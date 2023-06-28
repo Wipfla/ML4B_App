@@ -87,7 +87,41 @@ def page2():
             else:
                 st.warning("No playlist available for the selected category.")
 
+        #Richtig oder Falsch anzeige
+    if 'inCorrect' not in st.session_state:
+        st.session_state['inCorrect'] = False
     
+    st.subheader("War dies Korrekt?")        
+    
+    container_yes, container_no = st.columns(2)
+    
+    with container_yes:
+        yesButton = st.button(label = 'Ja', use_container_width = 1)
+        
+    with container_no:
+        noButton = st.button(label = 'Nein', use_container_width = 1)
+                
+    if yesButton:
+        st.session_state['inCorrect'] = False
+        st.success("Cool")
+        
+    if noButton or st.session_state['inCorrect']:
+        st.session_state['inCorrect'] = True  
+        st.subheader("Oh, kannst du uns verraten was die richtige Antwort war?")
+        input1, input2, input3, input4 = st.columns(4)
+        
+        with input1:
+            test = st.button(label = 'JumpingJacks', use_container_width = 1)
+            if test:
+                st.text(1337)
+        with input2:
+            st.button(label = 'PushUps', use_container_width = 1)
+        with input3:
+            st.button(label = 'Kniebeugen', use_container_width = 1)
+        with input4:
+            st.button(label = 'Laufen', use_container_width = 1)
+        
+
 
 # Seite 3
 
