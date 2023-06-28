@@ -181,10 +181,10 @@ def create_combined_histogram(data):
     # Compute the histogram values and bins
     hist_values, hist_bins = np.histogram(all_values, bins='auto')
 
-    # Create a dictionary with values and their corresponding counts
-    histogram_data = {"Values": hist_values, "Bins": hist_bins}
+    # Create a DataFrame with values and their corresponding counts
+    histogram_df = pd.DataFrame({"Values": hist_values, "Bins": hist_bins[:-1]})
 
     st.title('Combined Histogram - All Parameters')
-    st.bar_chart(histogram_data, x='Bins', y='Values')
+    st.bar_chart(histogram_df, x='Bins', y='Values')
     st.xlabel('Value')
     st.ylabel('Frequency')
