@@ -84,7 +84,7 @@ def page2():
             if selected_link:
                 st.success("Playlist gefunden!")
                 if st.button("Hör direkt rein!"): #button funktioniert noch nicht, leitet nicht weiter
-                    webbrowser.open_new_tab(selected_link)
+                    st.markdown('<a href="' + selected_link + '" target="_blank">Click here to open playlist</a>', unsafe_allow_html=True)
             else:
                 st.warning("No playlist available for the selected category.")
 
