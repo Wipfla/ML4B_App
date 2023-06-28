@@ -30,23 +30,29 @@ def predcit(df):
 
 # Seite 1
 def page1():
-    st.title('🎧 BeatFit: The Data DJ - Home')
-    st.subheader('Finde jetzt die passenden Playlists und Workoutvideos für deine Aktivität!')
-    st.write("Willkommen bei **BeatFit**!\n")
-    st.write("Hast du dich jemals gefragt, wie du deine alltäglichen Bewegungen und Aktivitäten in die ultimative Playlist verwandeln kannst? Nun, suche nicht weiter, denn BeatFit ist hier, um dein persönlicher musikalischer Begleiter zu sein!\n")
 
-    st.write("Stell dir vor, du könntest dein Handy in einen vertrauenswürdigen DJ verwandeln, der deine Bewegungen, deine Stimmung und deine Energie erfasst und dir die perfekte Musik empfiehlt. Das ist genau das, was BeatFit für dich tun kann!\n")
+    col1, col2, col3 = st.columns(3)
 
-    st.write("Es ist ganz einfach: Lade einfach deine Bewegungssensordaten von deinem Handy hoch, und basierend auf diesen Informationen werden wir eine speziell für dich zusammengestellte Spotify-Playlist erstellen, die perfekt zu deinem Tagesablauf, deinen Aktivitäten und deiner Stimmung passt.\n")
+    with col1:
+        st.title('🎧 BeatFit: The Data DJ - Home')
+        st.subheader('Finde jetzt die passenden Playlists und Workoutvideos für deine Aktivität!')
+        st.write("Willkommen bei **BeatFit**!\n")
+        st.write("Hast du dich jemals gefragt, wie du deine alltäglichen Bewegungen und Aktivitäten in die ultimative Playlist verwandeln kannst? Nun, suche nicht weiter, denn BeatFit ist hier, um dein persönlicher musikalischer Begleiter zu sein!\n")
 
-    st.write("Aber das ist noch nicht alles! Neben der Spotify-Playlist bietet BeatFit dir auch passende YouTube-Videos an, die deine Stimmung und Interessen widerspiegeln. Ob du nach Musikvideos, Live-Auftritten oder sogar Tanzanleitungen suchst, BeatFit hat alles im Angebot.\n")
+        st.write("Stell dir vor, du könntest dein Handy in einen vertrauenswürdigen DJ verwandeln, der deine Bewegungen, deine Stimmung und deine Energie erfasst und dir die perfekte Musik empfiehlt. Das ist genau das, was BeatFit für dich tun kann!\n")
 
-    st.write("Also, worauf wartest du noch? Lass uns gemeinsam die Magie der Musik und der Bewegung erforschen. Lade deine Handydaten hoch, lehn dich zurück und lass BeatFit deine musikalische Reise beginnen!\n")
+        st.write("Es ist ganz einfach: Lade einfach deine Bewegungssensordaten von deinem Handy hoch, und basierend auf diesen Informationen werden wir eine speziell für dich zusammengestellte Spotify-Playlist erstellen, die perfekt zu deinem Tagesablauf, deinen Aktivitäten und deiner Stimmung passt.\n")
 
-    st.write("Hinweis: Bei BeatFit liegt uns der Datenschutz sehr am Herzen. Alle deine hochgeladenen Daten werden anonymisiert und vertraulich behandelt. Wir nehmen deine Privatsphäre ernst und werden sie niemals ohne deine Zustimmung teilen.")
-    st.write('Uploade deine Fitness Sensor Daten von deinem Handy und - Los gehts!\n' )
-    image = Image.open('data/flex.jpg')
-    st.image(image, caption='Lass uns das Training starten!', use_column_width=True)
+        st.write("Aber das ist noch nicht alles! Neben der Spotify-Playlist bietet BeatFit dir auch passende YouTube-Videos an, die deine Stimmung und Interessen widerspiegeln. Ob du nach Musikvideos, Live-Auftritten oder sogar Tanzanleitungen suchst, BeatFit hat alles im Angebot.\n")
+
+        st.write("Also, worauf wartest du noch? Lass uns gemeinsam die Magie der Musik und der Bewegung erforschen. Lade deine Handydaten hoch, lehn dich zurück und lass BeatFit deine musikalische Reise beginnen!\n")
+
+        st.write("Hinweis: Bei BeatFit liegt uns der Datenschutz sehr am Herzen. Alle deine hochgeladenen Daten werden anonymisiert und vertraulich behandelt. Wir nehmen deine Privatsphäre ernst und werden sie niemals ohne deine Zustimmung teilen.")
+        st.write('Uploade deine Fitness Sensor Daten von deinem Handy und - Los gehts!\n' )
+    
+    with col2:
+        image = Image.open('data/flex.jpg')
+        st.image(image, caption='Lass uns das Training starten!', use_column_width=True)
 
     st.info('Alexander Frey(23169187), Pierre Engel(23224488), Tawfik Madarati(22660392), Marvin Wipfler (22959307)')
 
