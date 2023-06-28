@@ -181,10 +181,11 @@ def page4():
         with st.container():
             st.write('Beschleunigung im Median: ', acc_med)
 
-        options = ["Maximale Höhe", "Minimale Höhe", "Höhe im Mittelwert", "Höhe im Median", "Maximale Beschleunigung", "Minimale Beschleunigung", "Beschleunigung im Mittelwert", "Beschleunigung im Median"]
+        options = ["Bitte Suche dir eine Statistik heraus", "Maximale Höhe", "Minimale Höhe", "Höhe im Mittelwert", "Höhe im Median", "Maximale Beschleunigung", "Minimale Beschleunigung", "Beschleunigung im Mittelwert", "Beschleunigung im Median"]
         selected_option = st.selectbox('Was willst du herausfinden?', options)
-
-        if selected_option == "Maximale Höhe":
+        if selected_option == "Bitte Suche dir eine Statistik heraus":
+            st.write('Bitte wähle eine Option')
+        elif selected_option == "Maximale Höhe":
             st.write('Maximale Höhe: ', gyro_max)
         elif selected_option == "Minimale Höhe":
             st.write('Minimale Höhe: ', gyro_min)
