@@ -61,6 +61,7 @@ def page2():
     UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
     if UserFile is not None:
         st.success('File erfolgreich hochgeladen!', icon="✅")
+        st.balloons()
         UserFile_df = pd.read_json(UserFile)
        
         prediction = predcit(UserFile_df)
@@ -107,7 +108,7 @@ def page2():
             with input3:
                 walkingButton = st.button(label = 'Walking', use_container_width = 1)
                 if walkingButton:
-                    st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
+                    st.write("Hier ist deine angepasste persönlich ausgesuchte Playlist:")
                     link = generate_playlist('walking')
                     st.markdown(f"[Playlist Link]({link})")
 
@@ -121,16 +122,16 @@ def page3():
 
     st.subheader('Finde jetzt das perfekte Workoutvideo, passend zu deinen Bewegungen!')
     st.markdown('**Lade deine Daten jetzt hoch und genieß das Workoutvideo !**')
-    # Ballons
-    st.button('Click me!', on_click=st.balloons)
+    
     UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
     if UserFile is not None:
         st.success('File erfolgreich hochgeladen!', icon="✅")
+        st.balloons()
         UserFile_df = pd.read_json(UserFile)
         prediction = predcit(UserFile_df)
         st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{prediction}]** gemacht!')
         videoURL = generate_video(prediction)
-        
+        st.write("Hier ist deine persönlich ausgesuchtes Workoutvideo:")
         st.video(videoURL)
 
 
@@ -143,6 +144,7 @@ def page4():
         UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
         if UserFile is not None:
             st.success('File erfolgreich hochgeladen!', icon="✅")
+            st.balloons()
             UserFile_df = pd.read_json(UserFile)
         
             # Extract Gyr Data, Acc Data, Orientation Data
