@@ -185,8 +185,7 @@ def page4():
             st.write('Beschleunigung im Mittelwert: ', acc_mean)
         with st.container():
             st.write('Beschleunigung im Median: ', acc_med)
-        st.write('Maximale Höhe: ', gyro_max, ', Minimale Höhe: ', gyro_min, ', Höhe im Median: ', gyro_med, ', Höhe im Mittelwert: ', gyro_mean)
-        st.write('Maximale Beschleunigung: ', acc_max, ', Minimale Beschleunigung: ', acc_min, ', Beschleunigung im Median: ', acc_med, ', Beschleunigung im Mittelwert: ', acc_mean)
+        
         
         
         
