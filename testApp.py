@@ -35,10 +35,10 @@ def page1():
     st.write("Hinweis: Bei BeatFit liegt uns der Datenschutz sehr am Herzen. Alle deine hochgeladenen Daten werden anonymisiert und vertraulich behandelt. Wir nehmen deine Privatsphäre ernst und werden sie niemals ohne deine Zustimmung teilen.")
     st.write('Uploade deine Fitness Sensor Daten von deinem Handy und - Los gehts!\n' )
     
-
+    link = "https://open.spotify.com/playlist/37i9dQZF1DXdxcBWuJkbcy?si=4dc4123542854393"
     if st.button("Weiter zur Webseite"):
         # Leite zum Link weiter, wenn der Button geklickt wird
-        link = "https://open.spotify.com/playlist/37i9dQZF1DXdxcBWuJkbcy?si=4dc4123542854393"
+       
         st.write(f"Weiterleitung zu: [{link}]({link})")
         # Weiterleitung zur Webseite
         st.markdown(f'<meta http-equiv="refresh" content="0;URL={link}" />', unsafe_allow_html=True)
@@ -84,7 +84,7 @@ def page2():
         #Predict
         prediction = model.predict(metrics)
         prediction = str(prediction[0])
-        st.write('Basierend auf deinen Bewegungsdaten hast du ', prediction, ' gemacht!')
+        st.write('Basierend auf deinen Bewegungsdaten hast du :red[', prediction, '] gemacht!')
 
                 
     
