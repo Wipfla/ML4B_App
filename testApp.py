@@ -83,10 +83,7 @@ def page2():
             selected_link = generate_playlist(prediction)
             if selected_link:
                 st.success("Playlist gefunden!")
-                #st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {selected_link}")
-
                 if st.button("Hör direkt rein!"): #button funktioniert noch nicht, leitet nicht weiter
-                #st.write(f"Du wirst weitergeleitet zu: {selected_link}")
                     webbrowser.open_new_tab(selected_link)
             else:
                 st.warning("No playlist available for the selected category.")
