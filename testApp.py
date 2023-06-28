@@ -168,22 +168,22 @@ def page4():
         acc_min= np.min(df_Acc)
         acc_med= np.median(df_Acc)
         acc_mean= np.mean(df_Acc)
-        with st.beta_container():
+        with st.container():
             st.write('Maximale Höhe: ', gyro_max)
-        with st.beta_container():
+        with st.container():
             st.write('Minimale Höhe: ', gyro_min)
-        with st.beta_container():
+        with st.container():
             st.write('Höhe im Mittelwert: ', gyro_mean)
-        with st.beta_container():
+        with st.container():
             st.write('Höhe im Median: ', gyro_med)
 
-        with st.beta_container():
+        with st.container():
             st.write('Maximale Beschleunigung: ', acc_max)
-        with st.beta_container():
+        with st.container():
             st.write('Minimale Beschleunigung: ', acc_min)
-        with st.beta_container():
+        with st.container():
             st.write('Beschleunigung im Mittelwert: ', acc_mean)
-        with st.beta_container():
+        with st.container():
             st.write('Beschleunigung im Median: ', acc_med)
         st.write('Maximale Höhe: ', gyro_max, ', Minimale Höhe: ', gyro_min, ', Höhe im Median: ', gyro_med, ', Höhe im Mittelwert: ', gyro_mean)
         st.write('Maximale Beschleunigung: ', acc_max, ', Minimale Beschleunigung: ', acc_min, ', Beschleunigung im Median: ', acc_med, ', Beschleunigung im Mittelwert: ', acc_mean)
