@@ -79,19 +79,14 @@ def page2():
 
         #predictedCategory ="jumpingjacks"
 
-       # Check if 'session_state' exists, and initialize if not
-        if 'session_state' not in st.session_state:
-            st.session_state.session_initialized = False
-
         if st.button("Finde meine neue Playlist"):
             selected_link = generate_playlist(prediction)
             if selected_link:
                 st.success("Playlist gefunden!")
-                st.session_state.session_initialized = True
-
-        if st.session_state.session_initialized:
-            if st.button("Hör direkt rein!"):
-                st.markdown('<a href="' + selected_link + '" target="_blank">Click here to open playlist</a>', unsafe_allow_html=True)
+                if st.button("Hör direkt rein!"): #button funktioniert noch nicht, leitet nicht weiter
+                    st.markdown(f'<a href="{selected_link}" target="_blank">Click here to open playlist</a>', unsafe_allow_html=True)
+            else:
+                st.warning("No playlist available for the selected category.")
 
     
 
