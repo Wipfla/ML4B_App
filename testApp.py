@@ -5,29 +5,29 @@ import pickle as pkl
 from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist
 
 st.set_page_config(
-    page_title="TuneTracker: The Data DJ",
+    page_title="BeatFit: The Data DJ",
     page_icon="🎧",
     initial_sidebar_state="expanded",
 )
 
 # Seite 1
 def page1():
-    st.title('🎧 TuneTracker: The Data DJ - Home')
+    st.title('🎧 BeatFit: The Data DJ - Home')
     st.subheader('Finde jetzt die passenden Playlists und Workoutvideos für deine Aktivität!')
-    st.write("Willkommen bei **TuneTracker**!\n")
-    st.write("Hast du dich jemals gefragt, wie du deine alltäglichen Bewegungen und Aktivitäten in die ultimative Playlist verwandeln kannst? Nun, suche nicht weiter, denn TuneTracker ist hier, um dein persönlicher musikalischer Begleiter zu sein!\n")
+    st.write("Willkommen bei **BeatFit**!\n")
+    st.write("Hast du dich jemals gefragt, wie du deine alltäglichen Bewegungen und Aktivitäten in die ultimative Playlist verwandeln kannst? Nun, suche nicht weiter, denn BeatFit ist hier, um dein persönlicher musikalischer Begleiter zu sein!\n")
 
-    st.write("Stell dir vor, du könntest dein Handy in einen vertrauenswürdigen DJ verwandeln, der deine Bewegungen, deine Stimmung und deine Energie erfasst und dir die perfekte Musik empfiehlt. Das ist genau das, was TuneTracker für dich tun kann!\n")
+    st.write("Stell dir vor, du könntest dein Handy in einen vertrauenswürdigen DJ verwandeln, der deine Bewegungen, deine Stimmung und deine Energie erfasst und dir die perfekte Musik empfiehlt. Das ist genau das, was BeatFit für dich tun kann!\n")
 
     st.write("Es ist ganz einfach: Lade einfach deine Bewegungssensordaten von deinem Handy hoch, und basierend auf diesen Informationen werden wir eine speziell für dich zusammengestellte Spotify-Playlist erstellen, die perfekt zu deinem Tagesablauf, deinen Aktivitäten und deiner Stimmung passt.\n")
 
-    st.write("Bist du morgens eine dynamische Kraft? Kein Problem! TuneTracker wird dir eine Playlist liefern, die dich auf Trab hält und dir den perfekten Energieschub für den Tag gibt. Oder vielleicht möchtest du nach einem langen Tag der Arbeit entspannen und abschalten? TuneTracker wird dir sanfte Klänge und ruhige Melodien bieten, um dich zu beruhigen und zu erholen.\n")
+    st.write("Bist du morgens eine dynamische Kraft? Kein Problem! BeatFit wird dir eine Playlist liefern, die dich auf Trab hält und dir den perfekten Energieschub für den Tag gibt. Oder vielleicht möchtest du nach einem langen Tag der Arbeit entspannen und abschalten? BeatFit wird dir sanfte Klänge und ruhige Melodien bieten, um dich zu beruhigen und zu erholen.\n")
 
-    st.write("Aber das ist noch nicht alles! Neben der Spotify-Playlist bietet TuneTracker dir auch passende YouTube-Videos an, die deine Stimmung und Interessen widerspiegeln. Ob du nach Musikvideos, Live-Auftritten oder sogar Tanzanleitungen suchst, TuneTracker hat alles im Angebot.\n")
+    st.write("Aber das ist noch nicht alles! Neben der Spotify-Playlist bietet BeatFit dir auch passende YouTube-Videos an, die deine Stimmung und Interessen widerspiegeln. Ob du nach Musikvideos, Live-Auftritten oder sogar Tanzanleitungen suchst, BeatFit hat alles im Angebot.\n")
 
-    st.write("Also, worauf wartest du noch? Lass uns gemeinsam die Magie der Musik und der Bewegung erforschen. Lade deine Handydaten hoch, lehn dich zurück und lass TuneTracker deine musikalische Reise beginnen!\n")
+    st.write("Also, worauf wartest du noch? Lass uns gemeinsam die Magie der Musik und der Bewegung erforschen. Lade deine Handydaten hoch, lehn dich zurück und lass BeatFit deine musikalische Reise beginnen!\n")
 
-    st.write("Hinweis: Bei TuneTracker liegt uns der Datenschutz sehr am Herzen. Alle deine hochgeladenen Daten werden anonymisiert und vertraulich behandelt. Wir nehmen deine Privatsphäre ernst und werden sie niemals ohne deine Zustimmung teilen.")
+    st.write("Hinweis: Bei BeatFit liegt uns der Datenschutz sehr am Herzen. Alle deine hochgeladenen Daten werden anonymisiert und vertraulich behandelt. Wir nehmen deine Privatsphäre ernst und werden sie niemals ohne deine Zustimmung teilen.")
     st.write('Uploade deine Fitness Sensor Daten von deinem Handy und - Los gehts!\n' )
     
 
@@ -47,6 +47,7 @@ def page2():
     if UserFile is not None:
         st.success('File erfolgreich hochgeladen!', icon="✅")
         UserFile_df = pd.read_json(UserFile)
+       
         # Extract Gyr Data, Acc Data, Orientation Data
         df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
         # Zeig DataFrame als Line Chart an
@@ -74,16 +75,7 @@ def page2():
         prediction = str(prediction[0])
         st.write('Basierend auf deinen Bewegungsdaten hast du ', prediction, ' gemacht!')
 
-            #predictedCategory ="jumpingjacks"        
-            #Richtig oder Falsch anzeige
-        if 'inCorrect' not in st.session_state:
-            st.session_state['inCorrect'] = False
-        
-        st.subheader("War dies Korrekt?")        
-        
-            #Richtig oder Falsch anzeige
-        if 'inCorrect' not in st.session_state:
-            st.session_state['inCorrect'] = False
+                
     
         st.subheader("War dies Korrekt?")    
         container_yes, container_no = st.columns(2)
@@ -97,6 +89,9 @@ def page2():
         if yesButton:
             st.session_state['inCorrect'] = False
             st.success("Cool")
+            #Richtig oder Falsch anzeige
+        if 'inCorrect' not in st.session_state:
+            st.session_state['inCorrect'] = False
             
         if noButton or st.session_state['inCorrect']:
             st.session_state['inCorrect'] = True  
@@ -127,9 +122,6 @@ def page2():
             else:
                 st.warning("No playlist available for the selected category.")
                 
-    
-    
-    container_yes, container_no = st.columns(2)
     
     with container_yes:
         yesButton = st.button(label = 'Ja', use_container_width = 1)
