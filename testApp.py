@@ -110,7 +110,7 @@ def page2():
                 jjButton = st.button(label = 'Jumping Jacks', use_container_width = 1)
                 if jjButton:
                     st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
-                    st.markdown(f"[Playlist Link]] {generate_playlist('jumpingjacks')}")
+                    st.markdown(f"[Playlist Link]({generate_playlist('jumpingjacks')})")
             with input2:
                 pushupButton = st.button(label = 'PushUps', use_container_width = 1)
                 if pushupButton:
