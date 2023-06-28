@@ -180,9 +180,9 @@ def page4():
             col1, col2, col3 = st.columns(3)
             col1.area_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
             col2.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
-            col3.map(data=df_Acc, x='time', y=['x', 'y', 'z'])
+            col3.bokeh_chart(df_Acc, use_container_width=True)
 
-            
+
 
 
 
