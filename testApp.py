@@ -88,38 +88,37 @@ def page2():
         if yesButton:
             st.session_state['inCorrect'] = False
             st.success("Super dann starte deine Playlist!", icon="💪")
-            if st.button("Finde meine neue Playlist"):
-                selected_link = generate_playlist(prediction)
-                st.success("Playlist gefunden!")
-                st.write(f"Hier ist deine persönlich ausgesuchte Playlist:")
-                st.markdown(f"[Playlist Link]({selected_link})")
+            selected_link = generate_playlist(prediction)
+            st.success("Playlist gefunden!")
+            st.write(f"Hier ist deine persönlich ausgesuchte Playlist:")
+            st.markdown(f"[Playlist Link]({selected_link})")
 
         if 'inCorrect' not in st.session_state:
             st.session_state['inCorrect'] = False
             
-        if noButton or st.session_state['inCorrect']:
-            st.session_state['inCorrect'] = True  
-            st.subheader("Oh, kannst du uns verraten was die richtige Antwort war?")
-            input1, input2, input3 = st.columns(3)
-            
-            with input1:
-                jjButton = st.button(label = 'Jumping Jacks', use_container_width = 1)
-                if jjButton:
-                    st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
-                    link = generate_playlist('jumpingjacks')
-                    st.markdown(f"[Playlist Link]({link})")
-            with input2:
-                pushupButton = st.button(label = 'PushUps', use_container_width = 1)
-                if pushupButton:
-                    st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
-                    link = generate_playlist('PushUps')
-                    st.markdown(f"[Playlist Link]({link})")
-            with input3:
-                walkingButton = st.button(label = 'Walking', use_container_width = 1)
-                if walkingButton:
-                    st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
-                    link = generate_playlist('walking')
-                    st.markdown(f"[Playlist Link]({link})")
+            if noButton or st.session_state['inCorrect']:
+                st.session_state['inCorrect'] = True  
+                st.subheader("Oh, kannst du uns verraten was die richtige Antwort war?")
+                input1, input2, input3 = st.columns(3)
+                
+                with input1:
+                    jjButton = st.button(label = 'Jumping Jacks', use_container_width = 1)
+                    if jjButton:
+                        st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
+                        link = generate_playlist('jumpingjacks')
+                        st.markdown(f"[Playlist Link]({link})")
+                with input2:
+                    pushupButton = st.button(label = 'PushUps', use_container_width = 1)
+                    if pushupButton:
+                        st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
+                        link = generate_playlist('PushUps')
+                        st.markdown(f"[Playlist Link]({link})")
+                with input3:
+                    walkingButton = st.button(label = 'Walking', use_container_width = 1)
+                    if walkingButton:
+                        st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
+                        link = generate_playlist('walking')
+                        st.markdown(f"[Playlist Link]({link})")
 
         
             
