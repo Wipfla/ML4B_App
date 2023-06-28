@@ -10,6 +10,7 @@ st.set_page_config(
     page_title="BeatFit: The Data DJ",
     page_icon="🎧",
     initial_sidebar_state="expanded",
+    layout="wide",
 )
 
 
