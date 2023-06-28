@@ -179,7 +179,7 @@ def create_combined_histogram(data):
     all_values = np.concatenate([data['x'], data['y'], data['z']])
 
     # Create a combined histogram for all parameters
-    st.hist(all_values, bins='auto')
+    st.bar_chart(all_values, bins='auto')
     st.title('Combined Histogram - All Parameters')
     st.xlabel('Value')
     st.ylabel('Frequency')
