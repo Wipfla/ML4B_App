@@ -38,7 +38,7 @@ def page1():
 
     if st.button("Weiter zur Webseite"):
         # Leite zum Link weiter, wenn der Button geklickt wird
-        link = "https://www.google.com/"
+        link = "https://open.spotify.com/playlist/37i9dQZF1DXdxcBWuJkbcy?si=4dc4123542854393"
         st.write(f"Weiterleitung zu: [{link}]({link})")
         # Weiterleitung zur Webseite
         st.markdown(f'<meta http-equiv="refresh" content="0;URL={link}" />', unsafe_allow_html=True)
