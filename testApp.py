@@ -81,6 +81,11 @@ def page2():
         
         st.subheader("War dies Korrekt?")        
         
+            #Richtig oder Falsch anzeige
+        if 'inCorrect' not in st.session_state:
+        st.session_state['inCorrect'] = False
+    
+        st.subheader("War dies Korrekt?")    
         container_yes, container_no = st.columns(2)
         
         with container_yes:
@@ -122,11 +127,7 @@ def page2():
             else:
                 st.warning("No playlist available for the selected category.")
                 
-    #Richtig oder Falsch anzeige
-    if 'inCorrect' not in st.session_state:
-        st.session_state['inCorrect'] = False
     
-    st.subheader("War dies Korrekt?")        
     
     container_yes, container_no = st.columns(2)
     
