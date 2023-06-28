@@ -4,7 +4,6 @@ import numpy as np
 import pickle as pkl
 from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist, generate_video, create_combined_histogram
 from PIL import Image
-import matplotlib.pyplot as plt 
 
 
 st.set_page_config(
