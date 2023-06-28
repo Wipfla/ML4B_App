@@ -111,15 +111,21 @@ def page2():
         input1, input2, input3, input4 = st.columns(4)
         
         with input1:
-            test = st.button(label = 'Hampelmann', use_container_width = 1)
-            if test:
-                st.text(1337)
+            jjButton = st.button(label = 'Hampelmann', use_container_width = 1)
+            if jjButton:
+                st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('jumpingjacks')}")
         with input2:
-            st.button(label = 'Liegestütz', use_container_width = 1)
+            pushupButton = st.button(label = 'Liegestütz', use_container_width = 1)
+            if pushupButton:
+                st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('pushups')}")
         with input3:
-            st.button(label = 'Kniebeugen', use_container_width = 1)
+            squatButton = st.button(label = 'Kniebeugen', use_container_width = 1)
+            if squatButton:
+                st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('jumpingjacks')}")
         with input4:
-            st.button(label = 'Rumestehen', use_container_width = 1)
+            walkingButton = st.button(label = 'Rumstehen', use_container_width = 1)
+            if walkingButton:
+                st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('walking')}")
         
 
 # Seite 3
