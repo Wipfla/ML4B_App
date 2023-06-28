@@ -4,7 +4,21 @@ import numpy as np
 import pickle as pkl
 from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist, generate_video
 
-import streamlit as st
+
+
+# Custom CSS für Hintergrund weiß
+background_css = """
+<style>
+body {
+    background-color: white;
+}
+</style>
+"""
+
+# Apply the custom CSS
+st.markdown(background_css, unsafe_allow_html=True)
+
+
 
 
    
