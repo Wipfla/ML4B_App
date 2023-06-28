@@ -2,7 +2,7 @@ import pandas as pd
 import random
 import streamlit as st
 import numpy as np
-
+import altair as alt
 
 #Function to get Accelometer, Gyroscope and Orientation Data from Json in one Dataframe each
 def getSensorData(df):
@@ -185,6 +185,12 @@ def create_combined_histogram(data):
     histogram_df = pd.DataFrame({"Values": hist_values, "Bins": hist_bins[:-1]})
 
     st.title('Combined Histogram - All Parameters')
-    st.bar_chart(histogram_df, x='Bins', y='Values')
-    st.xlabel('Value')
-    st.ylabel('Frequency')
+    chart = alt.Chart(histogram_df).mark_bar().encode(
+        x='Bins:Q',
+        y='Values:Q',
+        tooltip=['Bins', 'Values']
+    ).properties(
+        width=600,
+        height=400
+    )
+    st.altair_chart(chart)
