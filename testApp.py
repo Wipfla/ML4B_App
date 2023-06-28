@@ -57,8 +57,6 @@ def page1():
         image = Image.open('data/flex.jpg')
         st.image(image, caption='Lass uns das Training starten!', use_column_width=True)
 
-    st.info('Alexander Frey(23169187), Pierre Engel(23224488), Tawfik Madarati(22660392), Marvin Wipfler (22959307)')
-
 
 # Seite 2
 def page2():
