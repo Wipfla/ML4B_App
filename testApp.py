@@ -3,12 +3,17 @@ import pandas as pd
 import numpy as np
 import pickle as pkl
 from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist
+import webbrowser
 
 st.set_page_config(
     page_title="BeatFit: The Data DJ",
     page_icon="🎧",
     initial_sidebar_state="expanded",
 )
+
+def open_link(url):
+    webbrowser.open_new_tab(url)
+
 
 # Seite 1
 def page1():
@@ -31,7 +36,11 @@ def page1():
     st.write('Uploade deine Fitness Sensor Daten von deinem Handy und - Los gehts!\n' )
     
 
-    
+    link_url = "www.google.com"
+
+    if st.button("Weiter zur Website"):
+        open_link(link_url)
+
 
     st.info('Alexander Frey(23169187), Pierre Engel(23224488), Tawfik Madarati(22660392), Marvin Wipfler (22959307)')
 
@@ -101,7 +110,7 @@ def page2():
             with input1:
                 jjButton = st.button(label = 'Jumping Jacks', use_container_width = 1)
                 if jjButton:
-                    st.write(f"Hier ist deine persönlich ausgesuchte Playlist: {generate_playlist('jumpingjacks')}")
+                    st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist: {generate_playlist('jumpingjacks')}")
             with input2:
                 pushupButton = st.button(label = 'PushUps', use_container_width = 1)
                 if pushupButton:
