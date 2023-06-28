@@ -36,9 +36,9 @@ def page1():
     if st.button("Weiter zur Webseite"):
         # Leite zum Link weiter, wenn der Button geklickt wird
        
-        st.write(f"Weiterleitung zu: [{link}]({link})")
+        st.write("Weiterleitung zu: [{link}]({link})")
         # Weiterleitung zur Webseite
-        st.markdown(f'<meta http-equiv="refresh" content="0;URL={link}" />', unsafe_allow_html=True)
+        st.markdown('<meta http-equiv="refresh" content="0; URL={link}" />', unsafe_allow_html=True)
 
     st.info('Alexander Frey(23169187), Pierre Engel(23224488), Tawfik Madarati(22660392), Marvin Wipfler (22959307)')
 
@@ -109,7 +109,8 @@ def page2():
             with input1:
                 jjButton = st.button(label = 'Jumping Jacks', use_container_width = 1)
                 if jjButton:
-                    st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:", st.markdown("Link to Example]", {generate_playlist('jumpingjacks')}))
+                    st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
+                    st.markdown("Link to Example]", {generate_playlist('jumpingjacks')})
             with input2:
                 pushupButton = st.button(label = 'PushUps', use_container_width = 1)
                 if pushupButton:
