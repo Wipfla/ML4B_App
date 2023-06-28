@@ -1,60 +1,19 @@
-# ML4B_App
+# BeatFit - Der Daten-DJ
 
-# Wichtig! #
-immer n neuen Branch erstellen! (unten links drücken)
-um neuen Stand zu holen Terminal --> New Terminal --> *git pull*
+## Überblick
+BeatFit ist eine interaktive Streamlit-App, die dazu dient, Ihren Fitness- und Gesundheitsbedarf zu erfüllen. Mit dieser App können Sie die Sensordaten von Ihrem Handy hochladen, und sie erkennt automatisch, welche Aktivität Sie gerade ausgeführt haben, ob es sich um JumpingJacks, PushUps oder Walking handelt. Basierend auf dieser Vorhersage schlägt die App eine passende Spotify-Playlist und ein passendes YouTube-Workout-Video vor, um Ihnen zu helfen, Ihre Fitnessziele zu erreichen und zu übertreffen. Darüber hinaus können Sie eine Seite mit statistischen Daten zu Ihren Bewegungsdaten einsehen, die Ihnen dabei helfen, Ihre Fortschritte zu verfolgen und Ihre Ziele anzupassen.
 
-ToDos:
-  - ML modell bauen
-  - Streamlit entsprechend bauen das man daten hochladen kann und anwenden kann
-  - funktion bauen die je nach klassifikation entsprechend einen entsprechenden Spotify link schickt (maybe mehrere Playlists für walk, pushups etc., und dann randomised)
-  - spotify links raussuchen
-  - 
+## Funktionen
+- Aktivitätserkennung: Laden Sie Ihre Sensordaten hoch, und die App sagt voraus, welche Aktivität Sie durchgeführt haben.
 
-Ideen:
-	- App erkennt ob in der Uni --> stummschalten
-	- coupons standortdaten --> decision tree
-	- Studium bestehen anhand von Uni Gewohnheiten
-	- Besoffen?
-	- Human Activity Recognition with Smartphones
-	- Sturzerkennung
-	- Accelarator nutzen um zu schauen wer sich wie bewegt und auf dessen Basis Sportangeobte oder Produktangebote zu schicken 
+- Musikempfehlung: Basierend auf Ihrer Aktivität erhalten Sie eine passende Spotify-Playlist, die Ihnen hilft, Ihre Trainingsstimmung aufrechtzuerhalten.
 
-Weitere Ideen (ChatGPT):
-  Aktivitätserkennung: Du könntest einen Algorithmus entwickeln, der die Bewegungen des Nutzers erkennt und automatisch erkennt, ob er läuft, geht, Fahrrad fährt oder andere Aktivitäten ausführt.
+- Workout-Video-Empfehlung: Die App schlägt ein passendes YouTube-Workout-Video vor, das Ihrer erkannten Aktivität entspricht.
 
-  Schlafüberwachung: Mit den Sensoren des Handys könnte man Daten über den Schlaf des Nutzers sammeln und einen Algorithmus entwickeln, der die Schlafqualität misst und Tipps zur Verbesserung gibt.
+- Statistikseite: Sehen Sie statistische Daten zu Ihren Bewegungsdaten ein und verfolgen Sie Ihre Fortschritte.
 
-  Gesundheitsüberwachung: Es könnten verschiedene Vitalparameter wie Blutdruck, Herzfrequenz oder Puls oximetrie gemessen werden. Dadurch könnten frühzeitig Anzeichen von Krankheiten erkannt werden.
-
-  Ortung: Mit den Sensoren des Handys könntest du den Standort des Nutzers bestimmen und ihm personalisierte Informationen zu nahegelegenen Geschäften oder Sehenswürdigkeiten liefern.
-
-  Gestenerkennung: Durch die Nutzung der Sensoren des Handys könntest du eine Machine-Learning-Anwendung entwickeln, die Gesten erkennt und den Nutzer so interagieren lässt.
-
-  Personalisierte Fitness-Apps: Es könnten individuelle Trainingspläne erstellt werden, die sich auf die Aktivitäten und Ziele des Nutzers konzentrieren.
-
-  Energieeffizienz: Ein Algorithmus könnte basierend auf der Nutzung von Handy-Sensoren die Energieeffizienz von Gebäuden oder Autos verbessern, indem er auf den Energieverbrauch aufmerksam macht und Tipps zur Reduzierung gibt.
-
-  Fahrstilanalyse: Die Sensoren des Handys könnten Daten über die Fahrweise des Nutzers sammeln und einen Algorithmus entwickeln, der die Sicherheit und Effizienz verbessert.
-
-  Umweltüberwachung: Handy-Sensoren könnten genutzt werden, um Umweltparameter wie Luftqualität, Temperatur und Lärmpegel zu messen und diese Daten zur Verfügung zu stellen.
-
-  Personalisierte Musikempfehlungen: Das Handy könnte genutzt werden, um Daten über die Musik, die der Nutzer hört, zu sammeln und Machine-Learning-Algorithmen zu nutzen, um personalisierte Musikempfehlungen zu erstellen.
-
-
-ML Modelle(ChatGPT):
-  Lineare Regression: Dieses Modell wird verwendet, um die Beziehung zwischen einer abhängigen Variablen und mehreren unabhängigen Variablen zu modellieren. Es ist ein einfaches Modell und eignet sich gut für Vorhersageprobleme.
-
-  K-Nearest-Neighbors: Dies ist ein Modell, das auf der Idee basiert, dass ähnliche Datenpunkte tendenziell auch ähnliche Ergebnisse haben werden. Es ist ein einfaches und intuitives Modell, das gut für Klassifikationsprobleme geeignet ist.
-
-  Entscheidungsbaum: Dieses Modell ist eine grafische Darstellung einer Entscheidungsproblematik. Es wird verwendet, um Entscheidungen zu treffen, indem eine Folge von Ja/Nein-Fragen gestellt wird, um zu einer Entscheidung zu gelangen. Es eignet sich gut für Klassifikations- und Regressionsprobleme.
-
-  Naive Bayes: Dies ist ein statistisches Modell, das auf der Bayes-Theorie basiert. Es wird verwendet, um die Wahrscheinlichkeit einer bestimmten Klassenzuordnung basierend auf den Eigenschaften des Datenpunkts zu berechnen. Es eignet sich gut für Klassifikationsprobleme.
-
-  K-Means: Dies ist ein Clustering-Algorithmus, der verwendet wird, um Daten in Gruppen zu unterteilen, basierend auf ihrer Ähnlichkeit. Es ist ein einfaches und intuitives Modell, das gut für das Gruppieren von Datenpunkten geeignet ist.
-
-Weitere Idee: 
-Man kann sich trainingspläne voreinspeichern und diese mit einer Geste mit dem Handy auswählen (z.b. Handy schütteln etc). Dann wird eine Playlist mit einem randomizer aus einem Pool an Playlists aufgerufen. Was richtig sick wäre, wenn man einen Button hätte wo man eigene Übungen in die App einfügen kann. Man muss dann x anzahl an wiederholung machen, dass die App das dann lernt.
+## Anwendung
+Sobald die App läuft, folgen Sie den Anweisungen auf dem Bildschirm, um Ihre Sensordaten hochzuladen und die App zu nutzen. Sie werden aufgefordert, eine JSON-Datei mit Sensordaten von Ihrem Handy hochzuladen. Für optimale Ergebnisse empfehlen wir, eine Datei mit etwa 10-30 Sekunden an Sensordaten bereitzustellen. Sie können die Datei `PushUps-Alex-Test.json` in diesem Repository verwenden, um die App zu testen.
 
 Login Daten: pierreengel@icloud.com
 Reds77//
