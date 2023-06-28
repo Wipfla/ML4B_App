@@ -203,8 +203,6 @@ def page4():
                     tab2.area_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
                 with tab3:
                     tab3.header("Histogramm deiner Gyroscopedaten")
-                    df_var1 = pd.df({'x': [1, 2, 3, 4, 5]})
-                    df_var2 = pd.DataFrame({'x': [6, 7, 8, 9, 10]})
                     create_combined_histogram([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
                     
 
