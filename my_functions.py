@@ -221,19 +221,11 @@ def create_combined_scatter_plot(data_list):
     summary_stats = summary_stats.transpose().reset_index()
     summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
 
-    # Define colors for each variable
-    color_map = {
-        'x': 'rgb(0, 102, 200)',
-        'y': 'rgb(141, 206, 255)',
-        'z': 'rgb(255, 23, 23)'
-    }
-
     # Create the combined scatter plot
     scatter_plot = alt.Chart(df_long).mark_circle(size=60).encode(
         x='Variable',
         y='Values',
-        color=alt.Color('Variable:N', scale=None, legend=None, sort=list(color_map.keys()), 
-                        scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
+        color=alt.Color('Variable:N', scale=alt.Scale(scheme='tableau10')),
         tooltip=['Variable', 'Values']
     ).properties(
         width=600,
@@ -241,21 +233,15 @@ def create_combined_scatter_plot(data_list):
     )
 
     # Add mean markers
-    mean_markers = alt.Chart(summary_stats).mark_text(
-        color='green', align='left', dx=7, dy=3
-    ).encode(
+    mean_markers = alt.Chart(summary_stats).mark_point(color='lightgreen', size=100).encode(
         x='Variable',
-        y='Mean',
-        text='Mean:Q'
+        y='Mean'
     )
 
     # Add median markers
-    median_markers = alt.Chart(summary_stats).mark_text(
-        color='black', align='left', dx=7, dy=-10
-    ).encode(
+    median_markers = alt.Chart(summary_stats).mark_point(color='black', size=100).encode(
         x='Variable',
-        y='Median',
-        text='Median:Q'
+        y='Median'
     )
 
     chart = scatter_plot + mean_markers + median_markers
