@@ -221,16 +221,16 @@ def create_combined_scatter_plot(data_list):
     summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
 
     color_map = {
-        "x": "rgb(0,102,200)",
-        "y": "rgb(141,206,255)",
-        "z": "rgb(255,23,23)"
+        "cat1": "rgb(0,102,200)",
+        "cat2": "rgb(141,206,255)",
+        "cat3": "rgb(255,23,23)"
     }
 
     # Create the combined scatter plot
     scatter_plot = alt.Chart(df_long).mark_circle(size=60).encode(
         x='Variable',
         y='Values',
-        color=alt.Color('Variable:N', legend=None, scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values())))
+        color = alt.Color('Variable:N', legend=None, scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values())))        
         tooltip=['Variable', 'Values']
     ).properties(
         width=600,
