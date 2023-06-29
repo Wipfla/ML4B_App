@@ -223,10 +223,11 @@ def create_combined_scatter_plot(data_list):
 
     # Define colors for each variable
     color_map = {
-        "1": "rgb(0,102,200)",
-        "2": "rgb(141,206,255)",
-        "3": "rgb(255,23,23)"
+        'x': 'rgb(0, 102, 200)',
+        'y': 'rgb(141, 206, 255)',
+        'z': 'rgb(255, 23, 23)'
     }
+
     # Create the combined scatter plot
     scatter_plot = alt.Chart(df_long).mark_circle(size=60).encode(
         x='Variable',
@@ -239,16 +240,30 @@ def create_combined_scatter_plot(data_list):
     )
 
     # Add mean markers
-    mean_markers = alt.Chart(summary_stats).mark_point(color='lightgreen', size=100).encode(
+    mean_markers = alt.Chart(summary_stats).mark_point(
+        filled=True,
+        color='lightgreen',
+        size=100,
+        strokeWidth=1
+    ).encode(
         x='Variable',
-        y='Mean'
+        y='Mean',
+        tooltip=['Mean:Q']
     )
 
     # Add median markers
-    median_markers = alt.Chart(summary_stats).mark_point(color='black', size=100).encode(
+    median_markers = alt.Chart(summary_stats).mark_point(
+        filled=True,
+        color='black',
+        size=100,
+        strokeWidth=1
+    ).encode(
         x='Variable',
-        y='Median'
+        y='Median',
+        tooltip=['Median:Q']
     )
 
     chart = scatter_plot + mean_markers + median_markers
-    st.write(chart)
+
+    st.title('Combined Scatter Plot - All Variables')
+    st.altair_chart(chart)
