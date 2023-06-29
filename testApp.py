@@ -166,27 +166,44 @@ def page4():
             st.caption('Accelerometer Metrics')
             st.dataframe(metrics_acc)
 
-            # Zeig DataFrame als Line Chart an
-            st.caption('Gyroscope Data')
-            st.line_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
+            gyro_max = np.max(df_Gyr)
+            gyro_min = np.min(df_Gyr)
+            gyro_med = np.median(df_Gyr)
+            gyro_mean= np.mean(df_Gyr)
+            acc_max= np.max(df_Acc)
+            acc_min= np.min(df_Acc)
+            acc_med= np.median(df_Acc)
+            acc_mean= np.mean(df_Acc)
+            options = ["Bitte Suche dir eine Statistik heraus", "Maximale Höhe", "Minimale Höhe", "Höhe im Mittelwert", "Höhe im Median", "Maximale Beschleunigung", "Minimale Beschleunigung", "Beschleunigung im Mittelwert", "Beschleunigung im Median"]
+            selected_option = st.selectbox('Was willst du herausfinden?', options)
+            if selected_option == "Bitte Suche dir eine Statistik heraus":
+                st.write('Bitte wähle eine Option')
+            elif selected_option == "Maximale Höhe":
+                st.write('Maximale Höhe: ', gyro_max)
+            elif selected_option == "Minimale Höhe":
+                st.write('Minimale Höhe: ', gyro_min)
+            elif selected_option == "Höhe im Mittelwert":
+                st.write('Höhe im Mittelwert: ', gyro_mean)
+            elif selected_option == "Höhe im Media":
+                st.write('Höhe im Median: ', gyro_med)
+            elif selected_option == "Maximale Beschleunigung":
+                st.write('Maximale Beschleunigung: ', acc_max)
+            elif selected_option == "Minimale Beschleunigung":
+                st.write('Minimale Beschleunigung: ', acc_min)
+            elif selected_option == "Beschleunigung im Mittelwert":
+                st.write('Beschleunigung im Mittelwert: ', acc_mean)
+            elif selected_option == "Beschleunigung im Median":
+                st.write('Beschleunigung im Median: ', acc_med)
+            else:
+                st.write("Please select an option.")
 
-            # Zeig DataFrame als Line Chart an
-            st.caption('Accelerometer Data')
-            st.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
-
-            st.caption('Acc')
-            st.area_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
-
-            col1, col2, col3 = st.columns(3)
-            col1.area_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
-            col2.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
 
             option = st.selectbox('Wähle deinen Sensor', ("Beschleunigungssensor","Gyroscope"))
             tab1, tab2, tab3 = st.tabs(["Line Chart", "Area Chart", "Historgamm"])
             if option =="Beschleunigungssensor":
                 with tab1:
-                    st.header("Line Chart deiner Beschleunigungsdaten")
-                    tab1.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
+                    st.header("Area Chart deiner Beschleunigungsdaten")
+                    tab1.area_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
                 with tab2:
                     st.header("Scatter Plot deines Beschleunigungssensor")
                     create_combined_scatter_plot([df_Acc['x'], df_Acc['y'], df_Acc['z']])
@@ -196,8 +213,8 @@ def page4():
 
             elif option == "Gyroscope":
                 with tab1:
-                    st.header("Line Chart deiner Gyroscopedaten")
-                    tab1.line_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
+                    st.header("Area Chart deiner Gyroscopedaten")
+                    tab1.area_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
                 with tab2:
                     tab2.header("Scatter Plot deines Gyroscopedaten")
                     create_combined_scatter_plot([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
