@@ -235,6 +235,4 @@ def create_combined_scatter_plot(data_list):
     )
 
     chart = scatter_plot + mean_markers + median_markers
-
-    st.title('Combined Scatter Plot - All Variables')
     st.write(chart)
