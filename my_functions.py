@@ -232,7 +232,8 @@ def create_combined_scatter_plot(data_list):
     scatter_plot = alt.Chart(df_long).mark_circle(size=60).encode(
         x='Variable',
         y='Values',
-        color=alt.Color('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
+        color=alt.Color('Variable:N', scale=None, legend=None, sort=list(color_map.keys()), 
+                        scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
         tooltip=['Variable', 'Values']
     ).properties(
         width=600,
@@ -240,39 +241,22 @@ def create_combined_scatter_plot(data_list):
     )
 
     # Add mean markers
-    mean_markers = alt.Chart(summary_stats).mark_circle(
-        filled=True,
-        color='lightgreen',
-        size=100,
-        strokeWidth=1
+    mean_markers = alt.Chart(summary_stats).mark_text(
+        color='green', align='left', dx=7, dy=3
     ).encode(
         x='Variable',
         y='Mean',
-        tooltip=['Mean:Q']
+        text='Mean:Q'
     )
 
     # Add median markers
-    median_markers = alt.Chart(summary_stats).mark_circle(
-        filled=True,
-        color='black',
-        size=100,
-        strokeWidth=1
+    median_markers = alt.Chart(summary_stats).mark_text(
+        color='black', align='left', dx=7, dy=-10
     ).encode(
         x='Variable',
         y='Median',
-        tooltip=['Median:Q']
+        text='Median:Q'
     )
 
-    # Combine the scatter plot and markers
     chart = scatter_plot + mean_markers + median_markers
-
-    # Adjust the axis labels and legend position
-    chart = chart.configure_axis(
-        labelFontSize=12,
-        titleFontSize=14
-    ).configure_legend(
-        titleFontSize=14
-    )
-
-    st.title('Combined Scatter Plot - All Variables')
-    st.altair_chart(chart, use_container_width=True)
+    st.write(chart)
