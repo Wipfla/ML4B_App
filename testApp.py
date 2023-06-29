@@ -188,7 +188,7 @@ def page4():
                     st.header("Line Chart deiner Beschleunigungsdaten")
                     tab1.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
                 with tab2:
-                    st.header("Area Chart deines Beschleunigungssensor")
+                    st.header("Scatter Plot deines Beschleunigungssensor")
                     create_combined_scatter_plot([df_Acc['x'], df_Acc['y'], df_Acc['z']])
                 with tab3:
                     tab3.header("Histogramm deiner Beschleunigungsdaten")
@@ -199,7 +199,7 @@ def page4():
                     st.header("Line Chart deiner Gyroscopedaten")
                     tab1.line_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
                 with tab2:
-                    tab2.header("Area Chart deines Gyroscopedaten")
+                    tab2.header("Scatter Plot deines Gyroscopedaten")
                     create_combined_scatter_plot([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
                 with tab3:
                     tab3.header("Histogramm deiner Gyroscopedaten")
