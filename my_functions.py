@@ -244,4 +244,4 @@ def create_combined_scatter_plot(data_list):
     )
 
     chart = scatter_plot + mean_markers + median_markers
-    st.write(chart)
+    st.altair_chart(chart, theme="streamlit")
