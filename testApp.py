@@ -199,7 +199,7 @@ def page4():
                     st.header("Line Chart deiner Gyroscopedaten")
                     tab1.line_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
                 with tab2:
-                    st.header("Area Chart deines Gyroscopedaten")
+                    tab2.header("Area Chart deines Gyroscopedaten")
                     create_combined_scatter_plot([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
                 with tab3:
                     tab3.header("Histogramm deiner Gyroscopedaten")
