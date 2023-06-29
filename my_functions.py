@@ -194,12 +194,13 @@ def create_combined_histogram(data_list):
     st.altair_chart(chart)
 
 
+
 def create_combined_scatter_plot(data_list):
     # Convert each Series into a DataFrame
     dfs = [pd.DataFrame({'Values': series}) for series in data_list]
 
     # Concatenate the DataFrames into a single DataFrame
-    df = pd.concat(dfs, axis=1)
+    df = pd.concat(dfs, axis=1, ignore_index=True)
 
     # Reshape the DataFrame to long format
     df_long = df.melt(var_name='Variable', value_name='Values')
