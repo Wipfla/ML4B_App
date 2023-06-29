@@ -240,17 +240,32 @@ def create_combined_scatter_plot(data_list):
     )
 
     # Add mean markers
-    mean_markers = alt.Chart(summary_stats).mark_point(color='lightgreen', size=100).encode(
+    mean_markers = alt.Chart(summary_stats).mark_text(
+        color='lightgreen',
+        size=12,
+        dy=-10,  # Offset the label position above the marker
+        align='center',
+        baseline='bottom'
+    ).encode(
         x='Variable',
-        y='Mean'
+        y='Mean',
+        text=alt.Text('Mean:Q', format='.2f')
     )
 
     # Add median markers
-    median_markers = alt.Chart(summary_stats).mark_point(color='black', size=100).encode(
+    median_markers = alt.Chart(summary_stats).mark_text(
+        color='black',
+        size=12,
+        dy=10,  # Offset the label position below the marker
+        align='center',
+        baseline='top'
+    ).encode(
         x='Variable',
-        y='Median'
+        y='Median',
+        text=alt.Text('Median:Q', format='.2f')
     )
 
     chart = scatter_plot + mean_markers + median_markers
 
+    st.title('Combined Scatter Plot - All Variables')
     st.altair_chart(chart)
