@@ -220,17 +220,18 @@ def create_combined_scatter_plot(data_list):
     summary_stats = summary_stats.transpose().reset_index()
     summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
 
+    # Define colors for each variable
     color_map = {
-        "x": "rgb(0,102,200)",
-        "y": "rgb(141,206,255)",
-        "z": "rgb(255,23,23)"
+        'x': 'rgb(0, 102, 200)',
+        'y': 'rgb(141, 206, 255)',
+        'z': 'rgb(255, 23, 23)'
     }
 
     # Create the combined scatter plot
     scatter_plot = alt.Chart(df_long).mark_circle(size=60).encode(
         x='Variable',
         y='Values',
-        color=alt.Color('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
+        color=alt.Color('Values:Q', scale=alt.Scale(range=list(color_map.values())), legend=None),
         tooltip=['Variable', 'Values']
     ).properties(
         width=600,
@@ -250,4 +251,4 @@ def create_combined_scatter_plot(data_list):
     )
 
     chart = scatter_plot + mean_markers + median_markers
-    st.altair_chart(chart, theme= "streamlit")
+    st.altair_chart(chart)
