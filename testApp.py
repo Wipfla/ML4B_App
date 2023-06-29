@@ -146,8 +146,8 @@ def page3():
 # Seite 4
 def page4():
         st.title('Deine Statistiken')
-        st.subheader('xxxx')
-        st.markdown('**xxxxx**')
+        st.subheader('Finde heraus, wie du statistisch abschneidest!')
+        st.markdown('**Lade deine Daten hoch und schaue, wie du performst!**')
 
         UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
         if UserFile is not None:
