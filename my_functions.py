@@ -194,16 +194,13 @@ def create_combined_histogram(data_list):
     st.altair_chart(chart)
 
 
-def create_combined_scatter_plot(data_list):
-    # Concatenate the values of all variables into a single array
-    all_values = pd.concat(data_list)
-
-    # Create a DataFrame with values, their corresponding variables, and a unique identifier
-    df = pd.DataFrame({"Values": all_values, "Variable": all_values.index.get_level_values(0), "Index": all_values.index.get_level_values(1)})
+def create_combined_scatter_plot(df):
+    # Reshape the DataFrame to long format
+    df_long = df.melt(var_name='Variable', value_name='Values')
 
     # Create the combined scatter plot
-    chart = alt.Chart(df).mark_circle(size=60).encode(
-        x='Index',
+    chart = alt.Chart(df_long).mark_circle(size=60).encode(
+        x='Variable',
         y='Values',
         color=alt.Color('Variable:N', scale=alt.Scale(scheme='tableau10')),
         tooltip=['Variable', 'Values']
@@ -213,4 +210,4 @@ def create_combined_scatter_plot(data_list):
     )
 
     st.title('Combined Scatter Plot - All Variables')
-    st.altair_chart(chart)
+    st.write(chart)
