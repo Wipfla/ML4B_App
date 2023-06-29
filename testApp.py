@@ -146,6 +146,7 @@ def page3():
 # Seite 4
 def page4():
         st.title('Deine Statistiken')
+        
         st.subheader('Finde heraus, wie du statistisch abschneidest!')
         st.markdown('**Lade deine Daten hoch und schaue, wie du performst!**')
 
