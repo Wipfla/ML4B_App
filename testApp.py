@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle as pkl
-from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist, generate_video, create_combined_histogram
+from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist, generate_video, create_combined_histogram, create_combined_scatter_plot
 from PIL import Image
 
 
@@ -189,7 +189,7 @@ def page4():
                     tab1.line_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
                 with tab2:
                     st.header("Area Chart deines Beschleunigungssensor")
-                    tab2.area_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
+                    create_combined_scatter_plot([df_Acc['x'], df_Acc['y'], df_Acc['z']])
                 with tab3:
                     tab3.header("Histogramm deiner Beschleunigungsdaten")
                     create_combined_histogram([df_Acc['x'], df_Acc['y'], df_Acc['z']])
@@ -200,7 +200,7 @@ def page4():
                     tab1.line_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
                 with tab2:
                     st.header("Area Chart deines Gyroscopedaten")
-                    tab2.area_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
+                    create_combined_scatter_plot([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
                 with tab3:
                     tab3.header("Histogramm deiner Gyroscopedaten")
                     create_combined_histogram([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
