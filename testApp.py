@@ -146,7 +146,7 @@ def page3():
 # Seite 4
 def page4():
         st.title('Deine Statistiken')
-        
+
         st.subheader('Finde heraus, wie du statistisch abschneidest!')
         st.markdown('**Lade deine Daten hoch und schaue, wie du performst!**')
 
@@ -200,7 +200,7 @@ def page4():
 
 
             option = st.selectbox('Wähle deinen Sensor', ("Beschleunigungssensor","Gyroscope"))
-            tab1, tab2, tab3 = st.tabs(["Line Chart", "Area Chart", "Historgamm"])
+            tab1, tab2, tab3 = st.tabs(["Are Chart", "Scatter Plot", "Historgamm"])
             if option =="Beschleunigungssensor":
                 with tab1:
                     st.header("Area Chart deiner Beschleunigungsdaten")
