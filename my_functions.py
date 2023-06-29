@@ -185,14 +185,14 @@ def create_combined_histogram(data_list):
     chart = alt.Chart(df).mark_bar().encode(
         x=alt.X('Values:Q', bin=alt.BinParams(maxbins=30)),
         y='count()',
+        color=alt.Color('Variable:N', scale=alt.Scale(scheme='tableau10')),
         tooltip=['Variable', 'Values']
     ).properties(
         width=600,
         height=400
     )
-
-    st.title('Combined Histogram - All Variables')
     st.altair_chart(chart)
+
 
 
 
