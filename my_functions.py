@@ -230,7 +230,7 @@ def create_combined_scatter_plot(data_list):
     scatter_plot = alt.Chart(df_long).mark_circle(size=60).encode(
         x='Variable',
         y='Values',
-        color=alt.Color('Variable:N', scale=None, legend=None, scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values())))
+        color=alt.Color('Variable:N', legend=None, scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values())))
         tooltip=['Variable', 'Values']
     ).properties(
         width=600,
