@@ -109,6 +109,7 @@ def page2():
                     st.markdown(f"[Playlist Link]({link})")
                     prediction = 'jumpingjacks'
                     state.prediction = prediction
+                    st.experimental_rerun()
             with input2:
                 pushupButton = st.button(label = 'PushUps', use_container_width = 1)
                 if pushupButton:
