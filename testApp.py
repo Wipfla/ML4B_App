@@ -142,7 +142,6 @@ def page3():
         st.success('File erfolgreich hochgeladen!', icon="✅")
         UserFile_df = pd.read_json(UserFile)
         transferred_prediction = state.prediction
-        st.experimental_rerun()
         st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{transferred_prediction}]** gemacht!')
         videoURL = generate_video(transferred_prediction)
         st.write("Hier ist dein persönlich ausgesuchtes Workoutvideo:")
