@@ -109,7 +109,6 @@ def page2():
                     st.markdown(f"[Playlist Link]({link})")
                     prediction = 'jumpingjacks'
                     state.prediction = prediction
-                    st.experimental_rerun()
             with input2:
                 pushupButton = st.button(label = 'PushUps', use_container_width = 1)
                 if pushupButton:
@@ -118,7 +117,6 @@ def page2():
                     st.markdown(f"[Playlist Link]({link})")
                     prediction = 'PushUps'
                     state.prediction = prediction
-                    st.experimental_rerun()
             with input3:
                 walkingButton = st.button(label = 'Walking', use_container_width = 1)
                 if walkingButton:
@@ -127,7 +125,6 @@ def page2():
                     st.markdown(f"[Playlist Link]({link})")
                     prediction = 'walking'
                     state.prediction = prediction
-                    st.experimental_rerun()
 
         
             
@@ -145,6 +142,7 @@ def page3():
         st.success('File erfolgreich hochgeladen!', icon="✅")
         UserFile_df = pd.read_json(UserFile)
         transferred_prediction = state.prediction
+        st.experimental_rerun()
         st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{transferred_prediction}]** gemacht!')
         videoURL = generate_video(transferred_prediction)
         st.write("Hier ist dein persönlich ausgesuchtes Workoutvideo:")
@@ -156,8 +154,7 @@ def page4():
         st.title('Deine Statistiken')
 
         st.subheader('Finde heraus, wie deine Daten aussehen!')
-        if UserFile is None:
-            st.markdown('**Lade deine Daten hoch und schaue, wie du performst!**')
+        st.markdown('**Lade deine Daten jetzt hoch und genieß die Statistiken !**')
 
         UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
         if UserFile is not None:
