@@ -18,9 +18,7 @@ def predcit(df):
     # Extract Gyr Data, Acc Data, Orientation Data
     df_Acc, df_Gyr, df_Ori = getSensorData(df)
 
-    #get metrics
-    metrics_acc = getMetricsAcc(df_Acc)
-    
+    # Get Metrics for each Dataframe
     metrics = getMetrics(df_Acc, df_Gyr, df_Ori)
     #Load model with pickle
     model = pkl.load(open('knn.pickle', 'rb'))
@@ -44,7 +42,7 @@ def page1():
 
         st.write("Es ist ganz einfach: Lade einfach deine Bewegungssensordaten von deinem Handy hoch, und basierend auf diesen Informationen werden wir eine speziell für dich zusammengestellte Spotify-Playlist erstellen, die perfekt zu deinem Tagesablauf, deinen Aktivitäten und deiner Stimmung passt.\n")
 
-        st.write("Aber das ist noch nicht alles! Neben der Spotify-Playlist bietet BeatFit dir auch passende YouTube-Videos an, die deine Stimmung und Interessen widerspiegeln. Ob du nach Musikvideos, Live-Auftritten oder sogar Tanzanleitungen suchst, BeatFit hat alles im Angebot.\n")
+        st.write("Aber das ist noch nicht alles! Neben der Spotify-Playlist sucht BeatFit dir auch passende YouTube-Workout-Videos raus, die zu deinen Bewegungne passen.\n")
 
         st.write("Also, worauf wartest du noch? Lass uns gemeinsam die Magie der Musik und der Bewegung erforschen. Lade deine Handydaten hoch, lehn dich zurück und lass BeatFit deine musikalische Reise beginnen!\n")
 
@@ -108,18 +106,21 @@ def page2():
                     st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
                     link = generate_playlist('jumpingjacks')
                     st.markdown(f"[Playlist Link]({link})")
+                    prediction = 'jumpingjacks'
             with input2:
                 pushupButton = st.button(label = 'PushUps', use_container_width = 1)
                 if pushupButton:
                     st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
                     link = generate_playlist('PushUps')
                     st.markdown(f"[Playlist Link]({link})")
+                    prediction = 'PushUps'
             with input3:
                 walkingButton = st.button(label = 'Walking', use_container_width = 1)
                 if walkingButton:
                     st.write("Hier ist deine angepasste persönlich ausgesuchte Playlist:")
                     link = generate_playlist('walking')
                     st.markdown(f"[Playlist Link]({link})")
+                    prediction = 'walking'
 
         
             
@@ -147,8 +148,9 @@ def page3():
 def page4():
         st.title('Deine Statistiken')
 
-        st.subheader('Finde heraus, wie du statistisch abschneidest!')
-        st.markdown('**Lade deine Daten hoch und schaue, wie du performst!**')
+        st.subheader('Finde heraus, wie deine Daten aussehen!')
+        if UserFile is None:
+            st.markdown('**Lade deine Daten hoch und schaue, wie du performst!**')
 
         UserFile = st.file_uploader(label='Lade hier dein Json File hoch' ,type={"json"})
         if UserFile is not None:
@@ -161,7 +163,6 @@ def page4():
             #get metrics
             metrics_acc = getMetricsAcc(df_Acc)
             
-            metrics = getMetrics(df_Acc, df_Gyr, df_Ori)
 
             #Zeige die Acc Metrics an im Dataviewer
             st.caption('Accelerometer Metrics')
