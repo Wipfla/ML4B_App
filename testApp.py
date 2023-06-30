@@ -84,7 +84,8 @@ def page2():
         with container_no:
             noButton = st.button(label = 'Nein', use_container_width = 1)
 
-                    
+        state.prediction = None 
+                   
         if yesButton:
             st.session_state['inCorrect'] = False
             st.success("Super dann starte deine Playlist!", icon="💪")
