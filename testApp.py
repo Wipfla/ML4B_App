@@ -92,6 +92,7 @@ def page2():
             selected_link = generate_playlist(prediction)
             st.write(f"Hier ist deine persönlich ausgesuchte Playlist:")
             st.markdown(f"[Playlist Link]({selected_link})")
+            state.prediction = prediction
 
         if 'inCorrect' not in st.session_state:
             st.session_state['inCorrect'] = False
@@ -161,7 +162,7 @@ def page4():
             UserFile_df = pd.read_json(UserFile)
             transferred_prediction = state.prediction
             st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{transferred_prediction}]** gemacht!')
-            
+
             # Extract Gyr Data, Acc Data, Orientation Data
             df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
 
