@@ -145,7 +145,6 @@ def page3():
         transferred_prediction = state.prediction
         if transferred_prediction is None:
             st.warning('Bitte bestätige zuerst ob die Vorhersage korrekt war!')
-            st.stop()
         else:
             st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{transferred_prediction}]** gemacht!')
             videoURL = generate_video(transferred_prediction)
