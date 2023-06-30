@@ -159,7 +159,9 @@ def page4():
         if UserFile is not None:
             st.success('File erfolgreich hochgeladen!', icon="✅")
             UserFile_df = pd.read_json(UserFile)
-        
+            transferred_prediction = state.prediction
+            st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{transferred_prediction}]** gemacht!')
+            
             # Extract Gyr Data, Acc Data, Orientation Data
             df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
 
