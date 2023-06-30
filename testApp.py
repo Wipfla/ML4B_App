@@ -142,10 +142,10 @@ def page3():
     if UserFile is not None:
         st.success('File erfolgreich hochgeladen!', icon="✅")
         UserFile_df = pd.read_json(UserFile)
+        transferred_prediction = state.prediction
         if transferred_prediction == None:
             st.warning('Bitte bestätige zuerst ob die Vorhersage korrekt war!')
             st.stop()
-        transferred_prediction = state.prediction
         st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{transferred_prediction}]** gemacht!')
         videoURL = generate_video(transferred_prediction)
         st.write("Hier ist dein persönlich ausgesuchtes Workoutvideo:")
