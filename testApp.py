@@ -144,12 +144,12 @@ def page3():
         UserFile_df = pd.read_json(UserFile)
         transferred_prediction = state.prediction
         if transferred_prediction is None:
-            st.warning('Bitte bestätige zuerst ob die Vorhersage korrekt war!')
-        else:
-            st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{transferred_prediction}]** gemacht!')
-            videoURL = generate_video(transferred_prediction)
-            st.write("Hier ist dein persönlich ausgesuchtes Workoutvideo:")
-            st.video(videoURL)
+            st.warning('Bitte bestätige zuerst ob die Vorhersage korrekt war!' , icon="⚠️")
+    
+        st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{transferred_prediction}]** gemacht!')
+        videoURL = generate_video(transferred_prediction)
+        st.write("Hier ist dein persönlich ausgesuchtes Workoutvideo:")
+        st.video(videoURL)
 
 
 # Seite 4
