@@ -146,11 +146,11 @@ def page3():
         transferred_prediction = state.prediction
         if transferred_prediction is None:
             st.warning('Bitte bestätige zuerst ob die Vorhersage korrekt war!' , icon="⚠️")
-    
-        st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{transferred_prediction}]** gemacht!')
-        videoURL = generate_video(transferred_prediction)
-        st.write("Hier ist dein persönlich ausgesuchtes Workoutvideo:")
-        st.video(videoURL)
+        else:
+            st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{transferred_prediction}]** gemacht!')
+            videoURL = generate_video(transferred_prediction)
+            st.write("Hier ist dein persönlich ausgesuchtes Workoutvideo:")
+            st.video(videoURL)
 
 
 # Seite 4
@@ -165,74 +165,77 @@ def page4():
             st.success('File erfolgreich hochgeladen!', icon="✅")
             UserFile_df = pd.read_json(UserFile)
             transferred_prediction = state.prediction
-            st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{transferred_prediction}]** gemacht!')
-
-            # Extract Gyr Data, Acc Data, Orientation Data
-            df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
-
-            #get metrics
-            metrics_acc = getMetricsAcc(df_Acc)
-            
-
-            #Zeige die Acc Metrics an im Dataviewer
-            st.caption('Accelerometer Metrics')
-            st.dataframe(metrics_acc)
-
-            gyro_max = np.max(df_Gyr)
-            gyro_min = np.min(df_Gyr)
-            gyro_med = np.median(df_Gyr)
-            gyro_mean= np.mean(df_Gyr)
-            acc_max= np.max(df_Acc)
-            acc_min= np.min(df_Acc)
-            acc_med= np.median(df_Acc)
-            acc_mean= np.mean(df_Acc)
-            options = ["Bitte Suche dir eine Statistik heraus", "Maximale Höhe", "Minimale Höhe", "Höhe im Mittelwert", "Höhe im Median", "Maximale Beschleunigung", "Minimale Beschleunigung", "Beschleunigung im Mittelwert", "Beschleunigung im Median"]
-            selected_option = st.selectbox('Was willst du herausfinden?', options)
-            if selected_option == "Bitte Suche dir eine Statistik heraus":
-                st.write('Bitte wähle eine Option')
-            elif selected_option == "Maximale Höhe":
-                st.write('Maximale Höhe: ', gyro_max)
-            elif selected_option == "Minimale Höhe":
-                st.write('Minimale Höhe: ', gyro_min)
-            elif selected_option == "Höhe im Mittelwert":
-                st.write('Höhe im Mittelwert: ', gyro_mean)
-            elif selected_option == "Höhe im Media":
-                st.write('Höhe im Median: ', gyro_med)
-            elif selected_option == "Maximale Beschleunigung":
-                st.write('Maximale Beschleunigung: ', acc_max)
-            elif selected_option == "Minimale Beschleunigung":
-                st.write('Minimale Beschleunigung: ', acc_min)
-            elif selected_option == "Beschleunigung im Mittelwert":
-                st.write('Beschleunigung im Mittelwert: ', acc_mean)
-            elif selected_option == "Beschleunigung im Median":
-                st.write('Beschleunigung im Median: ', acc_med)
+            if transferred_prediction is None:
+                st.warning('Bitte bestätige zuerst ob die Vorhersage korrekt war!' , icon="⚠️")
             else:
-                st.write("Please select an option.")
+                st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{transferred_prediction}]** gemacht!')
+
+                # Extract Gyr Data, Acc Data, Orientation Data
+                df_Acc, df_Gyr, df_Ori = getSensorData(UserFile_df)
+
+                #get metrics
+                metrics_acc = getMetricsAcc(df_Acc)
+                
+
+                #Zeige die Acc Metrics an im Dataviewer
+                st.caption('Accelerometer Metrics')
+                st.dataframe(metrics_acc)
+
+                gyro_max = np.max(df_Gyr)
+                gyro_min = np.min(df_Gyr)
+                gyro_med = np.median(df_Gyr)
+                gyro_mean= np.mean(df_Gyr)
+                acc_max= np.max(df_Acc)
+                acc_min= np.min(df_Acc)
+                acc_med= np.median(df_Acc)
+                acc_mean= np.mean(df_Acc)
+                options = ["Bitte Suche dir eine Statistik heraus", "Maximale Höhe", "Minimale Höhe", "Höhe im Mittelwert", "Höhe im Median", "Maximale Beschleunigung", "Minimale Beschleunigung", "Beschleunigung im Mittelwert", "Beschleunigung im Median"]
+                selected_option = st.selectbox('Was willst du herausfinden?', options)
+                if selected_option == "Bitte Suche dir eine Statistik heraus":
+                    st.write('Bitte wähle eine Option')
+                elif selected_option == "Maximale Höhe":
+                    st.write('Maximale Höhe: ', gyro_max)
+                elif selected_option == "Minimale Höhe":
+                    st.write('Minimale Höhe: ', gyro_min)
+                elif selected_option == "Höhe im Mittelwert":
+                    st.write('Höhe im Mittelwert: ', gyro_mean)
+                elif selected_option == "Höhe im Media":
+                    st.write('Höhe im Median: ', gyro_med)
+                elif selected_option == "Maximale Beschleunigung":
+                    st.write('Maximale Beschleunigung: ', acc_max)
+                elif selected_option == "Minimale Beschleunigung":
+                    st.write('Minimale Beschleunigung: ', acc_min)
+                elif selected_option == "Beschleunigung im Mittelwert":
+                    st.write('Beschleunigung im Mittelwert: ', acc_mean)
+                elif selected_option == "Beschleunigung im Median":
+                    st.write('Beschleunigung im Median: ', acc_med)
+                else:
+                    st.write("Please select an option.")
 
 
-            option = st.selectbox('Wähle deinen Sensor', ("Beschleunigungssensor","Gyroscope"))
-            tab1, tab2, tab3 = st.tabs(["Are Chart", "Scatter Plot", "Historgamm"])
-            if option =="Beschleunigungssensor":
-                with tab1:
-                    st.header("Area Chart deiner Beschleunigungsdaten")
-                    tab1.area_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
-                with tab2:
-                    st.header("Scatter Plot deines Beschleunigungssensor")
-                    create_combined_scatter_plot([df_Acc['x'], df_Acc['y'], df_Acc['z']])
-                with tab3:
-                    tab3.header("Histogramm deiner Beschleunigungsdaten")
-                    create_combined_histogram([df_Acc['x'], df_Acc['y'], df_Acc['z']])
+                option = st.selectbox('Wähle deinen Sensor', ("Beschleunigungssensor","Gyroscope"))
+                tab1, tab2, tab3 = st.tabs(["Are Chart", "Scatter Plot", "Historgamm"])
+                if option =="Beschleunigungssensor":
+                    with tab1:
+                        st.header("Area Chart deiner Beschleunigungsdaten")
+                        tab1.area_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
+                    with tab2:
+                        st.header("Scatter Plot deines Beschleunigungssensor")
+                        create_combined_scatter_plot([df_Acc['x'], df_Acc['y'], df_Acc['z']])
+                    with tab3:
+                        tab3.header("Histogramm deiner Beschleunigungsdaten")
+                        create_combined_histogram([df_Acc['x'], df_Acc['y'], df_Acc['z']])
 
-            elif option == "Gyroscope":
-                with tab1:
-                    st.header("Area Chart deiner Gyroscopedaten")
-                    tab1.area_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
-                with tab2:
-                    tab2.header("Scatter Plot deines Gyroscopedaten")
-                    create_combined_scatter_plot([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
-                with tab3:
-                    tab3.header("Histogramm deiner Gyroscopedaten")
-                    create_combined_histogram([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
+                elif option == "Gyroscope":
+                    with tab1:
+                        st.header("Area Chart deiner Gyroscopedaten")
+                        tab1.area_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
+                    with tab2:
+                        tab2.header("Scatter Plot deines Gyroscopedaten")
+                        create_combined_scatter_plot([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
+                    with tab3:
+                        tab3.header("Histogramm deiner Gyroscopedaten")
+                        create_combined_histogram([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
                     
 
 
