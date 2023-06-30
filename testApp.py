@@ -4,6 +4,7 @@ import numpy as np
 import pickle as pkl
 from my_functions import getSensorData, getMetricsAcc, getMetricsGyr, getMetricsOri, getMetrics, generate_playlist, generate_video, create_combined_histogram, create_combined_scatter_plot
 from PIL import Image
+from streamlit import session_state as state
 
 
 st.set_page_config(
@@ -107,6 +108,7 @@ def page2():
                     link = generate_playlist('jumpingjacks')
                     st.markdown(f"[Playlist Link]({link})")
                     prediction = 'jumpingjacks'
+                    state.prediction = prediction
             with input2:
                 pushupButton = st.button(label = 'PushUps', use_container_width = 1)
                 if pushupButton:
@@ -137,9 +139,9 @@ def page3():
     if UserFile is not None:
         st.success('File erfolgreich hochgeladen!', icon="✅")
         UserFile_df = pd.read_json(UserFile)
-        prediction = predcit(UserFile_df)
-        st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{prediction}]** gemacht!')
-        videoURL = generate_video(prediction)
+        transferred_prediction = state.prediction
+        st.write(f'Basierend auf deinen Bewegungsdaten hast du **:red[{transferred_prediction}]** gemacht!')
+        videoURL = generate_video(transferred_prediction)
         st.write("Hier ist dein persönlich ausgesuchtes Workoutvideo:")
         st.video(videoURL)
 
