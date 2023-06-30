@@ -117,6 +117,8 @@ def page2():
                     link = generate_playlist('PushUps')
                     st.markdown(f"[Playlist Link]({link})")
                     prediction = 'PushUps'
+                    state.prediction = prediction
+                    st.experimental_rerun()
             with input3:
                 walkingButton = st.button(label = 'Walking', use_container_width = 1)
                 if walkingButton:
@@ -124,6 +126,8 @@ def page2():
                     link = generate_playlist('walking')
                     st.markdown(f"[Playlist Link]({link})")
                     prediction = 'walking'
+                    state.prediction = prediction
+                    st.experimental_rerun()
 
         
             
