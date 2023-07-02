@@ -205,6 +205,7 @@ def create_combined_histogram(data_list):
 
 
 
+
 def create_combined_scatter_plot(data_list):
     # Convert each Series into a DataFrame
     dfs = [pd.DataFrame({'Values': series}) for series in data_list]
@@ -227,14 +228,17 @@ def create_combined_scatter_plot(data_list):
     }
 
     # Create the combined scatter plot
-    scatter_plot = alt.Chart(df_long).mark_circle(size=60).encode(
+    scatter_circles = alt.Chart(df_long).mark_circle(size=60).encode(
         x='Variable',
         y='Values',
         color=alt.Color('Variable:N', legend=None, scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
         tooltip=['Variable', 'Values']
-    ).properties(
-        width=600,
-        height=400
+    )
+
+    scatter_points = alt.Chart(df_long).mark_point(color='black', size=100).encode(
+        x='Variable',
+        y='Values',
+        tooltip=['Variable', 'Values']
     )
 
     # Add mean markers
@@ -249,5 +253,9 @@ def create_combined_scatter_plot(data_list):
         y='Median'
     )
 
-    chart = scatter_plot + mean_markers + median_markers
+    chart = alt.layer(scatter_circles, scatter_points, mean_markers, median_markers).properties(
+        width=600,
+        height=400
+    )
+
     st.altair_chart(chart, use_container_width=True)
