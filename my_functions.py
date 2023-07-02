@@ -221,6 +221,9 @@ def create_combined_scatter_plot(data_list):
     # Reshape the DataFrame to long format
     df_long = df.melt(var_name='Variable', value_name='Values')
 
+    # Convert 'Values' column to numeric
+    df_long['Values'] = pd.to_numeric(df_long['Values'])
+
     color_map = {
         "x": "rgb(0, 102, 200)",
         "y": "rgb(141, 206, 255)",
