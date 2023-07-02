@@ -206,6 +206,7 @@ def create_combined_histogram(data_list):
 
 
 
+
 def create_combined_scatter_plot(data_list):
     # Convert each Series into a DataFrame
     dfs = [pd.DataFrame({'Values': series}) for series in data_list]
@@ -222,9 +223,9 @@ def create_combined_scatter_plot(data_list):
     summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
 
     color_map = {
-        "x": "rgb(0,102,200)",
-        "y": "rgb(141,206,255)",
-        "z": "rgb(255,23,23)"
+        "x": "rgb(0, 102, 200)",
+        "y": "rgb(141, 206, 255)",
+        "z": "rgb(255, 23, 23)"
     }
 
     # Create the combined scatter plot
@@ -235,10 +236,10 @@ def create_combined_scatter_plot(data_list):
         tooltip=['Variable', 'Values']
     )
 
-    scatter_points = alt.Chart(df_long).mark_circle(size=60, filled=True).encode(
+    scatter_points = alt.Chart(df_long).mark_point(size=60, filled=True).encode(
         x='Variable',
         y='Values',
-        fill=alt.Fill('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values())), legend=None),
+        color=alt.Color('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values())), legend=None),
         tooltip=['Variable', 'Values']
     )
 
