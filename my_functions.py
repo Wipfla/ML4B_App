@@ -225,11 +225,11 @@ def create_combined_scatter_plot(data_list):
 
     # Plot the scatter plot for each variable
     for i, series in enumerate(data_list):
-        ax.scatter([i] * len(series), series, color=color_map[f"cat{i+1}"])
+        ax.scatter([i] * len(series), series, color=color_map[f"x{i+1}"])
 
     # Set the x-axis ticks and labels
     ax.set_xticks(range(len(data_list)))
-    ax.set_xticklabels([f"cat{i+1}" for i in range(len(data_list))])
+    ax.set_xticklabels([f"x{i+1}" for i in range(len(data_list))])
 
     # Set the y-axis label
     ax.set_ylabel('Values')
