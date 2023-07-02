@@ -3,6 +3,7 @@ import random
 import streamlit as st
 import numpy as np
 import altair as alt
+import matplotlib.pyplot as plt
 
 #Function to get Accelometer, Gyroscope and Orientation Data from Json in one Dataframe each
 def getSensorData(df):
@@ -205,6 +206,12 @@ def create_combined_histogram(data_list):
 
 
 
+
+
+
+
+
+
 def create_combined_scatter_plot(data_list):
     # Convert each Series into a DataFrame
     dfs = [pd.DataFrame({'Values': series}) for series in data_list]
@@ -215,40 +222,28 @@ def create_combined_scatter_plot(data_list):
     # Reshape the DataFrame to long format
     df_long = df.melt(var_name='Variable', value_name='Values')
 
-    # Calculate mean and median for each variable
-    summary_stats = df.agg(['mean', 'median'])
-    summary_stats = summary_stats.transpose().reset_index()
-    summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
+    # Convert 'Values' column to numeric
+    df_long['Values'] = pd.to_numeric(df_long['Values'])
 
     color_map = {
-        "cat1": "rgb(0,102,200)",
-        "cat2": "rgb(141,206,255)",
-        "cat3": "rgb(255,23,23)"
+        "x": "rgb(0, 102, 200)",
+        "y": "rgb(141, 206, 255)",
+        "z": "rgb(255, 23, 23)"
     }
 
-    # Create the combined scatter plot
-    scatter_plot = alt.Chart(df_long).mark_circle(size=60).encode(
+    # Create the scatter plot
+    scatter_points = alt.Chart(df_long).mark_circle(size=60).encode(
         x='Variable',
         y='Values',
-        color=alt.Color('Variable:N', legend=None, scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
+        color=alt.Color('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
         tooltip=['Variable', 'Values']
-    ).properties(
+    )
+
+    chart = scatter_points.properties(
         width=600,
         height=400
-
     )
 
-    # Add mean markers
-    mean_markers = alt.Chart(summary_stats).mark_point(color='lightgreen', size=100).encode(
-        x='Variable',
-        y='Mean'
-    )
+    st.altair_chart(chart, use_container_width=True)
 
-    # Add median markers
-    median_markers = alt.Chart(summary_stats).mark_point(color='black', size=100).encode(
-        x='Variable',
-        y='Median'
-    )
 
-    chart = scatter_plot + mean_markers + median_markers
-    st.altair_chart(chart, theme= "streamlit")
