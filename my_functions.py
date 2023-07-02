@@ -3,7 +3,7 @@ import random
 import streamlit as st
 import numpy as np
 import altair as alt
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 
 #Function to get Accelometer, Gyroscope and Orientation Data from Json in one Dataframe each
 def getSensorData(df):
@@ -213,31 +213,37 @@ def create_combined_histogram(data_list):
 
 
 def create_combined_scatter_plot(data_list):
-    # Create a figure and axes
-    fig, ax = plt.subplots(figsize=(6, 4))
+    # Convert each Series into a DataFrame
+    dfs = [pd.DataFrame({'Values': series}) for series in data_list]
 
-    # Define colors for each variable
+    # Concatenate the DataFrames into a single DataFrame
+    df = pd.concat(dfs, axis=1, ignore_index=True)
+
+    # Reshape the DataFrame to long format
+    df_long = df.melt(var_name='Variable', value_name='Values')
+
+    # Convert 'Values' column to numeric
+    df_long['Values'] = pd.to_numeric(df_long['Values'])
+
     color_map = {
-        "x": "blue",
-        "y": "lightblue",
-        "z": "red"
+        "x": "rgb(0, 102, 200)",
+        "y": "rgb(141, 206, 255)",
+        "z": "rgb(255, 23, 23)"
     }
 
-    # Plot the scatter plot for each variable
-    for i, series in enumerate(data_list):
-        ax.scatter([i] * len(series), series, color=color_map[f"x{i+1}"])
+    # Create the scatter plot
+    scatter_points = alt.Chart(df_long).mark_circle(size=60).encode(
+        x='Variable',
+        y='Values',
+        color=alt.Color('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
+        tooltip=['Variable', 'Values']
+    )
 
-    # Set the x-axis ticks and labels
-    ax.set_xticks(range(len(data_list)))
-    ax.set_xticklabels([f"x{i+1}" for i in range(len(data_list))])
+    chart = scatter_points.properties(
+        width=600,
+        height=400
+    )
 
-    # Set the y-axis label
-    ax.set_ylabel('Values')
-
-    # Set the title
-    ax.set_title('Combined Scatter Plot')
-
-    # Show the plot
-    st.pyplot(fig)
+    st.altair_chart(chart, use_container_width=True)
 
 
