@@ -209,6 +209,7 @@ def create_combined_histogram(data_list):
 
 
 
+
 def create_combined_scatter_plot(data_list):
     # Convert each Series into a DataFrame
     dfs = [pd.DataFrame({'Values': series}) for series in data_list]
@@ -227,7 +228,7 @@ def create_combined_scatter_plot(data_list):
 
     # Create the scatter plot
     scatter_points = alt.Chart(df_long).mark_circle(size=60).encode(
-        x='Variable',
+        x=alt.X('Variable', axis=alt.Axis(title='Variable')),
         y='Values',
         color=alt.Color('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
         tooltip=['Variable', 'Values']
@@ -239,4 +240,5 @@ def create_combined_scatter_plot(data_list):
     )
 
     st.altair_chart(chart, use_container_width=True)
+    
 
