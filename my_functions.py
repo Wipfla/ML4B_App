@@ -208,6 +208,7 @@ def create_combined_histogram(data_list):
 
 
 
+
 def create_combined_scatter_plot(data_list):
     # Convert each Series into a DataFrame
     dfs = [pd.DataFrame({'Values': series}) for series in data_list]
@@ -218,11 +219,6 @@ def create_combined_scatter_plot(data_list):
     # Reshape the DataFrame to long format
     df_long = df.melt(var_name='Variable', value_name='Values')
 
-    # Calculate mean and median for each variable
-    summary_stats = df.agg(['mean', 'median'])
-    summary_stats = summary_stats.transpose().reset_index()
-    summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
-
     color_map = {
         "x": "rgb(0, 102, 200)",
         "y": "rgb(141, 206, 255)",
@@ -230,26 +226,14 @@ def create_combined_scatter_plot(data_list):
     }
 
     # Create the scatter plot
-    scatter_points = alt.Chart(df_long).mark_point(size=60).encode(
+    scatter_points = alt.Chart(df_long).mark_circle(size=60).encode(
         x='Variable',
         y='Values',
         color=alt.Color('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
         tooltip=['Variable', 'Values']
     )
 
-    # Add mean markers
-    mean_markers = alt.Chart(summary_stats).mark_point(color='lightgreen', size=100).encode(
-        x='Variable',
-        y='Mean'
-    )
-
-    # Add median markers
-    median_markers = alt.Chart(summary_stats).mark_point(color='black', size=100).encode(
-        x='Variable',
-        y='Median'
-    )
-
-    chart = alt.layer(scatter_points, mean_markers, median_markers).properties(
+    chart = scatter_points.properties(
         width=600,
         height=400
     )
