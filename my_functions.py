@@ -3,7 +3,6 @@ import random
 import streamlit as st
 import numpy as np
 import altair as alt
-import matplotlib.pyplot as plt
 
 #Function to get Accelometer, Gyroscope and Orientation Data from Json in one Dataframe each
 def getSensorData(df):
