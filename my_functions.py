@@ -233,7 +233,7 @@ def create_combined_scatter_plot(data_list):
 
     # Create the scatter plot
     scatter_points = alt.Chart(df_long).mark_circle(size=60).encode(
-        x='Variable',
+        x=alt.X('Variable:N', scale=alt.Scale(domain=['x', 'y', 'z']), axis=alt.Axis(values=[0, 1, 2])),
         y='Values',
         color=alt.Color('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
         tooltip=['Variable', 'Values']
