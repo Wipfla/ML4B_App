@@ -256,7 +256,7 @@ def create_combined_scatter_plot(data_list):
     # Set the legend
     ax.legend()
 
-    # Show the plot
-    plt.show()
+    # Show the plot using Streamlit's native function
+    st.pyplot(fig)
 
 
