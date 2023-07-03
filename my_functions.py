@@ -229,34 +229,37 @@ def create_combined_scatter_plot(data_list):
     summary_stats = summary_stats.transpose().reset_index()
     summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
 
-    # Create a colormap
-    colormap = plt.cm.get_cmap('Set1', len(data_list))
+    # Define colors for each variable
+    color_map = {
+        'x': 'blue',
+        'y': 'lightblue',
+        'z': 'red'
+    }
 
-    # Create the figure and axes
-    fig, ax = plt.subplots()
-
-    for i, variable in enumerate(data_list):
-        # Get the x and y values for the current variable
-        x_values = df_long.loc[df_long['Variable'] == variable.name, 'Variable'].index
-        y_values = df_long.loc[df_long['Variable'] == variable.name, 'Values']
-
-        # Plot the data points
-        ax.scatter(x_values[:len(y_values)], y_values, c=colormap(i), label=variable.name)
+    # Create the combined scatter plot
+    scatter_plot = alt.Chart(df_long).mark_circle(size=60).encode(
+        x='Variable',
+        y='Values',
+        color=alt.Color('Variable:N', scale=None, legend=None, scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
+        tooltip=['Variable', 'Values']
+    ).properties(
+        width=600,
+        height=400
+    )
 
     # Add mean markers
-    ax.scatter(summary_stats['Variable'], summary_stats['Mean'], c='lightgreen', marker='o', s=100, label='Mean')
+    mean_markers = alt.Chart(summary_stats).mark_point(color='lightgreen', size=100).encode(
+        x='Variable',
+        y='Mean'
+    )
 
     # Add median markers
-    ax.scatter(summary_stats['Variable'], summary_stats['Median'], c='black', marker='o', s=100, label='Median')
+    median_markers = alt.Chart(summary_stats).mark_point(color='black', size=100).encode(
+        x='Variable',
+        y='Median'
+    )
 
-    # Set the x-axis labels
-    ax.set_xticks(np.arange(len(data_list)))
-    ax.set_xticklabels([variable.name for variable in data_list])
-
-    # Set the legend
-    ax.legend()
-
-    # Show the plot using Streamlit's native function
-    st.pyplot(fig)
+    chart = scatter_plot + mean_markers + median_markers
+    chart.show()
 
 
