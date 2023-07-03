@@ -214,7 +214,7 @@ def page4():
 
 
                 option = st.selectbox('Wähle deinen Sensor', ("Beschleunigungssensor","Gyroscope"))
-                tab1, tab2, tab3, tab4 = st.tabs(["Datenverständnis", "Are Chart", "Scatter Plot", "Historgamm"])
+                tab1, tab2, tab3, tab4 = st.tabs(["Datenverständnis", "Area Chart", "Scatter Plot", "Historgamm"])
                 if option =="Beschleunigungssensor":
 
                     with tab1:
