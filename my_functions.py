@@ -220,7 +220,7 @@ def create_combined_scatter_plot(data_list):
     summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
 
     # Create the combined scatter plot
-    scatter_circles = alt.Chart(df_long).mark_circle(size=60).encode(
+    scatter_circles = alt.Chart(df_long).mark_point(size=60).encode(
         x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Values',
         color=alt.Color('Variable:N', legend=None),
