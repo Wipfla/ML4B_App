@@ -226,14 +226,14 @@ def create_combined_scatter_plot(data_list):
 
     # Create the combined scatter plot
     scatter_circles = alt.Chart(df_long).mark_circle(size=60).encode(
-        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
+        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'], labelExpr="{'x': 'x', 'y': 'y', 'z': 'z'}")),
         y='Values',
         color=alt.Color('Variable:N', legend=None, scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
         tooltip=['Variable', 'Values']
     )
 
     scatter_points = alt.Chart(df_long).mark_point(size=100).encode(
-        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
+        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'], labelExpr="{'x': 'x', 'y': 'y', 'z': 'z'}")),
         y='Values',
         fill=alt.Fill('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
         tooltip=['Variable', 'Values']
@@ -241,13 +241,13 @@ def create_combined_scatter_plot(data_list):
 
     # Add mean markers
     mean_markers = alt.Chart(summary_stats).mark_point(color='lightgreen', size=100).encode(
-        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
+        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'], labelExpr="{'x': 'x', 'y': 'y', 'z': 'z'}")),
         y='Mean'
     )
 
     # Add median markers
     median_markers = alt.Chart(summary_stats).mark_point(color='black', size=100).encode(
-        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
+        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'], labelExpr="{'x': 'x', 'y': 'y', 'z': 'z'}")),
         y='Median'
     )
 
