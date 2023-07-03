@@ -225,17 +225,16 @@ def create_combined_scatter_plot(data_list):
     # Convert 'Values' column to numeric
     df_long['Values'] = pd.to_numeric(df_long['Values'])
 
-    color_map = {
-        "x": "blue",
-        "y": "lightblue",
-        "z": "red"
-    }
+    color_scale = alt.Scale(
+        domain=['x', 'y', 'z'],
+        range=['blue', 'lightblue', 'red']
+    )
 
     # Create the scatter plot
     scatter_points = alt.Chart(df_long).mark_circle(size=60).encode(
         x=alt.X('Variable:N', scale=alt.Scale(domain=['x', 'y', 'z']), axis=alt.Axis(values=[0, 1, 2])),
         y='Values',
-        color=alt.Color('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values())), legend=None),
+        color=alt.Color('Variable:N', scale=color_scale, legend=None),
         tooltip=['Variable', 'Values']
     )
 
@@ -244,7 +243,7 @@ def create_combined_scatter_plot(data_list):
         height=400
     )
 
-    # Display the scatter plot using the Vega-Lite renderer
+    # Display the scatter plot
     st.write(chart)
 
 
