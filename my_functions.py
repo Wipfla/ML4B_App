@@ -228,15 +228,15 @@ def create_combined_scatter_plot(data_list):
     scatter_circles = alt.Chart(df_long).mark_circle(size=60).encode(
         x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Values',
-        color=alt.Color('Variable:N', legend=None, scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
-        tooltip=[alt.Tooltip('Variable:N', title='Variable'), alt.Tooltip('Values', title='Value')]
+        color=alt.Color('Variable:N', legend=alt.Legend(title='Legend', values=['x', 'y', 'z'], labels=['0', '1', '2']), scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
+        tooltip=[alt.Tooltip('Variable', title='Variable'), alt.Tooltip('Values', title='Value')]
     )
 
     scatter_points = alt.Chart(df_long).mark_point(size=100).encode(
         x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Values',
-        fill=alt.Fill('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
-        tooltip=[alt.Tooltip('Variable:N', title='Variable'), alt.Tooltip('Values', title='Value')]
+        fill=alt.Fill('Variable:N', legend=alt.Legend(title='Legend', values=['x', 'y', 'z'], labels=['0', '1', '2']), scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
+        tooltip=[alt.Tooltip('Variable', title='Variable'), alt.Tooltip('Values', title='Value')]
     )
 
     # Add mean markers
