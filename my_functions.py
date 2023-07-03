@@ -210,6 +210,9 @@ def create_combined_scatter_plot(data_list):
     # Concatenate the DataFrames into a single DataFrame
     df = pd.concat(dfs, axis=1, ignore_index=True)
 
+    # Reshape the DataFrame to long format
+    df_long = df.melt(var_name='Variable', value_name='Values')
+
     # Calculate mean and median for each variable
     summary_stats = df.agg(['mean', 'median'])
     summary_stats = summary_stats.transpose().reset_index()
