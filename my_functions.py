@@ -222,12 +222,14 @@ def create_combined_scatter_plot(data_list):
     scatter_circles = alt.Chart(df_long).mark_circle(size=60).encode(
         x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Values',
+        color=alt.Color('Variable:N', legend=None),
         tooltip=[alt.Tooltip('Variable', title='Variable'), alt.Tooltip('Values', title='Value')]
     )
 
     scatter_points = alt.Chart(df_long).mark_point(size=100).encode(
         x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Values',
+        fill=alt.Fill('Variable:N'),
         tooltip=[alt.Tooltip('Variable', title='Variable'), alt.Tooltip('Values', title='Value')]
     )
 
@@ -259,8 +261,8 @@ def create_combined_scatter_plot(data_list):
 
     # Add a text layer for the legend
     text = alt.Chart(pd.DataFrame({'Variable': list(legend_labels.keys()), 'Legend': list(legend_labels.values())})).mark_text().encode(
-        x=alt.value(10),
-        y=alt.value(20),
+        x=alt.value(650),
+        y=alt.Y('Legend:N', axis=None),
         text='Legend'
     )
 
