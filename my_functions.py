@@ -223,7 +223,7 @@ def create_combined_scatter_plot(data_list):
     scatter_circles = alt.Chart(df_long).mark_point(size=60, filled=True).encode(
         x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z']), title='Variable'),
         y='Values',
-        fill=alt.Color('Variable:N', legend=None),
+        fill=alt.Color('Variable:N', legend=alt.Legend(title='Legend', values=['x = 0', 'y = 1', 'z = 2'])),
         tooltip=[alt.Tooltip('Variable', title='Variable'), alt.Tooltip('Values', title='Value')]
     )
 
