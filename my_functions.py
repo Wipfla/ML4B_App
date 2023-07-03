@@ -218,25 +218,17 @@ def create_combined_scatter_plot(data_list):
     summary_stats = summary_stats.transpose().reset_index()
     summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
 
-    color_map = {
-        "x": "rgb(0,102,200)",
-        "y": "rgb(141,206,255)",
-        "z": "rgb(255,23,23)"
-    }
-
     # Create the combined scatter plot
     scatter_circles = alt.Chart(df_long).mark_circle(size=60).encode(
         x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Values',
-        color=alt.Color('Variable:N', legend=None, scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
-        tooltip=[alt.Tooltip('Variable:N', title='Variable'), alt.Tooltip('Values', title='Value')]
+        tooltip=[alt.Tooltip('Variable', title='Variable'), alt.Tooltip('Values', title='Value')]
     )
 
     scatter_points = alt.Chart(df_long).mark_point(size=100).encode(
         x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Values',
-        fill=alt.Fill('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
-        tooltip=[alt.Tooltip('Variable:N', title='Variable'), alt.Tooltip('Values', title='Value')]
+        tooltip=[alt.Tooltip('Variable', title='Variable'), alt.Tooltip('Values', title='Value')]
     )
 
     # Add mean markers
@@ -251,13 +243,27 @@ def create_combined_scatter_plot(data_list):
         y='Median'
     )
 
+    # Manually specify the legend labels
+    legend_labels = {'x': 'x = 0', 'y': 'y = 1', 'z': 'z = 2'}
+
     chart = alt.layer(scatter_circles, scatter_points, mean_markers, median_markers).properties(
         width=600,
         height=400
+    ).add_selection(
+        alt.selection_multi(fields=['Variable'], bind='legend')
+    ).transform_calculate(
+        legend_label='datum.Variable',
+    ).transform_filter(
+        alt.datum.Variable != None
     )
 
+    # Add a text layer for the legend
+    text = alt.Chart(pd.DataFrame({'Variable': list(legend_labels.keys()), 'Legend': list(legend_labels.values())})).mark_text().encode(
+        x=alt.value(10),
+        y=alt.value(20),
+        text='Legend'
+    )
+
+    chart += text
+
     st.altair_chart(chart, use_container_width=True)
-
-
-
-
