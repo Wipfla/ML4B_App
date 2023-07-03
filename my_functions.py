@@ -213,6 +213,7 @@ def create_combined_histogram(data_list):
 
 
 
+
 def create_combined_scatter_plot(data_list):
     # Convert each Series into a DataFrame
     dfs = [pd.DataFrame({'Values': series}) for series in data_list]
@@ -243,7 +244,8 @@ def create_combined_scatter_plot(data_list):
     fig, ax = plt.subplots(figsize=(10, 6))
     for variable, color in color_map.items():
         data = df_long[df_long['Variable'] == variable]
-        ax.scatter(x_values, data['Values'], color=color, label=variable)
+        y_values = data['Values'].values
+        ax.scatter(x_values[:len(y_values)], y_values, color=color, label=variable)
 
     # Add mean markers
     mean_values = summary_stats.loc[summary_stats['Variable'].isin(variables), 'Mean']
