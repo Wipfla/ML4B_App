@@ -229,14 +229,14 @@ def create_combined_scatter_plot(data_list):
         x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Values',
         color=alt.Color('Variable:N', legend=None, scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
-        tooltip=['Variable', 'Values']
+        tooltip=[alt.Tooltip('Variable:N', title='Variable'), alt.Tooltip('Values', title='Value')]
     )
 
     scatter_points = alt.Chart(df_long).mark_point(size=100).encode(
         x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Values',
         fill=alt.Fill('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
-        tooltip=['Variable', 'Values']
+        tooltip=[alt.Tooltip('Variable:N', title='Variable'), alt.Tooltip('Values', title='Value')]
     )
 
     # Add mean markers
