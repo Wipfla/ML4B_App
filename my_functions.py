@@ -219,9 +219,9 @@ def create_combined_scatter_plot(data_list):
     summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
 
     color_map = {
-        "x_blue": "rgb(0,102,200)",
-        "y_lightblue": "rgb(141,206,255)",
-        "z_red": "rgb(255,23,23)"
+        "x": "rgb(0,102,200)",
+        "y": "rgb(141,206,255)",
+        "z": "rgb(255,23,23)"
     }
 
     # Create the combined scatter plot
