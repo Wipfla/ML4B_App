@@ -223,11 +223,11 @@ def create_combined_scatter_plot(data_list):
     df_long = df.melt(var_name='Variable', value_name='Values')
 
     # Convert 'Values' column to numeric
-    df_long['Values'] = pd.to_numeric(df_long['Values'], errors='coerce')
+    df_long['Values'] = pd.to_numeric(df_long['Values'])
 
     color_scale = alt.Scale(
         domain=['x', 'y', 'z'],
-        range=['blue', 'lightblue', 'red']
+        range=['#0000FF', '#ADD8E6', '#FF0000']  # Blue, Light Blue, Red
     )
 
     # Create the scatter plot
@@ -244,6 +244,7 @@ def create_combined_scatter_plot(data_list):
     )
 
     # Display the scatter plot
-    st.write(chart)
+    st.altair_chart(chart, use_container_width=True)
+
 
 
