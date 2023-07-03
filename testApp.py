@@ -232,9 +232,16 @@ def page4():
                         tab1.area_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
                     with tab2:
                         tab2.header("Scatter Plot deines Gyroscopedaten")
-                        create_combined_scatter_plot([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
+                        x_blue= df_Gyr['x']
+                        y_lightblue= df_Gyr['y']
+                        z_red = df_Gyr['z']
+                        create_combined_scatter_plot([x_blue, y_lightblue, z_red])
                     with tab3:
                         tab3.header("Histogramm deiner Gyroscopedaten")
+                        x_blue= df_Acc['x']
+                        y_lightblue= df_Acc['y']
+                        z_red= df_Acc['z']
+
                         create_combined_histogram([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
                     
 
