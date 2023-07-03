@@ -220,33 +220,29 @@ def create_combined_scatter_plot(data_list):
     summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
 
     # Create the combined scatter plot
-    scatter_circles = alt.Chart(df_long).transform_calculate(
-        Variable_Label="datum.Variable == 'x' ? '0' : datum.Variable == 'y' ? '1' : '2'"
-    ).mark_point(size=60, filled=True).encode(
-        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
+    scatter_circles = alt.Chart(df_long).mark_point(size=60, filled=True).encode(
+        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z']), title='Variable'),
         y='Values',
-        fill=alt.Color('Variable_Label:N'),
+        fill=alt.Color('Variable:N', legend=None),
         tooltip=[alt.Tooltip('Variable', title='Variable'), alt.Tooltip('Values', title='Value')]
     )
 
-    scatter_points = alt.Chart(df_long).transform_calculate(
-        Variable_Label="datum.Variable == 'x' ? '0' : datum.Variable == 'y' ? '1' : '2'"
-    ).mark_point(size=100, filled=True).encode(
-        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
+    scatter_points = alt.Chart(df_long).mark_point(size=100, filled=True).encode(
+        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z']), title='Variable'),
         y='Values',
-        fill=alt.Color('Variable_Label:N'),
+        fill=alt.Color('Variable:N'),
         tooltip=[alt.Tooltip('Variable', title='Variable'), alt.Tooltip('Values', title='Value')]
     )
 
     # Add mean markers
     mean_markers = alt.Chart(summary_stats).mark_point(color='lightgreen', size=100, filled=True).encode(
-        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
+        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z']), title='Variable'),
         y='Mean'
     )
 
     # Add median markers
     median_markers = alt.Chart(summary_stats).mark_point(color='black', size=100, filled=True).encode(
-        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
+        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z']), title='Variable'),
         y='Median'
     )
 
