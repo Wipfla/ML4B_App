@@ -189,18 +189,18 @@ def page4():
                 acc_min= np.min(df_Acc)
                 acc_med= np.median(df_Acc)
                 acc_mean= np.mean(df_Acc)
-                options = ["Bitte Suche dir eine Statistik heraus", "Maximale Höhe", "Minimale Höhe", "Höhe im Mittelwert", "Höhe im Median", "Maximale Beschleunigung", "Minimale Beschleunigung", "Beschleunigung im Mittelwert", "Beschleunigung im Median"]
+                options = ["Bitte Suche dir eine Statistik heraus", "Maximale Neigung/Rotation", "Minimale Neigung/Rotation", "Neigung/Rotation im Mittelwert", "Neigung/Rotation im Median", "Maximale Beschleunigung", "Minimale Beschleunigung", "Beschleunigung im Mittelwert", "Beschleunigung im Median"]
                 selected_option = st.selectbox('Was willst du herausfinden?', options)
                 if selected_option == "Bitte Suche dir eine Statistik heraus":
                     st.write('Bitte wähle eine Option')
-                elif selected_option == "Maximale Höhe":
-                    st.write('Maximale Höhe: ', gyro_max)
-                elif selected_option == "Minimale Höhe":
-                    st.write('Minimale Höhe: ', gyro_min)
-                elif selected_option == "Höhe im Mittelwert":
-                    st.write('Höhe im Mittelwert: ', gyro_mean)
-                elif selected_option == "Höhe im Median":
-                    st.write('Höhe im Median: ', gyro_med)
+                elif selected_option == "Maximale Neigung/Rotation":
+                    st.write('Maximale Neigung/Rotation: ', gyro_max)
+                elif selected_option == "Minimale Neigung/Rotation":
+                    st.write('Minimale Neigung/Rotation: ', gyro_min)
+                elif selected_option == "Neigung/Rotation im Mittelwert":
+                    st.write('Neigung/Rotation im Mittelwert: ', gyro_mean)
+                elif selected_option == "Neigung/Rotation im Median":
+                    st.write('Neigung/Rotation im Median: ', gyro_med)
                 elif selected_option == "Maximale Beschleunigung":
                     st.write('Maximale Beschleunigung: ', acc_max)
                 elif selected_option == "Minimale Beschleunigung":
