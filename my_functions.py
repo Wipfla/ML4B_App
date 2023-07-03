@@ -229,23 +229,19 @@ def create_combined_scatter_plot(data_list):
     summary_stats = summary_stats.transpose().reset_index()
     summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
 
-    # Define colors for each variable
-    color_map = {
-        'x': 'rgb(0, 102, 200)',
-        'y': 'rgb(141, 206, 255)',
-        'z': 'rgb(255, 23, 23)'
-    }
+    # Create a colormap
+    colormap = plt.cm.get_cmap('Set1', len(data_list))
 
     # Create the figure and axes
     fig, ax = plt.subplots()
 
-    for variable, color in color_map.items():
+    for i, variable in enumerate(data_list):
         # Get the x and y values for the current variable
-        x_values = df_long.loc[df_long['Variable'] == variable, 'Variable'].index
-        y_values = df_long.loc[df_long['Variable'] == variable, 'Values']
+        x_values = df_long.loc[df_long['Variable'] == variable.name, 'Variable'].index
+        y_values = df_long.loc[df_long['Variable'] == variable.name, 'Values']
 
         # Plot the data points
-        ax.scatter(x_values[:len(y_values)], y_values, c=color, label=variable)
+        ax.scatter(x_values[:len(y_values)], y_values, c=colormap(i), label=variable.name)
 
     # Add mean markers
     ax.scatter(summary_stats['Variable'], summary_stats['Mean'], c='lightgreen', marker='o', s=100, label='Mean')
@@ -255,7 +251,7 @@ def create_combined_scatter_plot(data_list):
 
     # Set the x-axis labels
     ax.set_xticks(np.arange(len(data_list)))
-    ax.set_xticklabels(data_list)
+    ax.set_xticklabels([variable.name for variable in data_list])
 
     # Set the legend
     ax.legend()
