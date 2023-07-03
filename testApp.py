@@ -199,7 +199,7 @@ def page4():
                     st.write('Minimale Höhe: ', gyro_min)
                 elif selected_option == "Höhe im Mittelwert":
                     st.write('Höhe im Mittelwert: ', gyro_mean)
-                elif selected_option == "Höhe im Media":
+                elif selected_option == "Höhe im Median":
                     st.write('Höhe im Median: ', gyro_med)
                 elif selected_option == "Maximale Beschleunigung":
                     st.write('Maximale Beschleunigung: ', acc_max)
