@@ -246,7 +246,4 @@ def create_combined_scatter_plot(data_list):
     # Display the scatter plot
     st.write(chart)
 
-# Call the function with your data
-create_combined_scatter_plot([df_Acc['x'], df_Acc['y'], df_Acc['z']])
-
 
