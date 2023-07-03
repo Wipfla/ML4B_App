@@ -213,16 +213,11 @@ def create_combined_scatter_plot(data_list):
     # Reshape the DataFrame to long format
     df_long = df.melt(var_name='Variable', value_name='Values')
 
-    # Calculate mean and median for each variable
-    summary_stats = df.agg(['mean', 'median'])
-    summary_stats = summary_stats.transpose().reset_index()
-    summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
-
     # Create the combined scatter plot
     scatter_circles = alt.Chart(df_long).mark_circle(size=60).encode(
         x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Values',
-        color=alt.Color('Variable:N', legend=None, scale=alt.Scale(scheme='category10')),
+        color=alt.Color('Variable:N', scale=alt.Scale(scheme='category10')),
         tooltip=[alt.Tooltip('Variable', title='Variable'), alt.Tooltip('Values', title='Value')]
     )
 
@@ -234,38 +229,24 @@ def create_combined_scatter_plot(data_list):
     )
 
     # Add mean markers
-    mean_markers = alt.Chart(summary_stats).mark_point(color='lightgreen', size=100).encode(
+    mean_markers = alt.Chart(df_long).mark_point(color='lightgreen', size=100).transform_filter(
+        alt.datum.Variable != None
+    ).encode(
         x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
-        y='Mean'
+        y=alt.Y('mean(Values)', title='Mean')
     )
 
     # Add median markers
-    median_markers = alt.Chart(summary_stats).mark_point(color='black', size=100).encode(
+    median_markers = alt.Chart(df_long).mark_point(color='black', size=100).transform_filter(
+        alt.datum.Variable != None
+    ).encode(
         x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
-        y='Median'
+        y=alt.Y('median(Values)', title='Median')
     )
-
-    # Manually specify the legend labels
-    legend_labels = {'x': 'x = 0', 'y': 'y = 1', 'z': 'z = 2'}
 
     chart = alt.layer(scatter_circles, scatter_points, mean_markers, median_markers).properties(
         width=600,
         height=400
-    ).add_selection(
-        alt.selection_multi(fields=['Variable'], bind='legend')
-    ).transform_calculate(
-        legend_label='datum.Variable',
-    ).transform_filter(
-        alt.datum.Variable != None
     )
-
-    # Add a text layer for the legend
-    text = alt.Chart(pd.DataFrame({'Variable': list(legend_labels.keys()), 'Legend': list(legend_labels.values())})).mark_text().encode(
-        x=alt.value(650),
-        y=alt.Y('Legend:N', axis=None),
-        text='Legend'
-    )
-
-    chart += text
 
     st.altair_chart(chart, use_container_width=True)
