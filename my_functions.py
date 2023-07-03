@@ -203,20 +203,20 @@ def create_combined_histogram(data_list):
     st.altair_chart(chart)
 
 
-
 def create_combined_scatter_plot(data_list):
     # Convert each Series into a DataFrame
-    dfs = [pd.DataFrame({'Values': series, 'Variable': var}) for var, series in zip(['x', 'y', 'z'], data_list)]
+    dfs = [pd.DataFrame({'Values': series}) for series in data_list]
 
     # Concatenate the DataFrames into a single DataFrame
-    df = pd.concat(dfs, axis=0)
+    df = pd.concat(dfs, axis=1, ignore_index=True)
 
     # Reshape the DataFrame to long format
-    df_long = df.melt(id_vars='Variable', value_name='Values')
+    df_long = df.melt(var_name='Variable', value_name='Values')
 
     # Calculate mean and median for each variable
-    summary_stats = df.groupby('Variable')['Values'].agg(['mean', 'median']).reset_index()
-    summary_stats = summary_stats.rename(columns={'mean': 'Mean', 'median': 'Median'})
+    summary_stats = df.agg(['mean', 'median'])
+    summary_stats = summary_stats.transpose().reset_index()
+    summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
 
     color_map = {
         "x": "rgb(0,102,200)",
@@ -226,28 +226,28 @@ def create_combined_scatter_plot(data_list):
 
     # Create the combined scatter plot
     scatter_circles = alt.Chart(df_long).mark_circle(size=60).encode(
-        x=alt.X('Variable:N', axis=alt.Axis(title='Variable', labelExpr="{'x': 'x', 'y': 'y', 'z': 'z'}")),
+        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Values',
         color=alt.Color('Variable:N', legend=None, scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
-        tooltip=[alt.Tooltip('Variable:N', title='Variable'), 'Values']
+        tooltip=['Variable', 'Values']
     )
 
     scatter_points = alt.Chart(df_long).mark_point(size=100).encode(
-        x=alt.X('Variable:N', axis=alt.Axis(title='Variable', labelExpr="{'x': 'x', 'y': 'y', 'z': 'z'}")),
+        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Values',
         fill=alt.Fill('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
-        tooltip=[alt.Tooltip('Variable:N', title='Variable'), 'Values']
+        tooltip=['Variable', 'Values']
     )
 
     # Add mean markers
     mean_markers = alt.Chart(summary_stats).mark_point(color='lightgreen', size=100).encode(
-        x=alt.X('Variable:N', axis=alt.Axis(title='Variable', labelExpr="{'x': 'x', 'y': 'y', 'z': 'z'}")),
+        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Mean'
     )
 
     # Add median markers
     median_markers = alt.Chart(summary_stats).mark_point(color='black', size=100).encode(
-        x=alt.X('Variable:N', axis=alt.Axis(title='Variable', labelExpr="{'x': 'x', 'y': 'y', 'z': 'z'}")),
+        x=alt.X('Variable:N', axis=alt.Axis(values=['x', 'y', 'z'])),
         y='Median'
     )
 
