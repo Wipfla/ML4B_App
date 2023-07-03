@@ -236,30 +236,31 @@ def create_combined_scatter_plot(data_list):
         'z': 'rgb(255, 23, 23)'
     }
 
-    # Create numerical x-axis values
-    variables = df_long['Variable'].unique()
-    x_values = np.arange(len(variables))
+    # Create the figure and axes
+    fig, ax = plt.subplots()
 
-    # Create the combined scatter plot
-    fig, ax = plt.subplots(figsize=(10, 6))
     for variable, color in color_map.items():
-        data = df_long[df_long['Variable'] == variable]
-        y_values = data['Values'].values
-        ax.scatter(x_values[:len(y_values)], y_values, color=color, label=variable)
+        # Get the x and y values for the current variable
+        x_values = df_long.loc[df_long['Variable'] == variable, 'Variable'].index
+        y_values = df_long.loc[df_long['Variable'] == variable, 'Values']
+
+        # Plot the data points
+        ax.scatter(x_values[:len(y_values)], y_values, c=color, label=variable)
 
     # Add mean markers
-    mean_values = summary_stats.loc[summary_stats['Variable'].isin(variables), 'Mean']
-    ax.scatter(x_values, mean_values, color='lightgreen', s=100, label='Mean')
+    ax.scatter(summary_stats['Variable'], summary_stats['Mean'], c='lightgreen', marker='o', s=100, label='Mean')
 
     # Add median markers
-    median_values = summary_stats.loc[summary_stats['Variable'].isin(variables), 'Median']
-    ax.scatter(x_values, median_values, color='black', s=100, label='Median')
+    ax.scatter(summary_stats['Variable'], summary_stats['Median'], c='black', marker='o', s=100, label='Median')
 
-    ax.set_xticks(x_values)
-    ax.set_xticklabels(variables)
-    ax.set_xlabel('Variable')
-    ax.set_ylabel('Values')
+    # Set the x-axis labels
+    ax.set_xticks(np.arange(len(data_list)))
+    ax.set_xticklabels(data_list)
+
+    # Set the legend
     ax.legend()
+
+    # Show the plot
     plt.show()
 
 
