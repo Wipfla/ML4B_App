@@ -214,27 +214,38 @@ def page4():
 
 
                 option = st.selectbox('Wähle deinen Sensor', ("Beschleunigungssensor","Gyroscope"))
-                tab1, tab2, tab3 = st.tabs(["Are Chart", "Scatter Plot", "Historgamm"])
+                tab1, tab2, tab3, tab4 = st.tabs(["Datenverständnis", "Are Chart", "Scatter Plot", "Historgamm"])
                 if option =="Beschleunigungssensor":
+
                     with tab1:
-                        st.header("Area Chart deiner Beschleunigungsdaten")
-                        tab1.area_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
+                        st.header("So liest du deine Daten:") 
+                        st.write("x: Beschleunigung (von deinem Handy aus) nach links und rechts")
+                        st.write("y: Beschleunigung (von deinem Handy aus) nach vorne und hinten")
+                        st.write("z: Beschleunigung (von deinem Handy aus) nach oben und unten")
                     with tab2:
+                        st.header("Area Chart deiner Beschleunigungsdaten")
+                        tab2.area_chart(data=df_Acc, x='time', y=['x', 'y', 'z'])
+                    with tab3:
                         st.header("Scatter Plot deines Beschleunigungssensor")
                         create_combined_scatter_plot([df_Acc['x'], df_Acc['y'], df_Acc['z']])
-                    with tab3:
-                        tab3.header("Histogramm deiner Beschleunigungsdaten")
+                    with tab4:
+                        tab4.header("Histogramm deiner Beschleunigungsdaten")
                         create_combined_histogram([df_Acc['x'], df_Acc['y'], df_Acc['z']])
 
                 elif option == "Gyroscope":
                     with tab1:
-                        st.header("Area Chart deiner Gyroscopedaten")
-                        tab1.area_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
+                        st.header("So liest du deine Daten:") 
+                        st.write("x: Neigung des Handys entlang der Querachse")
+                        st.write("y: Neigung des Handys entlang der Längsache")
+                        st.write("z: Rotieren des Handys am Mittelpunkt")
                     with tab2:
-                        tab2.header("Scatter Plot deines Gyroscopedaten")
-                        create_combined_scatter_plot([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
+                        st.header("Area Chart deiner Gyroscopedaten")
+                        tab2.area_chart(data=df_Gyr, x='time', y=['x', 'y', 'z'])
                     with tab3:
-                        tab3.header("Histogramm deiner Gyroscopedaten")
+                        tab3.header("Scatter Plot deines Gyroscopedaten")
+                        create_combined_scatter_plot([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
+                    with tab4:
+                        tab4.header("Histogramm deiner Gyroscopedaten")
                         create_combined_histogram([df_Gyr['x'], df_Gyr['y'], df_Gyr['z']])
                     
 
