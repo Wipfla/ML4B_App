@@ -117,10 +117,10 @@ def page2():
                     st.write(f"Hier ist deine angepasste persönlich ausgesuchte Playlist:")
                     link = generate_playlist('PushUps')
                     st.markdown(f"[Playlist Link]({link})")
-                    prediction = 'PushUps'
+                    prediction = 'pushups'
                     state.prediction = prediction
             with input3:
-                walkingButton = st.button(label = 'Walking', use_container_width = 1)
+                walkingButton = st.button(label = 'walking', use_container_width = 1)
                 if walkingButton:
                     st.write("Hier ist deine angepasste persönlich ausgesuchte Playlist:")
                     link = generate_playlist('walking')
