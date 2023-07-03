@@ -212,6 +212,10 @@ def create_combined_histogram(data_list):
 
 
 
+import streamlit as st
+import pandas as pd
+import altair as alt
+
 def create_combined_scatter_plot(data_list):
     # Convert each Series into a DataFrame
     dfs = [pd.DataFrame({'Values': series}) for series in data_list]
@@ -222,29 +226,51 @@ def create_combined_scatter_plot(data_list):
     # Reshape the DataFrame to long format
     df_long = df.melt(var_name='Variable', value_name='Values')
 
-    # Convert 'Values' column to numeric
-    df_long['Values'] = pd.to_numeric(df_long['Values'])
+    # Calculate mean and median for each variable
+    summary_stats = df.agg(['mean', 'median'])
+    summary_stats = summary_stats.transpose().reset_index()
+    summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
 
-    color_scale = alt.Scale(
-        domain=['x', 'y', 'z'],
-        range=['#0000FF', '#ADD8E6', '#FF0000']  # Blue, Light Blue, Red
-    )
+    color_map = {
+        "x": "rgb(0,102,200)",
+        "y": "rgb(141,206,255)",
+        "z": "rgb(255,23,23)"
+    }
 
-    # Create the scatter plot
-    scatter_points = alt.Chart(df_long).mark_circle(size=60).encode(
-        x=alt.X('Variable:N', scale=alt.Scale(domain=['x', 'y', 'z']), axis=alt.Axis(values=[0, 1, 2])),
+    # Create the combined scatter plot
+    scatter_circles = alt.Chart(df_long).mark_circle(size=60).encode(
+        x='Variable',
         y='Values',
-        color=alt.Color('Variable:N', scale=color_scale, legend=None),
+        color=alt.Color('Variable:N', legend=None, scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
         tooltip=['Variable', 'Values']
     )
 
-    chart = scatter_points.properties(
+    scatter_points = alt.Chart(df_long).mark_point(size=100).encode(
+        x='Variable',
+        y='Values',
+        fill=alt.Fill('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
+        tooltip=['Variable', 'Values']
+    )
+
+    # Add mean markers
+    mean_markers = alt.Chart(summary_stats).mark_point(color='lightgreen', size=100).encode(
+        x='Variable',
+        y='Mean'
+    )
+
+    # Add median markers
+    median_markers = alt.Chart(summary_stats).mark_point(color='black', size=100).encode(
+        x='Variable',
+        y='Median'
+    )
+
+    chart = alt.layer(scatter_circles, scatter_points, mean_markers, median_markers).properties(
         width=600,
         height=400
     )
 
-    # Display the scatter plot
     st.altair_chart(chart, use_container_width=True)
+
 
 
 
