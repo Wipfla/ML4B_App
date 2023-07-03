@@ -235,7 +235,7 @@ def create_combined_scatter_plot(data_list):
     scatter_points = alt.Chart(df_long).mark_circle(size=60).encode(
         x=alt.X('Variable:N', scale=alt.Scale(domain=['x', 'y', 'z']), axis=alt.Axis(values=[0, 1, 2])),
         y='Values',
-        color=alt.Color('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
+        color=alt.Color('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values())), legend=None),
         tooltip=['Variable', 'Values']
     )
 
@@ -244,6 +244,7 @@ def create_combined_scatter_plot(data_list):
         height=400
     )
 
-    st.altair_chart(chart, use_container_width=True)
+    # Display the scatter plot using the Vega-Lite renderer
+    st.write(chart)
 
 
