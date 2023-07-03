@@ -212,6 +212,7 @@ def create_combined_histogram(data_list):
 
 
 
+
 def create_combined_scatter_plot(data_list):
     # Convert each Series into a DataFrame
     dfs = [pd.DataFrame({'Values': series}) for series in data_list]
@@ -222,28 +223,36 @@ def create_combined_scatter_plot(data_list):
     # Reshape the DataFrame to long format
     df_long = df.melt(var_name='Variable', value_name='Values')
 
-    # Convert 'Values' column to numeric
-    df_long['Values'] = pd.to_numeric(df_long['Values'])
+    # Calculate mean and median for each variable
+    summary_stats = df.agg(['mean', 'median'])
+    summary_stats = summary_stats.transpose().reset_index()
+    summary_stats = summary_stats.rename(columns={'index': 'Variable', 'mean': 'Mean', 'median': 'Median'})
 
+    # Define colors for each variable
     color_map = {
-        "x": "rgb(0, 102, 200)",
-        "y": "rgb(141, 206, 255)",
-        "z": "rgb(255, 23, 23)"
+        'x': 'rgb(0, 102, 200)',
+        'y': 'rgb(141, 206, 255)',
+        'z': 'rgb(255, 23, 23)'
     }
 
-    # Create the scatter plot
-    scatter_points = alt.Chart(df_long).mark_circle(size=60).encode(
-        x='Variable',
-        y='Values',
-        color=alt.Color('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
-        tooltip=['Variable', 'Values']
-    )
+    # Create the combined scatter plot
+    fig, ax = plt.subplots(figsize=(10, 6))
+    for variable, color in color_map.items():
+        data = df_long[df_long['Variable'] == variable]
+        ax.scatter(data['Variable'], data['Values'], color=color, label=variable)
 
-    chart = scatter_points.properties(
-        width=600,
-        height=400
-    )
+    # Add mean markers
+    ax.scatter(summary_stats['Variable'], summary_stats['Mean'], color='lightgreen', s=100, label='Mean')
 
-    st.altair_chart(chart, use_container_width=True)
+    # Add median markers
+    ax.scatter(summary_stats['Variable'], summary_stats['Median'], color='black', s=100, label='Median')
+
+    ax.set_xlabel('Variable')
+    ax.set_ylabel('Values')
+    ax.legend()
+    plt.show()
+
+# Call the function with your data
+create_combined_scatter_plot([df_Acc['x'], df_Acc['y'], df_Acc['z']])
 
 
