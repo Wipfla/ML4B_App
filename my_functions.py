@@ -232,15 +232,18 @@ def create_combined_scatter_plot(data_list):
     }
 
     # Create the scatter plot
-    fig, ax = plt.subplots()
-    for variable, color in color_map.items():
-        data = df_long[df_long['Variable'] == variable]
-        ax.scatter(data.index, data['Values'], c=color, label=variable)
+    scatter_points = alt.Chart(df_long).mark_circle(size=60).encode(
+        x='Variable',
+        y='Values',
+        color=alt.Color('Variable:N', scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
+        tooltip=['Variable', 'Values']
+    )
 
-    ax.set_xlabel('Variable')
-    ax.set_ylabel('Values')
-    ax.legend()
+    chart = scatter_points.properties(
+        width=600,
+        height=400
+    )
 
-    st.pyplot(fig)
+    st.altair_chart(chart, use_container_width=True)
 
 
